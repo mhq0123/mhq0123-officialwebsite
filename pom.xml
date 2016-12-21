@@ -7,8 +7,12 @@
     <groupId>com.mhq0123.officialwebsite</groupId>
     <artifactId>mhq0123-officialwebsite</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
-        <module>mhq0123-officialwebsite-register-server</module>
+        <module>mhq0123-officialwebsite-config</module>
+        <module>mhq0123-officialwebsite-service-registry</module>
+        <module>mhq0123-officialwebsite-blog</module>
+        <module>mhq0123-officialwebsite-gateway</module>
     </modules>
 
     <packaging>pom</packaging>
