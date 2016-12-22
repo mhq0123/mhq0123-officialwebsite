@@ -72,7 +72,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+figure, figcaption, footer, header,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
@@ -81,7 +81,7 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+footer, header, menu, nav, section {
     display: block;
 }
 ol, ul {
@@ -154,7 +154,7 @@ a.link:hover {
    text-decoration: underline;
 }
 .animate,
-.transition, 
+.transition,
 .btn {
     -webkit-transition-duration: 0.25s;
     -o-transition-duration: 0.25s;
@@ -512,7 +512,6 @@ select:focus {
 }
 input[type="text"].inverse, 
 input[type="password"].inverse,
-input[type="email"]:.inverse, 
 input[type="number"].inverse {
     background-color: transparent;
     border-color: #fff;
@@ -554,7 +553,7 @@ input[type="text"].inverse:focus {
     top: 17px;
 }
 .control-group.error:after {
-    background-image: url('/static/img/svg/check_invalid.svg');
+    background-image: url('');
 }
 .help-block > ul {
     position: absolute;
@@ -592,7 +591,7 @@ input[type="text"].inverse:focus {
     position: relative;
 }
 .check-field.pass:after {
-    background-image: url('/static/img/svg/check_active.svg');
+    background-image: url('');
 }
 .m-bottom {
     margin-bottom: 15px;
@@ -689,7 +688,7 @@ input[type='submit'] {
     position: absolute;
     top: 17px;
     left: 13px;
-    background-image: url('/static/img/svg/info.svg');
+    background-image: url('');
     -webkit-background-size: cover;
     background-size: cover;
     height: 24px;
@@ -1261,7 +1260,7 @@ input[type='checkbox']:not(old):checked + label > span:before {
     width: 11px;
     height: 11px;
     margin: 3px 0px 0px 3px;
-    background-image: url('/static/img/svg/checked_img.svg');
+    background-image: url('');
     -webkit-background-size: contain;
     background-size: contain;
     background-repeat: no-repeat;
@@ -1280,7 +1279,7 @@ input[type='radio']:not(old):checked +  label > span > span {
     color: #fff;
     width: 500px;
     box-shadow: none;
-    background-image: url('/static/img/waves.png');
+    background-image: url("");
     background-position: bottom;
     background-size: contain;
     background-repeat: no-repeat;

@@ -41,8 +41,48 @@
             margin-left: 0px !important;
         }
     </style>
+
+    <style>
+        .site-header .site-navigation:hover {
+            background: #41485e;
+        }
+        /*.bg-blur {*/
+            /*float: left;*/
+            /*width: 100%;*/
+            /*background-repeat: no-repeat;*/
+            /*background-position: center;*/
+            /*background-size: cover;*/
+            /*-webkit-filter: blur(2px);*/
+            /*-moz-filter: blur(2px);*/
+            /*-o-filter: blur(2px);*/
+            /*-ms-filter: blur(2px);*/
+            /*filter: blur(2px);*/
+        /*}*/
+        .homepage-title {
+            background: rgba(52,48,45,.4);
+            display: inline-block;
+            font-family: 华文行楷;
+        }
+
+        .donate_bar a.btn_donate:hover{
+            background-position: 0px -82px;
+        }
+        .btn_donate {
+            display: inline-block;
+            width: 82px;
+            height: 82px;
+            background: url(./image/btn_reward.gif) no-repeat;
+            _background: url(./image/btn_reward.gif) no-repeat;
+            -webkit-transition: background 0s;
+            -moz-transition: background 0s;
+            -o-transition: background 0s;
+            -ms-transition: background 0s;
+            transition: background 0s;
+        }
+    </style>
 </head>
 <body class="sticky-nav transparent-nav" mycollectionplug="bind" youdao="bind">
+
 <!-- Site header -->
 <header class="site-header">
     <!-- Logo & Navigation -->
@@ -54,23 +94,22 @@
             </div>
             <a class="navbar-toggle" href="http://mhq0123.com#" data-toggle="offcanvas"><i class="fa fa-bars"></i></a>
             <ul class="nav-menu">
-                <li><a href="http://blog.mhq0123.com" target="_self">个人博客</a></li>
-                <li><a href="http://balance.mhq0123.com" target="_self">对账系统</a></li>
-                <li><a href="http://scheduler.mhq0123.com" target="_self">调度系统</a></li>
-                <li><a href="#"><span class="btn btn-primary hidden-sm hidden-xs">搜索</span></a></li>
+                <li><a href="http://blog.mhq0123.com" target="_self" style="font-size: large">斗图库</a></li>
+                <li><a href="http://balance.mhq0123.com" target="_self" style="font-size: large">对账系统</a></li>
+                <li><a href="http://scheduler.mhq0123.com" target="_self" style="font-size: large">调度系统</a></li>
+                <li><a href="http://blog.mhq0123.com" target="_self" style="font-size: large">个人博客</a></li>
+                <li><a href="#"><i>About Me</i></a></li>
             </ul>
         </div>
     </nav>
     <!-- END Logo & Navigation -->
     <!-- Header image -->
 
-    <div style="background-image: url(image/background.jpg);" class="banner banner-full-height overlay-black">
+    <div style="background-image: url(image/background/background6.jpg);" class="banner banner-full-height overlay-black bg-blur">
         <div class="container text-center">
-            <h1>mhq0123.com</h1>
-            <br>
-            <h2 style="font-family: 华文行楷">一个码农用心打造的个人网站</h2>
-            <br>
-            <h1 style="font-family: 华文行楷">路漫漫其修远兮，吾将上下而求索！</h1>
+            <h2 class="homepage-title" style="color: #c8d0d7">一个码农用心打造的个人网站</h2>
+            <br> <br> <br><br>
+            <h1 class="homepage-title" style="color: #c8d0d7">路漫漫其修远兮，吾将上下而求索！</h1>
             <br><br><br><br>
         </div>
     </div>
@@ -111,7 +150,7 @@
     </section>
 
     <!-- Section - balance -->
-    <section id="sec-balance" class="no-border-bottom bg-gray-light padding-xs">
+    <section id="sec-balance" class="no-border-bottom bg-gray padding-xs">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
@@ -182,37 +221,31 @@
 <footer class="site-footer">
     <div class="container">
         <div class="row">
-
-            <div class="col-md-7 col-sm-6 col-xs-12">
-                <ul class="list-view-item">
-                    <li>email: 532386274@qq.com</li>
-                    <li>&nbsp;</li>
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <ul style="font-size: larger; color: #9ba5ad">
                     <li>QQ: 532386274</li>
-                    <li>&nbsp;</li>
-                    <li>github: https://github.com/mhq0123</li>
+                    <li>QQ交流群: 48101331</li>
+                    <li>email: 532386274@qq.com</li>
+                    <li>blog: <a href="http://blog.mhq0123.com" style="color: #36d678">http://blog.mhq0123.com</a></li>
+                    <li>github: <a href="https://github.com/mhq0123" style="color: #36d678">https://github.com/mhq0123</a></li>
                 </ul>
             </div>
-
-            <div class="col-md-5 col-sm-6 col-xs-12">
-                <ul class="footer-socials">
-                    <li><a class="facebook" href="http://mhq0123.com#"><i class="fa fa-weibo"></i></a></li>
-                    <li><a class="twitter" href="http://mhq0123.com#"><i class="fa fa-weixin"></i></a></li>
-                    <li><a class="dribbble" href="http://mhq0123.com#"><i class="fa fa-github"></i></a></li>
-                </ul>
-                <br/><br/>
-                <ul>
-                    <p class="back-to-top"><a id="scroll-up" href="http://mhq0123.com#">返回顶部</a></p>
-                </ul>
+            <div class="col-md-4 col-sm-4 col-xs-12" align="right">
+                <div class="list-view-item">
+                    <img height="135px" width="135px" alt="Start Coding Immediately" src="./image/weixin_pay.png"/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <img height="135px" width="135px" alt="Start Coding Immediately" src="./image/alipay.png"/>
+                </div>
             </div>
-
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
         </div>
-
         <div class="row">
-            <div class="align-center">
-                <p class="copyright-text">Copyrights © 2016 All Rights Reserved by <a href="http://blog.mhq0123.com" target="blog">mhq0123</a></p>
+            <div class="align-center" style="font-size:15px; color: #9ba5ad">
+                <br/>
+                <p class="copyright-text">Copyrights © 2016 All Rights Reserved by mhq0123</p>
             </div>
         </div>
-
     </div>
 </footer>
 <!-- END Site footer -->
