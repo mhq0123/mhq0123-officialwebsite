@@ -19,6 +19,9 @@
     <link href="./css/font.css" type="text/css" rel="stylesheet">
     <link href="./css/base.css" type="text/css" rel="stylesheet">
 
+    <!--js-->
+    <script src="./js/jquery-3.1.1.min.js" type="text/javascript"></script>
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="image/favicon.jpg">
     <link rel="icon" href="image/favicon.jpg">
@@ -80,6 +83,19 @@
             transition: background 0s;
         }
     </style>
+
+    <script type="text/javascript">
+        jQuery(function($) {
+            $(window).scroll(function() {
+                if($(window).scrollTop() > 100) {
+                    $(".site-header .site-navigation").css("background", '#41485e');
+                } else {
+                    $(".site-header .site-navigation").css("background", '');
+                }
+            });
+        });
+
+    </script>
 </head>
 <body class="sticky-nav transparent-nav" mycollectionplug="bind" youdao="bind">
 
@@ -105,7 +121,7 @@
     <!-- END Logo & Navigation -->
     <!-- Header image -->
 
-    <div style="background-image: url(image/background/background6.jpg);" class="banner banner-full-height overlay-black bg-blur">
+    <div style="background-image: url(image/background/background6.jpg);" class="banner banner-full-height overlay-black">
         <div class="container text-center">
             <h2 class="homepage-title" style="color: #c8d0d7">一个码农用心打造的个人网站</h2>
             <br> <br> <br><br>
@@ -229,7 +245,7 @@
                 <div>
                     <div class="col-sm-3 col-md-3 content-center text-right" style="height: 200px;"></div>
                     <div class="col-sm-6 col-md-6 content-center text-right" style="height: 200px;">
-                        <img src="./image/scheduler.png" alt="features">
+                        <img src="./image/scheduler.png" height="200px" alt="features">
                     </div>
                     <div class="col-sm-3 col-md-3 content-center text-right" style="height: 200px;"></div>
                 </div>

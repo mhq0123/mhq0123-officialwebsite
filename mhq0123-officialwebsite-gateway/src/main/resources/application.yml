@@ -18,11 +18,11 @@ logging:
   config: classpath:logback.xml
 
 #路由信息,多个节点时自动集成ribbon负载均衡
-zuul:
-  routes:
-    mhq0123-officialwebsite-blog-web:
-      path: /blog/**
-      service-id: mhq0123-officialwebsite-blog-web
-    mhq0123-officialwebsite-scheduler-web:
-      path: /scheduler/**
-      service-id: mhq0123-officialwebsite-scheduler-web
+#zuul:
+#  routes:
+#    mhq0123-officialwebsite-blog-web:
+#      path: /blog/**
+#      service-id: mhq0123-officialwebsite-blog-web
+#    mhq0123-officialwebsite-scheduler-web:
+#      path: /scheduler/**
+#      service-id: mhq0123-officialwebsite-scheduler-web
