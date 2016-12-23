@@ -7,6 +7,10 @@ spring:
   application:
     name: mhq0123-officialwebsite-service-registry
 
+  #默认开发
+  profiles:
+    active: dev
+
 #注册配置
 eureka:
   instance:
@@ -27,5 +31,19 @@ endpoints:
   shutdown:
     enabled: true
 
+#开发
+---
+spring:
+  profiles: dev
+
+#日志
 logging:
   config: classpath:logback.xml
+
+---
+#生产
+spring:
+  profiles: prod
+
+logging:
+  config: classpath:logback-prod.xml

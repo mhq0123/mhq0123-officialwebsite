@@ -13,6 +13,7 @@
         <module>mhq0123-officialwebsite-service-registry</module>
         <module>mhq0123-officialwebsite-blog</module>
         <module>mhq0123-officialwebsite-gateway</module>
+        <module>mhq0123-officialwebsite-microviedo</module>
     </modules>
 
     <packaging>pom</packaging>

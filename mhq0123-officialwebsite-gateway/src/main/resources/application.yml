@@ -7,15 +7,15 @@ spring:
   application:
     name: mhq0123-officialwebsite-gateway
 
+  #默认开发
+  profiles:
+    active: dev
+
 #注册中心
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8777/eureka/
-
-#日志
-logging:
-  config: classpath:logback.xml
 
 #路由信息,多个节点时自动集成ribbon负载均衡
 #zuul:
@@ -26,3 +26,20 @@ logging:
 #    mhq0123-officialwebsite-scheduler-web:
 #      path: /scheduler/**
 #      service-id: mhq0123-officialwebsite-scheduler-web
+
+#开发
+---
+spring:
+  profiles: dev
+
+#日志
+logging:
+  config: classpath:logback.xml
+
+---
+#生产
+spring:
+  profiles: prod
+
+logging:
+  config: classpath:logback-prod.xml
