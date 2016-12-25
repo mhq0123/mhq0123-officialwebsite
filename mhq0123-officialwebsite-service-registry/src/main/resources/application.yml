@@ -38,7 +38,7 @@ spring:
 
 #日志
 logging:
-  config: classpath:logback.xml
+  config: classpath:logback-dev.xml
 
 ---
 #生产

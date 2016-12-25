@@ -3,17 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>mhq0123-officialwebsite</artifactId>
+        <artifactId>mhq0123-officialwebsite-assistant</artifactId>
         <groupId>com.mhq0123.officialwebsite</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mhq0123-officialwebsite-gateway</artifactId>
-    <packaging>jar</packaging>
-
-    <name>mhq0123-officialwebsite-gateway</name>
-    <url>http://maven.apache.org</url>
+    <artifactId>mhq0123-officialwebsite-assistant-web</artifactId>
 
     <dependencyManagement>
         <dependencies>
@@ -28,16 +24,13 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--路由网关-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
-            <version>${version.org.springframework.cloud.zuul}</version>
-        </dependency>
-        <!--服务注册及发现-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
         <!--thymeleaf模板-->
         <dependency>
@@ -57,7 +50,7 @@
             <version>${version.org.springframework.boot}</version>
             <scope>test</scope>
         </dependency>
-        <!--TODO restful服务启动需要引入这两个包fasterxml.jackson-->
+        <!--TODO 服务启动需要引入这两个包fasterxml.jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -67,6 +60,18 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${version.com.fasterxml.jackson}</version>
+        </dependency>
+        <!--客户端-->
+        <dependency>
+            <groupId>com.mhq0123.officialwebsite</groupId>
+            <artifactId>mhq0123-officialwebsite-assistant-client</artifactId>
+            <version>${version.mhq0123.officialwebsite.assistant}</version>
+        </dependency>
+        <!--json 处理-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${version.com.alibaba.fastjson}</version>
         </dependency>
     </dependencies>
 
