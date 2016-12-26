@@ -12,7 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * project: officialwebsite
+ * project: mhq0123-officialwebsite
  * author:  mhq0123
  * date:    2016/12/25.
  * desc:

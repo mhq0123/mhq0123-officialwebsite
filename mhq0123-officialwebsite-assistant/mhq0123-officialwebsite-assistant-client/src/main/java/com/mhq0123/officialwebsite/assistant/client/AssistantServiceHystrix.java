@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * project: officialwebsite
+ * project: mhq0123-officialwebsite
  * author:  mhq0123
  * date:    2016/12/25.
  * desc:
