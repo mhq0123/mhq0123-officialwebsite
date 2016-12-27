@@ -10,14 +10,8 @@
 
     <modules>
         <module>mhq0123-officialwebsite-config</module>
-        <module>mhq0123-officialwebsite-service-registry</module>
-        <module>mhq0123-officialwebsite-blog</module>
         <module>mhq0123-officialwebsite-gateway</module>
-        <module>mhq0123-officialwebsite-microviedo</module>
         <module>mhq0123-officialwebsite-assistant</module>
-        <module>mhq0123-officialwebsite-service-micro</module>
-        <module>mhq0123-officialwebsite-service-edge</module>
-        <module>mhq0123-officialwebsite-service-gateway</module>
     </modules>
 
     <packaging>pom</packaging>
