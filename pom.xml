@@ -9,6 +9,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>mhq0123-officialwebsite-config-server</module>
+        <module>mhq0123-officialwebsite-micro-service</module>
+        <module>mhq0123-officialwebsite-edge-service</module>
+        <module>mhq0123-officialwebsite-service-registry</module>
+        <module>mhq0123-officialwebsite-service-gateway</module>
         <module>mhq0123-officialwebsite-web-client</module>
     </modules>
 
@@ -24,6 +29,8 @@
         <java.version>1.8</java.version>
 
         <!--jars-->
+        <version.com.mhq0123.officialwebsite.microservice.customer>1.0-SNAPSHOT</version.com.mhq0123.officialwebsite.microservice.customer>
+
         <version.org.springframework.boot>1.4.2.RELEASE</version.org.springframework.boot>
         <version.org.springframework.cloud>Camden.SR3</version.org.springframework.cloud>
         <version.org.springframework.cloud.zuul>1.2.3.RELEASE</version.org.springframework.cloud.zuul>
