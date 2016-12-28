@@ -10,8 +10,7 @@
 
     <modules>
         <module>mhq0123-officialwebsite-config</module>
-        <module>mhq0123-officialwebsite-gateway</module>
-        <module>mhq0123-officialwebsite-assistant</module>
+        <module>mhq0123-officialwebsite-web-client</module>
     </modules>
 
     <packaging>pom</packaging>

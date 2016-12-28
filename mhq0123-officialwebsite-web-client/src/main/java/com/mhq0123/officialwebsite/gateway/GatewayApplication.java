@@ -2,8 +2,6 @@ package com.mhq0123.officialwebsite.gateway;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
  * project: mhq0123-officialwebsite
@@ -12,8 +10,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * desc:
  */
 @SpringBootApplication
-@EnableDiscoveryClient
-@EnableZuulProxy
 public class GatewayApplication {
 
     public static void main(String[] args) {

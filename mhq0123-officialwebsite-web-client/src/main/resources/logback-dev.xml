@@ -8,11 +8,11 @@
 	</appender>
 	<!-- 文件日志 -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/root/mhq0123-officialwebsite/logs/mhq0123-officialwebsite-gateway/mhq0123-officialwebsite-gateway.log</file>
+		<file>/root/mhq0123-officialwebsite/logs/mhq0123-officialwebsite-web-client/mhq0123-officialwebsite-web-client.log</file>
 		 
          <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
          <!-- linux 下后缀为gz, window 下后缀为zip -->
-		    <fileNamePattern>/root/mhq0123-officialwebsite/logs/mhq0123-officialwebsite-gateway/mhq0123-officialwebsite-gateway_%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+		    <fileNamePattern>/root/mhq0123-officialwebsite/logs/mhq0123-officialwebsite-web-client/mhq0123-officialwebsite-web-client_%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
 	      	<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 	    	 	<maxFileSize>100MB</maxFileSize>
 	   	  	</timeBasedFileNamingAndTriggeringPolicy>        
