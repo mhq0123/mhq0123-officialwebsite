@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>mhq0123-officialwebsite-config</module>
         <module>mhq0123-officialwebsite-web-client</module>
     </modules>
 
