@@ -1,4 +1,4 @@
-package com.mhq0123.officialwebsite.gateway;
+package com.mhq0123.officialwebsite.webclient;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -10,9 +10,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * desc:
  */
 @SpringBootApplication
-public class GatewayApplication {
+public class WebClientApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(GatewayApplication.class).web(true).run(args);
+        new SpringApplicationBuilder(WebClientApplication.class).web(true).run(args);
     }
 }
