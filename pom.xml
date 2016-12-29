@@ -36,6 +36,9 @@
         <version.org.springframework.cloud.zuul>1.2.3.RELEASE</version.org.springframework.cloud.zuul>
         <version.com.fasterxml.jackson>2.8.5</version.com.fasterxml.jackson>
         <version.com.alibaba.fastjson>1.2.22</version.com.alibaba.fastjson>
+        <version.org.mybatis.spring.boot>1.1.1</version.org.mybatis.spring.boot>
+        <version.mysql.driver>6.0.5</version.mysql.driver>
+        <version.com.alibaba.druid>1.0.27</version.com.alibaba.druid>
         <!--plugs-->
     </properties>
 
