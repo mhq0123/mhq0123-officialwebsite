@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
-public class MicroServiceDataBankApplication {
+public class MicroServiceCustomerApplication {
 
-    private final static Logger logger = LoggerFactory.getLogger(MicroServiceDataBankApplication.class);
+    private final static Logger logger = LoggerFactory.getLogger(MicroServiceCustomerApplication.class);
 
     @GetMapping(MicroServiceCustomerPath.SELECT_CUSTOMER_BY_ID)
     public Customer selectUserByUserId() {
@@ -32,6 +32,6 @@ public class MicroServiceDataBankApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(MicroServiceDataBankApplication.class, args);
+        SpringApplication.run(MicroServiceCustomerApplication.class, args);
     }
 }
