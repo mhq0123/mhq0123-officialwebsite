@@ -1,6 +1,19 @@
 # mhq0123-officialwebsite
 个人官网展示
 
+## 个人作品说明
+
+|系统|说明|
+|:---|:---|
+|mhq0123-assistant|个人助理|
+|mhq0123-forum|论坛系统|
+|mhq0123-ranking|榜单系统|
+|mhq0123-microviedo|小视频网|
+|mhq0123-scheduler|调度平台|
+|mhq0123-balance|对账系统|
+|mhq0123-blog|个人博客|
+|mhq0123-springleaf|春叶开发平台|
+
 ## 模块说明
 
 |模块||说明|
