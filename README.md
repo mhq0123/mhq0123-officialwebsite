@@ -22,6 +22,7 @@
 |mhq0123-officialwebsite-service-gateway||服务路由网关|
 |mhq0123-officialwebsite-service-registry||服务注册中心|
 |mhq0123-officialwebsite-edge-service||边界服务|
+|mhq0123-officialwebsite-micro-service||微服务集|
 | |mhq0123-officialwebsite-microservice-customer|客户服务|
 | |mhq0123-officialwebsite-microservice-customer-invoker|客户服务调用器|
 |mhq0123-officialwebsite-config-server||配置服务|
