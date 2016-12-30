@@ -7,7 +7,7 @@ CREATE TABLE `customer_account` (
   `real_name` varchar(20) DEFAULT NULL COMMENT '真实姓名',
   `sex` varchar(5) DEFAULT NULL COMMENT '性别：MEN男/WOMEN女',
   `phone_no` varchar(20) DEFAULT NULL COMMENT '个人号码',
-  `status` varchar(10) NOT NULL COMMENT '状态：生效VALID/冻结FREEZE/注销INVALID',
+  `status` varchar(10) NOT NULL COMMENT '状态：初始INIT/待验证VALIDATION/生效VALID/冻结FREEZE/注销INVALID',
   `inst_date` varchar(10) NOT NULL COMMENT '初始写入日期',
   `inst_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '初始写入时间',
   `lupd_datetime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',

@@ -13,26 +13,38 @@ import java.util.Date;
  */
 public class CustomerAccount implements Serializable {
 
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
-    /** 表索引编号*/         private String accountId;
-    /** 账号*/              private String accountName;
-    /** 密码*/              private String password;
-    /** 个人邮箱*/           private String email;
-    /** 昵称*/              private String nickName;
-    /** 真实姓名*/           private String realName;
-    /** 个人号码*/           private String phoneNo;
-    /** 初始写入日期*/        private String instDate;
-    /** 初始写入时间*/        private Date instDatetime;
-    /** 最后更新时间*/        private Date lupdDatetime;
-    /** 性别：MEN男/WOMEN女*/ private CustomerTypeDictionary.Sex sex;
-    /** 状态：生效VALID/冻结FREEZE/注销INVALID*/ private CustomerTypeDictionary.AccountStatus status;
+    /** 表索引编号*/
+    private int accountId;
+    /** 账号*/
+    private String accountName;
+    /** 密码*/
+    private String password;
+    /** 个人邮箱*/
+    private String email;
+    /** 昵称*/
+    private String nickName;
+    /** 真实姓名*/
+    private String realName;
+    /** 性别：MEN男/WOMEN女*/
+    private CustomerTypeDictionary.Sex sex;
+    /** 个人号码*/
+    private String phoneNo;
+    /** 状态：生效VALID/冻结FREEZE/注销INVALID*/
+    private CustomerTypeDictionary.AccountStatus status;
+    /** 初始写入日期*/
+    private String instDate;
+    /** 初始写入时间*/
+    private Date instDatetime;
+    /** 最后更新时间*/
+    private Date lupdDatetime;
 
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 
