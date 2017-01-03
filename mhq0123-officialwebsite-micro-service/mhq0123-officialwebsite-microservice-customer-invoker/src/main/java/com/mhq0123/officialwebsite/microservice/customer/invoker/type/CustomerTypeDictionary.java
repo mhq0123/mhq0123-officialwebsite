@@ -18,6 +18,6 @@ public class CustomerTypeDictionary {
 
     /** 账户状态*/
     public enum AccountStatus {
-        INIT, VALIDATION, VALID, FREEZE, INVALID
+        INIT, VALID, FREEZE, INVALID
     }
 }

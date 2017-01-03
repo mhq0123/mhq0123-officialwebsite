@@ -34,9 +34,10 @@ public interface CustomerAccountMapper {
     int updateById(CustomerAccount updateBean);
 
     /**
-     * 根据索引编号查询
-     * @param accountId
+     * 根据唯一栏位查询
+     * @param selectBean
      * @return
      */
-    CustomerAccount selectById(int accountId);
+    CustomerAccount selectByUniqueField(CustomerAccount selectBean);
+
 }

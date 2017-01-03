@@ -35,7 +35,9 @@ public class CustomerAccountService {
         if(null == registerBean) {
             throw new IllegalArgumentException("注册对象不可为空");
         }
-        // TODO 引入校验框架
+        // 栏位校验 TODO 引入校验框架
+
+        // 唯一性校验
 
         // 加密密码
 

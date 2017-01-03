@@ -59,9 +59,19 @@
       WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </update>
 
-    <select id="selectById" parameterType="java.lang.String">
+    <select id="selectByUniqueField" parameterType="com.mhq0123.officialwebsite.microservice.customer.account.bean.CustomerAccount">
         SELECT T.*
           FROM CUSTOMER_ACCOUNT T
-        WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
+        <where>
+            <if test="accountId > 0">
+                AND T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
+            </if>
+            <if test="accountName != null">
+                AND T.ACCOUNT_NAME = #{accountName, jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                AND T.EMAIL = #{email, jdbcType=VARCHAR}
+            </if>
+        </where>
     </select>
 </mapper>
