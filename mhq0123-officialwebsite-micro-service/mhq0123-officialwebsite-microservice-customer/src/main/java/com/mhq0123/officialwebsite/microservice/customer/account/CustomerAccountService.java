@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mhq0123.officialwebsite.microservice.customer.account.bean.CustomerAccount;
 import com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountMapper;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.type.CustomerTypeDictionary;
+import com.mhq0123.springleaf.common.utils.CipherUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,11 @@ public class CustomerAccountService {
         // 唯一性校验
 
         // 加密密码
-
+        registerBean.setPassword(CipherUtils.encryptPassword(registerBean.getAccountName(), registerBean.getPassword()));
         // 初始赋值
         registerBean.setStatus(CustomerTypeDictionary.AccountStatus.INIT);
+
+        logger.info(">>>>>>>>>>>>>>写入registerBean:{}", JSONObject.toJSONString(registerBean, true));
         return customerAccountMapper.insert(registerBean);
     }
 

@@ -19,6 +19,11 @@
             <artifactId>mhq0123-officialwebsite-microservice-customer-invoker</artifactId>
             <version>${version.com.mhq0123.officialwebsite.microservice.customer}</version>
         </dependency>
+        <dependency>
+            <groupId>com.mhq0123.springleaf</groupId>
+            <artifactId>springleaf-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
