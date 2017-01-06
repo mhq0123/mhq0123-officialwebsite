@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -17,8 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * desc:
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes= MicroServiceCustomerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("dev")
+@SpringBootTest(classes=MicroServiceCustomerApplication.class)
 public class CustomerAccountServiceTest {
 
     @Autowired
@@ -32,6 +30,8 @@ public class CustomerAccountServiceTest {
             registerBean.setPassword("123456");
             registerBean.setEmail("532386274@qq.com");
             registerBean.setNickName("小马");
+
+            customerAccountService.register(registerBean);
         } catch (Exception e) {
             e.printStackTrace();
         }
