@@ -1,7 +1,7 @@
 package account;
 
 import com.mhq0123.officialwebsite.microservice.customer.MicroServiceCustomerApplication;
-import com.mhq0123.officialwebsite.microservice.customer.account.CustomerAccountService;
+import com.mhq0123.officialwebsite.microservice.customer.account.service.CustomerAccountService;
 import com.mhq0123.officialwebsite.microservice.customer.account.bean.CustomerAccount;
 import org.junit.Test;
 import org.junit.runner.RunWith;

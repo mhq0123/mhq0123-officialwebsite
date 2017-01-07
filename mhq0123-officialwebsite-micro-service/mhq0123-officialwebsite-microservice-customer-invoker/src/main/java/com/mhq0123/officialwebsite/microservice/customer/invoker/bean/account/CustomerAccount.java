@@ -1,6 +1,6 @@
-package com.mhq0123.officialwebsite.microservice.customer.account.bean;
+package com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.type.CustomerTypeDictionary;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,11 +28,11 @@ public class CustomerAccount implements Serializable {
     /** 真实姓名*/
     private String realName;
     /** 性别：MEN男/WOMEN女*/
-    private CustomerTypeDictionary.Sex sex;
+    private MicroServiceCustomerDictionary.Sex sex;
     /** 个人号码*/
     private String phoneNo;
-    /** 状态：生效VALID/冻结FREEZE/注销INVALID*/
-    private CustomerTypeDictionary.AccountStatus status;
+    /** 状态：待验证INIT/生效VALID/冻结FREEZE/注销INVALID*/
+    private MicroServiceCustomerDictionary.AccountStatus status;
     /** 初始写入日期*/
     private String instDate;
     /** 初始写入时间*/
@@ -120,19 +120,19 @@ public class CustomerAccount implements Serializable {
         this.lupdDatetime = lupdDatetime;
     }
 
-    public CustomerTypeDictionary.Sex getSex() {
+    public MicroServiceCustomerDictionary.Sex getSex() {
         return sex;
     }
 
-    public void setSex(CustomerTypeDictionary.Sex sex) {
+    public void setSex(MicroServiceCustomerDictionary.Sex sex) {
         this.sex = sex;
     }
 
-    public CustomerTypeDictionary.AccountStatus getStatus() {
+    public MicroServiceCustomerDictionary.AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(CustomerTypeDictionary.AccountStatus status) {
+    public void setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
         this.status = status;
     }
 }

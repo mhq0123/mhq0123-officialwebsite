@@ -1,4 +1,4 @@
-package com.mhq0123.officialwebsite.microservice.customer.account;
+package com.mhq0123.officialwebsite.microservice.customer.account.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mhq0123.officialwebsite.microservice.customer.account.bean.CustomerAccount;
@@ -8,7 +8,7 @@ import com.mhq0123.springleaf.common.utils.CipherUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 /**
  * project: mhq0123-officialwebsite
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * date:    2016/12/29.
  * desc:
  */
-@RestController
+@Service
 public class CustomerAccountService {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerAccountService.class);

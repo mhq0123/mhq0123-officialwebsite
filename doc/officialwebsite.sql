@@ -20,6 +20,7 @@ CREATE TABLE `customer_account` (
 
 CREATE TABLE `customer_account_history` (
   `history_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表索引编号',
+  `operate_type` varchar(10) NOT NULL COMMENT '操作类型：修改UPDATE/冻结FREEZE/解冻UNFREEZE/注销CANCEL',
   `account_id` int(11) NOT NULL COMMENT '账号索引编号',
   `password` varchar(50) NOT NULL COMMENT '密码',
   `email` varchar(50) NOT NULL COMMENT '个人邮箱',
@@ -27,10 +28,12 @@ CREATE TABLE `customer_account_history` (
   `real_name` varchar(20) DEFAULT NULL COMMENT '真实姓名',
   `sex` varchar(5) DEFAULT NULL COMMENT '性别：MEN男/WOMEN女',
   `phone_no` varchar(20) DEFAULT NULL COMMENT '个人号码',
-  `status` varchar(10) NOT NULL COMMENT '状态：生效VALID/冻结FREEZE/注销INVALID',
+  `status` varchar(10) NOT NULL COMMENT '状态：初始待验证INIT/生效VALID/冻结FREEZE/注销INVALID',
+  `memo` varchar(100) DEFAULT NULL COMMENT '操作备注',
   `inst_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '写入时间',
   PRIMARY KEY (`history_id`),
-  KEY `customer_account_history_account_id` (`account_id`) USING BTREE
+  KEY `customer_account_history_account_id` (`account_id`) USING BTREE,
+  KEY `customer_account_history_operate_type` (`operate_type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户--账号变更历史表';
 
 CREATE TABLE `customer_login` (
