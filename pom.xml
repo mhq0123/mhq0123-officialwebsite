@@ -40,7 +40,9 @@
         <version.org.mybatis.spring.boot>1.1.1</version.org.mybatis.spring.boot>
         <version.mysql.driver>6.0.5</version.mysql.driver>
         <version.com.alibaba.druid>1.0.27</version.com.alibaba.druid>
+
         <!--plugs-->
+        <version.org.apache.maven.surefire.plugin>2.19.1</version.org.apache.maven.surefire.plugin>
     </properties>
 
     <!--远程仓库-->
@@ -144,18 +146,14 @@
 
     <build>
         <plugins>
-            <!--clean install spring-boot:repackage-->
+            <!--跳过测试-->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${version.org.springframework.boot}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version.org.apache.maven.surefire.plugin}</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>

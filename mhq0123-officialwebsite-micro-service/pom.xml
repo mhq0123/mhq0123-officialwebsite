@@ -12,8 +12,8 @@
     <artifactId>mhq0123-officialwebsite-micro-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mhq0123-officialwebsite-microservice-customer-invoker</module>
         <module>mhq0123-officialwebsite-microservice-customer</module>
+        <module>mhq0123-officialwebsite-microservice-customer-invoker</module>
     </modules>
 
     <dependencies>
