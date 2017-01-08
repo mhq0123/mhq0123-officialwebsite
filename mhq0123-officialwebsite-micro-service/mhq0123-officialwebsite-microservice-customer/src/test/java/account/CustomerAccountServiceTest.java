@@ -2,7 +2,7 @@ package account;
 
 import com.mhq0123.officialwebsite.microservice.customer.MicroServiceCustomerApplication;
 import com.mhq0123.officialwebsite.microservice.customer.account.service.CustomerAccountService;
-import com.mhq0123.officialwebsite.microservice.customer.account.bean.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

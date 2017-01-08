@@ -22,6 +22,7 @@ CREATE TABLE `customer_account_history` (
   `history_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表索引编号',
   `operate_type` varchar(10) NOT NULL COMMENT '操作类型：修改UPDATE/冻结FREEZE/解冻UNFREEZE/注销CANCEL',
   `account_id` int(11) NOT NULL COMMENT '账号索引编号',
+  `account_name` varchar(20) NOT NULL COMMENT '账号',
   `password` varchar(50) NOT NULL COMMENT '密码',
   `email` varchar(50) NOT NULL COMMENT '个人邮箱',
   `nick_name` varchar(30) NOT NULL COMMENT '昵称',
@@ -33,6 +34,7 @@ CREATE TABLE `customer_account_history` (
   `inst_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '写入时间',
   PRIMARY KEY (`history_id`),
   KEY `customer_account_history_account_id` (`account_id`) USING BTREE,
+  KEY `customer_account_history_account_name` (`account_name`) USING BTREE,
   KEY `customer_account_history_operate_type` (`operate_type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户--账号变更历史表';
 

@@ -34,6 +34,8 @@ spring:
       test-on-borrow: false #申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能
       test-on-return: false #归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能
       pool-prepared-statements: true #打开PSCache，并且指定每个连接上PSCache的大小
+      filters: stat,wall,log4j,slfj # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      use-global-data-source-stat: true # 合并多个DruidDataSource的监控数据
 
 #mybatis
 mybatis:

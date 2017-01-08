@@ -1,9 +1,9 @@
 package com.mhq0123.officialwebsite.microservice.customer.account.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mhq0123.officialwebsite.microservice.customer.account.bean.CustomerAccount;
 import com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountMapper;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.type.CustomerTypeDictionary;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import com.mhq0123.springleaf.common.utils.CipherUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,27 +26,30 @@ public class CustomerAccountService {
 
     /**
      * 注册服务
-     * @param registerBean
+     * @param insertBean
      * @return
      */
-    public int register(CustomerAccount registerBean) {
-        logger.info(">>>>>>>>>>>>>>客户注册registerBean:{}", JSONObject.toJSONString(registerBean, true));
+    public int accountInsert(CustomerAccount insertBean) {
+        logger.info(">>>>>>>>>>>>>>接收参数insertBean:{}", JSONObject.toJSONString(insertBean, true));
 
         // 校验
-        if(null == registerBean) {
-            throw new IllegalArgumentException("注册对象不可为空");
+        if(null == insertBean) {
+            throw new IllegalArgumentException("insertBean对象不可为空");
         }
         // 栏位校验 TODO 引入校验框架
 
         // 唯一性校验
 
         // 加密密码
-        registerBean.setPassword(CipherUtils.encryptPassword(registerBean.getAccountName(), registerBean.getPassword()));
-        // 初始赋值
-        registerBean.setStatus(CustomerTypeDictionary.AccountStatus.INIT);
+        insertBean.setPassword(CipherUtils.encryptPassword(insertBean.getAccountName(), insertBean.getPassword()));
+        // 初始状态赋值-待验证
+        insertBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.INIT);
 
-        logger.info(">>>>>>>>>>>>>>写入registerBean:{}", JSONObject.toJSONString(registerBean, true));
-        return customerAccountMapper.insert(registerBean);
+        logger.info(">>>>>>>>>>>>>>请求参数insertBean:{}", JSONObject.toJSONString(insertBean, true));
+        int count = customerAccountMapper.insert(insertBean);
+        logger.info(">>>>>>>>>>>>>>返回结果count:{}", count);
+
+        return count;
     }
 
 }

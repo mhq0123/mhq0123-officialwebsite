@@ -17,32 +17,32 @@ public class MicroServiceCustomerHystrix implements MicroServiceCustomerClient {
     private final static Logger logger = LoggerFactory.getLogger(MicroServiceCustomerHystrix.class);
 
     @Override
-    public int accountInsert() {
+    public int accountInsert(CustomerAccount insertBean) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public CustomerAccount accountSelectByUniqueField() {
+    public CustomerAccount accountSelectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField accountUniqueField, String fieldValue) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public int accountUpdateById() {
+    public int accountUpdateById(CustomerAccount updateBean) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public int accountFreezeById() {
+    public int accountFreezeById(String accountId) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public int accountUnfreezeById() {
+    public int accountUnfreezeById(String accountId) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public int accountCancelById() {
+    public int accountCancelById(String accountId) {
         throw new RuntimeException("服务器繁忙");
     }
 }
