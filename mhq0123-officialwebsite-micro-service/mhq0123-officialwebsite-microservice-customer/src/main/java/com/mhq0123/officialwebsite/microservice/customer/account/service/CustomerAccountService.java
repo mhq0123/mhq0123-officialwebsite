@@ -1,6 +1,5 @@
 package com.mhq0123.officialwebsite.microservice.customer.account.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountMapper;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
@@ -29,27 +28,32 @@ public class CustomerAccountService {
      * @param insertBean
      * @return
      */
-    public int accountInsert(CustomerAccount insertBean) {
-        logger.info(">>>>>>>>>>>>>>接收参数insertBean:{}", JSONObject.toJSONString(insertBean, true));
-
-        // 校验
-        if(null == insertBean) {
-            throw new IllegalArgumentException("insertBean对象不可为空");
+    public int insert(CustomerAccount insertBean) {
+        // 唯一性校验用户名
+        if(null != customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField.NAME, insertBean.getAccountName())) {
+            throw new IllegalArgumentException("用户名已存在");
         }
-        // 栏位校验 TODO 引入校验框架
-
-        // 唯一性校验
-
+        // 唯一性校验邮箱
+        if(null != customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField.EMAIL, insertBean.getEmail())) {
+            throw new IllegalArgumentException("邮箱已存在");
+        }
         // 加密密码
         insertBean.setPassword(CipherUtils.encryptPassword(insertBean.getAccountName(), insertBean.getPassword()));
         // 初始状态赋值-待验证
-        insertBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.INIT);
+        insertBean.setStatus(MicroServiceCustomerDictionary.EnumAccountStatus.INIT);
+        // 写入
+        return customerAccountMapper.insert(insertBean);
+    }
 
-        logger.info(">>>>>>>>>>>>>>请求参数insertBean:{}", JSONObject.toJSONString(insertBean, true));
-        int count = customerAccountMapper.insert(insertBean);
-        logger.info(">>>>>>>>>>>>>>返回结果count:{}", count);
-
-        return count;
+    /**
+     * 根据唯一字段查询
+     * @param uniqueField
+     * @param fieldValue
+     * @return
+     */
+    public CustomerAccount selectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField uniqueField, String fieldValue) {
+        // 查询
+        return customerAccountMapper.selectByUniqueField(uniqueField, fieldValue);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.mhq0123.officialwebsite.edgeservice;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerClient;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,13 +28,6 @@ public class EdgeServiceApplication {
 
     @Autowired
     private MicroServiceCustomerClient microServiceCustomerClient;
-
-    @GetMapping("index")
-    public Customer index() {
-        logger.info(">>>>>>>>>>>>>>> index <<<<<<<<");
-
-        return microServiceCustomerClient.selectCustomerById();
-    }
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(EdgeServiceApplication.class).web(true).run(args);

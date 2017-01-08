@@ -33,7 +33,7 @@ public class CustomerAccountServiceTest {
             registerBean.setEmail("532386274@qq.com");
             registerBean.setNickName("小马");
 
-            customerAccountService.register(registerBean);
+            customerAccountService.insert(registerBean);
         } catch (Exception e) {
             e.printStackTrace();
         }

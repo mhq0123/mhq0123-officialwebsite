@@ -30,6 +30,7 @@
 
         <!--jars-->
         <version.com.mhq0123.springleaf.common>1.0-SNAPSHOT</version.com.mhq0123.springleaf.common>
+        <version.com.mhq0123.springleaf.core>1.0-SNAPSHOT</version.com.mhq0123.springleaf.core>
         <version.com.mhq0123.officialwebsite.microservice.customer>1.0-SNAPSHOT</version.com.mhq0123.officialwebsite.microservice.customer>
 
         <version.org.springframework.boot>1.4.2.RELEASE</version.org.springframework.boot>
@@ -40,6 +41,7 @@
         <version.org.mybatis.spring.boot>1.1.1</version.org.mybatis.spring.boot>
         <version.mysql.driver>6.0.5</version.mysql.driver>
         <version.com.alibaba.druid>1.0.27</version.com.alibaba.druid>
+        <version.net.sf.oval>1.86</version.net.sf.oval>
 
         <!--plugs-->
         <version.org.apache.maven.surefire.plugin>2.19.1</version.org.apache.maven.surefire.plugin>
@@ -70,6 +72,18 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--平台-->
+        <dependency>
+            <groupId>com.mhq0123.springleaf</groupId>
+            <artifactId>springleaf-common</artifactId>
+            <version>${version.com.mhq0123.springleaf.common}</version>
+        </dependency>
+        <!--平台-->
+        <!--<dependency>-->
+            <!--<groupId>com.mhq0123.springleaf</groupId>-->
+            <!--<artifactId>springleaf-core</artifactId>-->
+            <!--<version>${version.com.mhq0123.springleaf.core}</version>-->
+        <!--</dependency>-->
         <!--配置服务-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -125,22 +139,11 @@
             <artifactId>jackson-core</artifactId>
             <version>${version.com.fasterxml.jackson}</version>
         </dependency>
-        <!--json 处理-->
+        <!--参数校验-->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${version.com.alibaba.fastjson}</version>
-        </dependency>
-        <!--参数校验框架-->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.3.1.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mhq0123.springleaf</groupId>
-            <artifactId>springleaf-common</artifactId>
-            <version>${version.com.mhq0123.springleaf.common}</version>
+            <groupId>net.sf.oval</groupId>
+            <artifactId>oval</artifactId>
+            <version>${version.net.sf.oval}</version>
         </dependency>
     </dependencies>
 

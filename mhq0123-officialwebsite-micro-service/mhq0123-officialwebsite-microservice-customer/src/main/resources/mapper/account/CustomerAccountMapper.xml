@@ -59,18 +59,18 @@
       WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </update>
 
-    <select id="selectByUniqueField" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <select id="selectByUniqueField" resultMap="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
         SELECT T.*
           FROM CUSTOMER_ACCOUNT T
         <where>
-            <if test="accountId > 0">
-                AND T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
+            <if test="uniqueField == 'ID'">
+                AND T.ACCOUNT_ID = #{fieldValue, jdbcType=INTEGER}
             </if>
-            <if test="accountName != null">
-                AND T.ACCOUNT_NAME = #{accountName, jdbcType=VARCHAR}
+            <if test="uniqueField == 'NAME'">
+                AND T.ACCOUNT_NAME = #{fieldValue, jdbcType=VARCHAR}
             </if>
-            <if test="email != null">
-                AND T.EMAIL = #{email, jdbcType=VARCHAR}
+            <if test="uniqueField == 'EMAIL'">
+                AND T.EMAIL = #{fieldValue, jdbcType=VARCHAR}
             </if>
         </where>
     </select>

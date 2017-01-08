@@ -1,9 +1,9 @@
 package com.mhq0123.officialwebsite.microservice.customer.account;
 
-import com.alibaba.fastjson.JSONObject;
 import com.mhq0123.officialwebsite.microservice.customer.account.service.CustomerAccountService;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +31,30 @@ public class CustomerAccountController {
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
     public int insert(CustomerAccount insertBean) {
-        logger.info(">>>>>>>>>>>>>>接收参数insertBean:{}", JSONObject.toJSONString(insertBean, true));
+        // 校验
+        if(null == insertBean) {
+            throw new IllegalArgumentException("insertBean对象不可为空");
+        }
+        // 栏位校验 TODO 引入校验框架
 
-        return customerAccountService.accountInsert(insertBean);
+        return customerAccountService.insert(insertBean);
     }
 
     /**
-     * 账号操作 - 根据唯一字段查询账号
-     * @param accountUniqueField
+     * 根据唯一字段查询账号
+     * @param uniqueField
      * @param fieldValue
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_UNIQUE_FIELD)
-    public CustomerAccount selectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField accountUniqueField, String fieldValue) {
-
+    public CustomerAccount selectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField uniqueField, String fieldValue) {
+        if(null == uniqueField) {
+            throw new IllegalArgumentException("校验字段类型不能为空");
+        }
+        if(StringUtils.isEmpty(fieldValue)) {
+            throw new IllegalArgumentException("字段值不能为空");
+        }
+        return customerAccountService.selectByUniqueField(uniqueField, fieldValue);
     }
 
     /**
@@ -54,7 +64,7 @@ public class CustomerAccountController {
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
     public int updateById(CustomerAccount updateBean) {
-
+        return 0;
     }
 
     /**
@@ -64,7 +74,7 @@ public class CustomerAccountController {
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
     public int freezeById(String accountId) {
-
+        return 0;
     }
 
     /**
@@ -74,7 +84,7 @@ public class CustomerAccountController {
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
     public int unfreezeById(String accountId) {
-
+        return 0;
     }
 
     /**
@@ -84,7 +94,7 @@ public class CustomerAccountController {
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
     public int cancelById(String accountId) {
-
+        return 0;
     }
 
 }

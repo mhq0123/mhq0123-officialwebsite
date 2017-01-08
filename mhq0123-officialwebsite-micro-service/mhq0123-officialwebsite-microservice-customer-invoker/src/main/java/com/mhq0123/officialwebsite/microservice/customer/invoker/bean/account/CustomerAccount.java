@@ -28,11 +28,11 @@ public class CustomerAccount implements Serializable {
     /** 真实姓名*/
     private String realName;
     /** 性别：MEN男/WOMEN女*/
-    private MicroServiceCustomerDictionary.Sex sex;
+    private MicroServiceCustomerDictionary.EnumSex sex;
     /** 个人号码*/
     private String phoneNo;
     /** 状态：待验证INIT/生效VALID/冻结FREEZE/注销INVALID*/
-    private MicroServiceCustomerDictionary.AccountStatus status;
+    private MicroServiceCustomerDictionary.EnumAccountStatus status;
     /** 初始写入日期*/
     private String instDate;
     /** 初始写入时间*/
@@ -120,19 +120,19 @@ public class CustomerAccount implements Serializable {
         this.lupdDatetime = lupdDatetime;
     }
 
-    public MicroServiceCustomerDictionary.Sex getSex() {
+    public MicroServiceCustomerDictionary.EnumSex getSex() {
         return sex;
     }
 
-    public void setSex(MicroServiceCustomerDictionary.Sex sex) {
+    public void setSex(MicroServiceCustomerDictionary.EnumSex sex) {
         this.sex = sex;
     }
 
-    public MicroServiceCustomerDictionary.AccountStatus getStatus() {
+    public MicroServiceCustomerDictionary.EnumAccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
+    public void setStatus(MicroServiceCustomerDictionary.EnumAccountStatus status) {
         this.status = status;
     }
 }
