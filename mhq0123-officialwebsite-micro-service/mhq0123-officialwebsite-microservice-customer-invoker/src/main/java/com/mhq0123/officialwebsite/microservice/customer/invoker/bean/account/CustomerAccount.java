@@ -23,22 +23,22 @@ public class CustomerAccount implements Serializable {
     private int accountId;
     /** 账号*/
     @NotBlank
-    @MaxLength(value = 20)
+    @MaxLength(20)
     private String accountName;
     /** 密码*/
     @NotBlank
-    @MaxLength(value = 30)
+    @MaxLength(30)
     private String password;
     /** 个人邮箱*/
     @Email
-    @MaxLength(value = 50)
+    @MaxLength(50)
     private String email;
     /** 昵称*/
     @NotBlank
-    @MaxLength(value = 30)
+    @MaxLength(30)
     private String nickName;
     /** 真实姓名*/
-    @MaxLength(value = 20)
+    @MaxLength(20)
     private String realName;
     /** 性别：MEN男/WOMEN女*/
     private MicroServiceCustomerDictionary.Sex sex;
