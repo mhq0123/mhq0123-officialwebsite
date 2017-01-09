@@ -22,7 +22,7 @@ public class MicroServiceCustomerHystrix implements MicroServiceCustomerClient {
     }
 
     @Override
-    public CustomerAccount accountSelectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField accountUniqueField, String fieldValue) {
+    public CustomerAccount accountSelectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField accountUniqueField, String fieldValue) {
         throw new RuntimeException("服务器繁忙");
     }
 
@@ -32,17 +32,17 @@ public class MicroServiceCustomerHystrix implements MicroServiceCustomerClient {
     }
 
     @Override
-    public int accountFreezeById(String accountId) {
+    public int accountFreezeById(int accountId) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public int accountUnfreezeById(String accountId) {
+    public int accountUnfreezeById(int accountId) {
         throw new RuntimeException("服务器繁忙");
     }
 
     @Override
-    public int accountCancelById(String accountId) {
+    public int accountCancelById(int accountId) {
         throw new RuntimeException("服务器繁忙");
     }
 }

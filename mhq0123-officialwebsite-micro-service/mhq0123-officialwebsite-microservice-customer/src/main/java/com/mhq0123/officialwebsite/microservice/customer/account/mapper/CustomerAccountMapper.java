@@ -41,6 +41,6 @@ public interface CustomerAccountMapper {
      * @param fieldValue
      * @return
      */
-    CustomerAccount selectByUniqueField(@Param("uniqueField") MicroServiceCustomerDictionary.EnumAccountUniqueField uniqueField, @Param("fieldValue") String fieldValue);
+    CustomerAccount selectByUniqueField(@Param("uniqueField") MicroServiceCustomerDictionary.AccountUniqueField uniqueField, @Param("fieldValue") String fieldValue);
 
 }

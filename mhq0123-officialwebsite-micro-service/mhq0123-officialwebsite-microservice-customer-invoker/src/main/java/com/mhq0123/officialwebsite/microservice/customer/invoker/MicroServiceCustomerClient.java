@@ -28,7 +28,7 @@ public interface MicroServiceCustomerClient {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_UNIQUE_FIELD)
-    CustomerAccount accountSelectByUniqueField(MicroServiceCustomerDictionary.EnumAccountUniqueField accountUniqueField, String fieldValue);
+    CustomerAccount accountSelectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField accountUniqueField, String fieldValue);
 
     /**
      * 账号操作 - 根据索引编号修改账号
@@ -44,7 +44,7 @@ public interface MicroServiceCustomerClient {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
-    int accountFreezeById(String accountId);
+    int accountFreezeById(int accountId);
 
     /**
      * 账号操作 - 根据索引编号解冻账号
@@ -52,7 +52,7 @@ public interface MicroServiceCustomerClient {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
-    int accountUnfreezeById(String accountId);
+    int accountUnfreezeById(int accountId);
 
     /**
      * 账号操作 - 根据索引编号注销账号
@@ -60,5 +60,5 @@ public interface MicroServiceCustomerClient {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
-    int accountCancelById(String accountId);
+    int accountCancelById(int accountId);
 }

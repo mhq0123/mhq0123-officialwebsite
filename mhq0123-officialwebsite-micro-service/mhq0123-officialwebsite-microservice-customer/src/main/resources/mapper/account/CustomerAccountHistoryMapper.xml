@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountHistoryMapper">
+
+    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccountHistory">
+      INSERT INTO CUSTOMER_ACCOUNT_HISTORY(
+            OPERATE_TYPE,
+            ACCOUNT_ID,
+			ACCOUNT_NAME,
+			PASSWORD,
+			EMAIL,
+			NICK_NAME,
+			REAL_NAME,
+			SEX,
+			PHONE_NO,
+			STATUS,
+			MEMO
+		)VALUES(
+		    #{operateType, 	    jdbcType=VARCHAR},
+		    #{accountId, 	    jdbcType=INTEGER},
+			#{accountName, 	    jdbcType=VARCHAR},
+			#{password, 		jdbcType=VARCHAR},
+			#{email, 	        jdbcType=INTEGER},
+			#{nickName, 	    jdbcType=VARCHAR},
+			#{realName, 		jdbcType=VARCHAR},
+			#{sex,	            jdbcType=VARCHAR},
+			#{phoneNo, 	        jdbcType=VARCHAR},
+			#{status, 	        jdbcType=VARCHAR},
+			#{memo, 	        jdbcType=VARCHAR}
+		)
+    </insert>
+
+</mapper>

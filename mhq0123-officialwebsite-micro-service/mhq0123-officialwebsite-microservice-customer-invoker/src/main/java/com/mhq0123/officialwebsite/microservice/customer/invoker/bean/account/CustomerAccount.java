@@ -1,6 +1,10 @@
 package com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
+import net.sf.oval.constraint.Email;
+import net.sf.oval.constraint.MatchPattern;
+import net.sf.oval.constraint.MaxLength;
+import net.sf.oval.constraint.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,21 +22,31 @@ public class CustomerAccount implements Serializable {
     /** 表索引编号*/
     private int accountId;
     /** 账号*/
+    @NotBlank(message = "账号不可为空")
+    @MaxLength(value = 20, message = "账号不可超过20位")
     private String accountName;
     /** 密码*/
+    @NotBlank(message = "密码不可为空")
+    @MaxLength(value = 30, message = "密码不可超过30位")
     private String password;
     /** 个人邮箱*/
+    @Email(message = "邮箱格式非法")
+    @MaxLength(value = 50, message = "邮箱不可超过50位")
     private String email;
     /** 昵称*/
+    @NotBlank(message = "昵称不可为空")
+    @MaxLength(value = 30, message = "昵称不可超过30位")
     private String nickName;
     /** 真实姓名*/
+    @MaxLength(value = 20, message = "真实姓名不可超过20位")
     private String realName;
     /** 性别：MEN男/WOMEN女*/
-    private MicroServiceCustomerDictionary.EnumSex sex;
+    private MicroServiceCustomerDictionary.Sex sex;
     /** 个人号码*/
+    @MatchPattern(pattern = {"^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\\\\d{8}$"}, message = "手机号格式非法")
     private String phoneNo;
     /** 状态：待验证INIT/生效VALID/冻结FREEZE/注销INVALID*/
-    private MicroServiceCustomerDictionary.EnumAccountStatus status;
+    private MicroServiceCustomerDictionary.AccountStatus status;
     /** 初始写入日期*/
     private String instDate;
     /** 初始写入时间*/
@@ -120,19 +134,19 @@ public class CustomerAccount implements Serializable {
         this.lupdDatetime = lupdDatetime;
     }
 
-    public MicroServiceCustomerDictionary.EnumSex getSex() {
+    public MicroServiceCustomerDictionary.Sex getSex() {
         return sex;
     }
 
-    public void setSex(MicroServiceCustomerDictionary.EnumSex sex) {
+    public void setSex(MicroServiceCustomerDictionary.Sex sex) {
         this.sex = sex;
     }
 
-    public MicroServiceCustomerDictionary.EnumAccountStatus getStatus() {
+    public MicroServiceCustomerDictionary.AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(MicroServiceCustomerDictionary.EnumAccountStatus status) {
+    public void setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
         this.status = status;
     }
 }
