@@ -1,8 +1,10 @@
 package account;
 
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 /**
  * project: mhq0123-officialwebsite
@@ -11,27 +13,27 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
  * desc:
  */
 @RunWith(SpringRunner.class)
-public class CustomerAccountControllerTest extends MockMvcResultMatchers {
+public class CustomerAccountControllerTest {
 
-//    private MockMvc mockMvc;
-//
-//    @Before
-//    public void init() {
-//        mockMvc = MockMvcBuilders.standaloneSetup(new CustomerAccountController()).build();
-//    }
-//
-//    @Test
-//    public void insert() {
-//        try {
-//            RequestBuilder request = MockMvcRequestBuilders.post(MicroServiceCustomerDictionary.PathAccount.INSERT)
+    @Test
+    public void insert() {
+        try {
+            RequestBody requestBody = new
+                    .add("键", "值")// 构造请求的参数
+                    .add("键", "值")// 构造请求的参数
+                    .build();
+
+            Request.Builder builder = new Request.Builder();
+            builder.url("http://127.0.0.1:8000/account/insert")
+                    .post()
+            Request request = Request.Builder.post("").build();
 //                    .param("accountName", "mhq0123")
 //                    .param("password", "123456")
 //                    .param("email", "532386274@qq.com")
 //                    .param("nickName", "小马");
-//            ResultActions resultActions = mockMvc.perform(request);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

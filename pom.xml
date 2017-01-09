@@ -40,6 +40,7 @@
         <version.org.mybatis.spring.boot>1.1.1</version.org.mybatis.spring.boot>
         <version.mysql.driver>6.0.5</version.mysql.driver>
         <version.com.alibaba.druid>1.0.27</version.com.alibaba.druid>
+        <version.com.squareup.okhttp3>3.5.0</version.com.squareup.okhttp3>
         <!--plugs-->
         <version.org.apache.maven.surefire.plugin>2.19.1</version.org.apache.maven.surefire.plugin>
     </properties>
@@ -136,6 +137,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${version.com.fasterxml.jackson}</version>
+        </dependency>
+        <!--http请求框架-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${version.com.squareup.okhttp3}</version>
         </dependency>
     </dependencies>
 

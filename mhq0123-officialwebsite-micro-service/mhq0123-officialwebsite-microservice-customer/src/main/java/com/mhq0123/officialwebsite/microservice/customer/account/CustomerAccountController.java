@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,7 @@ public class CustomerAccountController {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
-    public int insert(CustomerAccount insertBean) {
+    public int insert(@ModelAttribute CustomerAccount insertBean) {
         // 校验
         if(null == insertBean) {
             throw new IllegalArgumentException("insertBean对象不可为空");
@@ -75,7 +76,7 @@ public class CustomerAccountController {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
-    public int updateById(CustomerAccount updateBean) {
+    public int updateById(@ModelAttribute CustomerAccount updateBean) {
         // 校验
         if(null == updateBean) {
             throw new IllegalArgumentException("updateBean对象不可为空");
