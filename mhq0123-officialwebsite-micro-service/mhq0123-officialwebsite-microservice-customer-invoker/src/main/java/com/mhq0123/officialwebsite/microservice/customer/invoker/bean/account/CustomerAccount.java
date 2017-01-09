@@ -22,28 +22,28 @@ public class CustomerAccount implements Serializable {
     /** 表索引编号*/
     private int accountId;
     /** 账号*/
-    @NotBlank(message = "账号不可为空")
-    @MaxLength(value = 20, message = "账号不可超过20位")
+    @NotBlank
+    @MaxLength(value = 20)
     private String accountName;
     /** 密码*/
-    @NotBlank(message = "密码不可为空")
-    @MaxLength(value = 30, message = "密码不可超过30位")
+    @NotBlank
+    @MaxLength(value = 30)
     private String password;
     /** 个人邮箱*/
-    @Email(message = "邮箱格式非法")
-    @MaxLength(value = 50, message = "邮箱不可超过50位")
+    @Email
+    @MaxLength(value = 50)
     private String email;
     /** 昵称*/
-    @NotBlank(message = "昵称不可为空")
-    @MaxLength(value = 30, message = "昵称不可超过30位")
+    @NotBlank
+    @MaxLength(value = 30)
     private String nickName;
     /** 真实姓名*/
-    @MaxLength(value = 20, message = "真实姓名不可超过20位")
+    @MaxLength(value = 20)
     private String realName;
     /** 性别：MEN男/WOMEN女*/
     private MicroServiceCustomerDictionary.Sex sex;
     /** 个人号码*/
-    @MatchPattern(pattern = {"^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\\\\d{8}$"}, message = "手机号格式非法")
+    @MatchPattern(pattern = {"^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\\\\d{8}$"})
     private String phoneNo;
     /** 状态：待验证INIT/生效VALID/冻结FREEZE/注销INVALID*/
     private MicroServiceCustomerDictionary.AccountStatus status;
@@ -148,5 +148,9 @@ public class CustomerAccount implements Serializable {
 
     public void setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
         this.status = status;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("---");
     }
 }

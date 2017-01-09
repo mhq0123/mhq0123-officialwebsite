@@ -17,12 +17,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
-        <!--参数校验-->
-        <dependency>
-            <groupId>net.sf.oval</groupId>
-            <artifactId>oval</artifactId>
-            <version>${version.net.sf.oval}</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -40,7 +40,6 @@
         <version.org.mybatis.spring.boot>1.1.1</version.org.mybatis.spring.boot>
         <version.mysql.driver>6.0.5</version.mysql.driver>
         <version.com.alibaba.druid>1.0.27</version.com.alibaba.druid>
-        <version.net.sf.oval>1.86</version.net.sf.oval>
         <!--plugs-->
         <version.org.apache.maven.surefire.plugin>2.19.1</version.org.apache.maven.surefire.plugin>
     </properties>
