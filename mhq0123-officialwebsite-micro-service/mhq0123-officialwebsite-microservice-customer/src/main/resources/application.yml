@@ -20,22 +20,22 @@ spring:
       password: 123456
 #      password: Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==  #密码
 #      connection-properties: config.decrypt=true #解密
-      initial-size: 5 #初始化连接数量
-      max-active: 50 #最大并发连接数
-      max-idle: 10 #最大空闲连接数
-      min-idle: 3 #最小空闲连接数
-      max-wait: 60000 #配置获取连接等待超时的时间
-      remove-abandoned: true #超过时间限制是否回收
-      remove-abandoned-timeout: 60 #超过时间限制多长
-      time-between-eviction-runs-millis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-      min-evictable-idle-time-millis: 300000 #配置一个连接在池中最小生存的时间，单位是毫秒
-      validation-query: select 1 #用来检测连接是否有效的sql，要求是一个查询语句
-      test-while-idle: true #申请连接的时候检测
-      test-on-borrow: false #申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能
-      test-on-return: false #归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能
-      pool-prepared-statements: true #打开PSCache，并且指定每个连接上PSCache的大小
-      filters: stat,wall,log4j,slfj # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-      use-global-data-source-stat: true # 合并多个DruidDataSource的监控数据
+      initialSize: 5 #初始化连接数量
+      maxActive: 50 #最大并发连接数
+      maxIdle: 10 #最大空闲连接数
+      minIdle: 3 #最小空闲连接数
+      maxWait: 60000 #配置获取连接等待超时的时间
+      removeAbandoned: true #超过时间限制是否回收
+      removeAbandonedTimeout: 60 #超过时间限制多长
+      timeBetweenEvictionRunsMillis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      minEvictableIdleTimeMillis: 300000 #配置一个连接在池中最小生存的时间，单位是毫秒
+      validationQuery: select 1 #用来检测连接是否有效的sql，要求是一个查询语句
+      testWhileIdle: true #申请连接的时候检测
+      testOnBorrow: false #申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能
+      testOnReturn: false #归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能
+      poolPreparedStatements: true #打开PSCache，并且指定每个连接上PSCache的大小
+      filters: stat,wall,log4j # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
 
 #mybatis
 mybatis:

@@ -33,7 +33,7 @@ public class CustomerAccountControllerTest {
             HttpPost httpPost = new HttpPost("http://127.0.0.1:8000/account/insert");
             //处理参数
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            nvps.add(new BasicNameValuePair("accountName", "mhq01231"));
+            nvps.add(new BasicNameValuePair("accountName", "mhq0123"));
             nvps.add(new BasicNameValuePair("password", "123456"));
             nvps.add(new BasicNameValuePair("nickName", "小马"));
             nvps.add(new BasicNameValuePair("email", "532386274@qq.com"));
