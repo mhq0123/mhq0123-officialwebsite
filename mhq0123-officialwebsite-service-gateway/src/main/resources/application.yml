@@ -21,8 +21,9 @@ eureka:
 zuul:
   routes:
     mhq0123-officialwebsite-edgeservice-customer:
-      path: /customer/**
-      service-id: mhq0123-officialwebsite-edgeservice-customer
+      path: /*/**
+      stripPrefix: true
+      service-id: mhq0123-officialwebsite-edgeservice
 
 #设置断路器的超时（默认1s）
 hystrix:

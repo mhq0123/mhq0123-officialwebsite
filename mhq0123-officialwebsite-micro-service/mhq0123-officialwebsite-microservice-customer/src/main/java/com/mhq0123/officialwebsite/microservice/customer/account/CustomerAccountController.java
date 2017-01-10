@@ -9,9 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,8 +32,8 @@ public class CustomerAccountController {
      * @param insertBean
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
-    public int insert(@ModelAttribute CustomerAccount insertBean) {
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
+    public int accountInsert(@ModelAttribute CustomerAccount insertBean) {
         // 校验
         if(null == insertBean) {
             throw new IllegalArgumentException("insertBean对象不可为空");

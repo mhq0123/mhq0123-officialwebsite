@@ -20,11 +20,6 @@
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${version.org.mybatis.spring.boot}</version>
-        </dependency>
         <!-- mysql 驱动 -->
         <dependency>
             <groupId>mysql</groupId>

@@ -2,6 +2,7 @@ package com.mhq0123.officialwebsite.microservice.customer.invoker;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface MicroServiceCustomerClient {
 
     /**
-     * 账号操作 - 新增账号
+     * 账号操作 -账号
      * @param insertBean
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
     int accountInsert(CustomerAccount insertBean);
 
     /**
