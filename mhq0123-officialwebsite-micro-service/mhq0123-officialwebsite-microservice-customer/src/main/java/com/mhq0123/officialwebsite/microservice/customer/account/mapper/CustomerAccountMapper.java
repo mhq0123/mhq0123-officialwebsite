@@ -1,6 +1,5 @@
 package com.mhq0123.officialwebsite.microservice.customer.account.mapper;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -41,6 +40,6 @@ public interface CustomerAccountMapper {
      * @param fieldValue
      * @return
      */
-    CustomerAccount selectByUniqueField(@Param("uniqueField") MicroServiceCustomerDictionary.AccountUniqueField uniqueField, @Param("fieldValue") String fieldValue);
+    CustomerAccount selectByUniqueField(@Param("uniqueField") String uniqueField, @Param("fieldValue") String fieldValue);
 
 }

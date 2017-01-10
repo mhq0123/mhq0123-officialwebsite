@@ -59,7 +59,7 @@
       WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </update>
 
-    <select id="selectByUniqueField" resultMap="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <select id="selectByUniqueField" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
         SELECT T.*
           FROM CUSTOMER_ACCOUNT T
         <where>

@@ -1,10 +1,7 @@
 package com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
-import net.sf.oval.constraint.Email;
-import net.sf.oval.constraint.MatchPattern;
-import net.sf.oval.constraint.MaxLength;
-import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -148,9 +145,5 @@ public class CustomerAccount implements Serializable {
 
     public void setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
         this.status = status;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("---");
     }
 }

@@ -38,12 +38,12 @@ public class CustomerAccountService {
      */
     public int insert(CustomerAccount insertBean) {
         // 唯一性校验用户名
-        CustomerAccount accountNameBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.NAME, insertBean.getAccountName());
+        CustomerAccount accountNameBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.NAME.name(), insertBean.getAccountName());
         if(null != accountNameBean) {
             throw new IllegalArgumentException("用户名已存在");
         }
         // 唯一性校验邮箱
-        CustomerAccount emailBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.EMAIL, insertBean.getEmail());
+        CustomerAccount emailBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.EMAIL.name(), insertBean.getEmail());
         if(null != emailBean && Arrays.asList(MicroServiceCustomerDictionary.AccountStatus.VALID, MicroServiceCustomerDictionary.AccountStatus.FREEZE).contains(emailBean.getStatus())) {
             throw new IllegalArgumentException("邮箱已存在");
         }
@@ -63,7 +63,7 @@ public class CustomerAccountService {
      */
     public CustomerAccount selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField uniqueField, String fieldValue) {
         // 查询
-        return customerAccountMapper.selectByUniqueField(uniqueField, fieldValue);
+        return customerAccountMapper.selectByUniqueField(uniqueField.name(), fieldValue);
     }
 
     /**
@@ -74,7 +74,7 @@ public class CustomerAccountService {
     @Transactional
     public int updateById(CustomerAccount updateBean) {
         // 查询修改对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID, String.valueOf(updateBean.getAccountId()));
+        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(updateBean.getAccountId()));
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }
@@ -97,7 +97,7 @@ public class CustomerAccountService {
     @Transactional
     public int freezeById(int accountId) {
         // 查询冻结对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID, String.valueOf(accountId));
+        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(accountId));
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }
@@ -124,7 +124,7 @@ public class CustomerAccountService {
     @Transactional
     public int unfreezeById(int accountId) {
         // 查询解冻对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID, String.valueOf(accountId));
+        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(accountId));
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }
@@ -151,7 +151,7 @@ public class CustomerAccountService {
     @Transactional
     public int cancelById(int accountId) {
         // 查询注销对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID, String.valueOf(accountId));
+        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(accountId));
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }

@@ -13,7 +13,7 @@ CREATE TABLE `customer_account` (
   `lupd_datetime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `customer_account_account_name` (`account_name`) USING BTREE,
-  UNIQUE KEY `customer_account_email` (`email`) USING BTREE,
+  KEY `customer_account_email` (`email`) USING BTREE,
   KEY `customer_account_phone_no` (`phone_no`) USING BTREE,
   KEY `customer_account_inst_date` (`inst_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户--账号表';

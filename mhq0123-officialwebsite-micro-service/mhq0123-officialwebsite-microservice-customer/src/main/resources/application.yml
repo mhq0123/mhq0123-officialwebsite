@@ -41,6 +41,7 @@ spring:
 mybatis:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   type-aliases-package: com.mhq0123
+  mapUnderscoreToCamelCase: true
   
 
 #注册中心
