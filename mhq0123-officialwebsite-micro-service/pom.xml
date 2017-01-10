@@ -14,6 +14,9 @@
     <modules>
         <module>mhq0123-officialwebsite-microservice-customer</module>
         <module>mhq0123-officialwebsite-microservice-customer-invoker</module>
+        <module>mhq0123-officialwebsite-micro-service-sms</module>
+        <module>mhq0123-officialwebsite-microservice-sms</module>
+        <module>mhq0123-officialwebsite-microservice-sms-invoker</module>
     </modules>
 
     <dependencies>

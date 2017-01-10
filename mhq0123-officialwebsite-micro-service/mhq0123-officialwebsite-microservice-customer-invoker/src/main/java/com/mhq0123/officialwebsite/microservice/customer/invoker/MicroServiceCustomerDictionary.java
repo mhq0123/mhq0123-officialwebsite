@@ -12,7 +12,7 @@ package com.mhq0123.officialwebsite.microservice.customer.invoker;
 public class MicroServiceCustomerDictionary {
 
     /** 服务id*/
-    public static final String SERVICE_ID = "mhq0123-officialwebsite-customer-service";
+    public static final String SERVICE_ID = "mhq0123-officialwebsite-microservice-customer";
 
     /** 请求路径 - 账号操作*/
     public static class PathAccount {
