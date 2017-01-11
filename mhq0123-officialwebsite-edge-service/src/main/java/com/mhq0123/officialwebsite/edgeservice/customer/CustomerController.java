@@ -7,8 +7,8 @@ import net.sf.oval.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class CustomerController {
     private MicroServiceCustomerClient microServiceCustomerClient;
 
     @PostMapping(CustomerPath.REGISTER)
-    public boolean register(@ModelAttribute CustomerAccount registerBean) {
+    public boolean register(@RequestBody CustomerAccount registerBean) {
         // 校验
         if(null == registerBean) {
             throw new IllegalArgumentException("registerBean对象不可为空");
