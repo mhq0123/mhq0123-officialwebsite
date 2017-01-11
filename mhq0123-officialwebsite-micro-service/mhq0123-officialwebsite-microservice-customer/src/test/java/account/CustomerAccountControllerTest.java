@@ -30,7 +30,7 @@ public class CustomerAccountControllerTest {
             //实例化httpClient
             CloseableHttpClient httpclient = HttpClients.createDefault();
             //实例化post方法
-            HttpPost httpPost = new HttpPost("http://127.0.0.1:8099/customer/register");
+            HttpPost httpPost = new HttpPost("http://127.0.0.1:8055/customer/register");
             //处理参数
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
             nvps.add(new BasicNameValuePair("accountName", "mhq0123"));

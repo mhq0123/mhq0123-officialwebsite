@@ -32,8 +32,8 @@ public class CustomerAccountController {
      * @param insertBean
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
-    public int insert(@ModelAttribute CustomerAccount insertBean) {
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
+    public int insert(@RequestBody CustomerAccount insertBean) {
         // 校验
         if(null == insertBean) {
             throw new IllegalArgumentException("insertBean对象不可为空");
@@ -56,8 +56,8 @@ public class CustomerAccountController {
      * @param fieldValue
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_UNIQUE_FIELD)
-    public CustomerAccount selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField uniqueField, String fieldValue) {
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_UNIQUE_FIELD)
+    public CustomerAccount selectByUniqueField(@RequestParam("accountUniqueField") MicroServiceCustomerDictionary.AccountUniqueField uniqueField, @RequestParam("fieldValue") String fieldValue) {
         // 校验
         if(null == uniqueField) {
             throw new IllegalArgumentException("校验字段类型不能为空");
@@ -73,8 +73,8 @@ public class CustomerAccountController {
      * @param updateBean
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
-    public int updateById(@ModelAttribute CustomerAccount updateBean) {
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
+    public int updateById(@RequestBody CustomerAccount updateBean) {
         // 校验
         if(null == updateBean) {
             throw new IllegalArgumentException("updateBean对象不可为空");
@@ -90,8 +90,8 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
-    public int freezeById(int accountId) {
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
+    public int freezeById(@RequestParam("accountId") int accountId) {
         // 校验
         if(accountId < 1) {
             throw new IllegalArgumentException("用户索引编号不可为空");
@@ -104,8 +104,8 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
-    public int unfreezeById(int accountId) {
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
+    public int unfreezeById(@RequestParam("accountId") int accountId) {
         // 校验
         if(accountId < 1) {
             throw new IllegalArgumentException("用户索引编号不可为空");
@@ -118,8 +118,8 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
-    public int cancelById(int accountId) {
+    @GetMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
+    public int cancelById(@RequestParam("accountId") int accountId) {
         // 校验
         if(accountId < 1) {
             throw new IllegalArgumentException("用户索引编号不可为空");

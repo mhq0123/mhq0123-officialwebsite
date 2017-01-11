@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients("com.mhq0123") // TODO 扫描包
 @ComponentScan("com.mhq0123,org.mhq0123") // TODO 要加入扫描路径
 public class EdgeServiceApplication {
 
