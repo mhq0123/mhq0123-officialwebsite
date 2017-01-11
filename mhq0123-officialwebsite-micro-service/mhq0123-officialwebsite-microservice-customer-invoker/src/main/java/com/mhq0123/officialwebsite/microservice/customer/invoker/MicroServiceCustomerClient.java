@@ -2,8 +2,10 @@ package com.mhq0123.officialwebsite.microservice.customer.invoker;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * project: mhq0123-officialwebsite
@@ -19,8 +21,8 @@ public interface MicroServiceCustomerClient {
      * @param insertBean
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
-    int accountInsert(CustomerAccount insertBean);
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.INSERT, method = RequestMethod.GET)
+    int accountInsert(@ModelAttribute CustomerAccount insertBean);
 
     /**
      * 账号操作 - 根据唯一字段查询账号

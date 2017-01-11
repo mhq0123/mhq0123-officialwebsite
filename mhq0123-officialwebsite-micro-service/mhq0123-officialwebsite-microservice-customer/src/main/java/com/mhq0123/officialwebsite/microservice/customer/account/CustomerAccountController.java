@@ -33,7 +33,7 @@ public class CustomerAccountController {
      * @return
      */
     @GetMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
-    public int accountInsert(@ModelAttribute CustomerAccount insertBean) {
+    public int insert(@ModelAttribute CustomerAccount insertBean) {
         // 校验
         if(null == insertBean) {
             throw new IllegalArgumentException("insertBean对象不可为空");
