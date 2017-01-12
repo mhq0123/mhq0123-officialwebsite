@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("com.mhq0123") // 扫描mapper的包
 @ComponentScan("com.mhq0123,org.mhq0123") // 扫描组件
 @Import(DruidConfiguration.class) // 开启druid监控
+@EnableCaching // TODO 开启缓存
 public class MicroServiceCustomerApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(MicroServiceCustomerApplication.class);

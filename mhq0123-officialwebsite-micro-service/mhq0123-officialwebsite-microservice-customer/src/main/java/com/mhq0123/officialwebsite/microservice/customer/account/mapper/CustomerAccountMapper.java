@@ -3,6 +3,9 @@ package com.mhq0123.officialwebsite.microservice.customer.account.mapper;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
 /**
  * project: mhq0123-officialwebsite
@@ -25,6 +28,7 @@ public interface CustomerAccountMapper {
      * @param accountId
      * @return
      */
+    @CacheEvict(value = "CustomerAccount", key="'accountId_'+#accountId")
     int deleteById(int accountId);
 
     /**
@@ -32,6 +36,7 @@ public interface CustomerAccountMapper {
      * @param updateBean
      * @return
      */
+    @CachePut(value = "CustomerAccount", key="'accountId_'+#updateBean.getAccountId()")
     int updateById(CustomerAccount updateBean);
 
     /**
@@ -39,6 +44,7 @@ public interface CustomerAccountMapper {
      * @param accountId
      * @return
      */
+    @Cacheable(value = "CustomerAccount", key="'accountId_'+#accountId")
     CustomerAccount selectById(@Param("accountId") int accountId);
 
     /**

@@ -7,6 +7,7 @@ import org.mhq0123.springleaf.common.utils.CipherUtils;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.mhq0123.springleaf.common.utils.ThreadLocalUtils;
 import org.mhq0123.springleaf.core.SpringleafCoreConstants;
+import org.mhq0123.springleaf.core.utils.EhcacheUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,14 @@ public class CustomerRestful {
         }
         // 栏位校验
         OvalUtils.validate(registerBean, "insert");
-        // 验证码校验 TODO
+        // 验证码校验
+        String verificationCode = (String)EhcacheUtils.instance().cacheGet("VerificationCode", "email_" + registerBean.getEmail());
+        if(null == verificationCode) {
+            throw new IllegalArgumentException("验证码已过期");
+        }
+        if(!verificationCode.equals(registerBean.getVerificationCode())) {
+            throw new IllegalArgumentException("验证码有误");
+        }
         // 写入数据库
         microServiceCustomerClient.accountInsert(registerBean);
         // 返回结果

@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @EnableZuulProxy
 @EnableDiscoveryClient
-@Import(CorsConfigurerAdapter.class)
+@Import(CorsConfigurerAdapter.class) // TODO 跨域支持
 public class ServiceGatewayApplication {
 
     public static void main(String[] args) {

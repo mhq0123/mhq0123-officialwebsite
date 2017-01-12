@@ -7,6 +7,12 @@ spring:
   application:
     name: mhq0123-officialwebsite-edgeservice
 
+  cache:
+    type: EHCACHE
+    ehcache:
+      config: ehcache.xml
+      dir: /root/mhq0123-officialwebsite/ehcache
+
   #默认开发
   profiles:
     active: dev

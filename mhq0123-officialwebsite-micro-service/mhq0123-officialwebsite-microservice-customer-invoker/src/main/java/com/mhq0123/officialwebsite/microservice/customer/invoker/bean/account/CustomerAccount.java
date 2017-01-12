@@ -52,6 +52,20 @@ public class CustomerAccount implements Serializable {
     /** 最后更新时间*/
     private Date lupdDatetime;
 
+    // ------------------表外字段
+    @Length(min = 6, max = 6, message = "请输入6位验证码", profiles = {"insert", "verificationCode"})
+
+
+    private String verificationCode;
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
     public int getAccountId() {
         return accountId;
     }
