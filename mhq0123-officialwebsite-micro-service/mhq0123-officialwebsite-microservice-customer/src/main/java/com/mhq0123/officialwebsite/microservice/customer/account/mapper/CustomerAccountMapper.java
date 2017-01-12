@@ -35,11 +35,23 @@ public interface CustomerAccountMapper {
     int updateById(CustomerAccount updateBean);
 
     /**
-     * 根据唯一栏位查询
-     * @param uniqueField
-     * @param fieldValue
+     * 根据编号查询单个
+     * @param accountId
      * @return
      */
-    CustomerAccount selectByUniqueField(@Param("uniqueField") String uniqueField, @Param("fieldValue") String fieldValue);
+    CustomerAccount selectById(@Param("accountId") int accountId);
 
+    /**
+     * 根据用户名查询单个
+     * @param accountName
+     * @return
+     */
+    CustomerAccount selectByName(@Param("accountName") String accountName);
+
+    /**
+     * 根据邮箱查询单个
+     * @param email
+     * @return
+     */
+    CustomerAccount selectByEmail(@Param("email") String email);
 }

@@ -3,7 +3,7 @@ CREATE TABLE `customer_account` (
   `account_name` varchar(20) NOT NULL COMMENT '账号',
   `password` varchar(50) NOT NULL COMMENT '密码',
   `email` varchar(50) NOT NULL COMMENT '个人邮箱',
-  `nick_name` varchar(30) DEFAULT NULL COMMENT '昵称',
+  `nick_name` varchar(30) NOT NULL COMMENT '昵称',
   `real_name` varchar(20) DEFAULT NULL COMMENT '真实姓名',
   `sex` varchar(5) DEFAULT NULL COMMENT '性别：MEN男/WOMEN女',
   `phone_no` varchar(20) DEFAULT NULL COMMENT '个人号码',
@@ -13,7 +13,7 @@ CREATE TABLE `customer_account` (
   `lupd_datetime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `customer_account_account_name` (`account_name`) USING BTREE,
-  KEY `customer_account_email` (`email`) USING BTREE,
+  UNIQUE KEY `customer_account_email` (`email`) USING BTREE,
   KEY `customer_account_phone_no` (`phone_no`) USING BTREE,
   KEY `customer_account_inst_date` (`inst_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户--账号表';
@@ -25,7 +25,7 @@ CREATE TABLE `customer_account_history` (
   `account_name` varchar(20) NOT NULL COMMENT '账号',
   `password` varchar(50) NOT NULL COMMENT '密码',
   `email` varchar(50) NOT NULL COMMENT '个人邮箱',
-  `nick_name` varchar(30) DEFAULT NULL COMMENT '昵称',
+  `nick_name` varchar(30) NOT NULL COMMENT '昵称',
   `real_name` varchar(20) DEFAULT NULL COMMENT '真实姓名',
   `sex` varchar(5) DEFAULT NULL COMMENT '性别：MEN男/WOMEN女',
   `phone_no` varchar(20) DEFAULT NULL COMMENT '个人号码',

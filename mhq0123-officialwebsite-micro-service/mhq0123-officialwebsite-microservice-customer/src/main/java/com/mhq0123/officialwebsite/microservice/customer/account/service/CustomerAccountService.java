@@ -5,15 +5,13 @@ import com.mhq0123.officialwebsite.microservice.customer.account.mapper.Customer
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccountHistory;
-import com.mhq0123.springleaf.common.utils.CipherUtils;
+import org.mhq0123.springleaf.common.utils.CipherUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
 
 /**
  * project: mhq0123-officialwebsite
@@ -38,32 +36,51 @@ public class CustomerAccountService {
      */
     public int insert(CustomerAccount insertBean) {
         // 唯一性校验用户名
-        CustomerAccount accountNameBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.NAME.name(), insertBean.getAccountName());
+        CustomerAccount accountNameBean = customerAccountMapper.selectByName(insertBean.getAccountName());
         if(null != accountNameBean) {
             throw new IllegalArgumentException("用户名已存在");
         }
         // 唯一性校验邮箱
-        CustomerAccount emailBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.EMAIL.name(), insertBean.getEmail());
-        if(null != emailBean && Arrays.asList(MicroServiceCustomerDictionary.AccountStatus.VALID, MicroServiceCustomerDictionary.AccountStatus.FREEZE).contains(emailBean.getStatus())) {
+        CustomerAccount emailBean = customerAccountMapper.selectByEmail(insertBean.getEmail());
+        if(null != emailBean) {
             throw new IllegalArgumentException("邮箱已存在");
         }
         // 加密密码
         insertBean.setPassword(CipherUtils.encryptPassword(insertBean.getAccountName(), insertBean.getPassword()));
-        // 初始状态赋值-待验证
-        insertBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.INIT);
+        // 状态赋值
+        insertBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.VALID);
         // 写入
         return customerAccountMapper.insert(insertBean);
     }
 
     /**
-     * 根据唯一字段查询
-     * @param uniqueField
-     * @param fieldValue
+     * 根据索引编号查询
+     * @param accountId
      * @return
      */
-    public CustomerAccount selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField uniqueField, String fieldValue) {
+    public CustomerAccount selectById(int accountId) {
         // 查询
-        return customerAccountMapper.selectByUniqueField(uniqueField.name(), fieldValue);
+        return customerAccountMapper.selectById(accountId);
+    }
+
+    /**
+     * 根据用户名查询
+     * @param accountName
+     * @return
+     */
+    public CustomerAccount selectByName(String accountName) {
+        // 查询
+        return customerAccountMapper.selectByName(accountName);
+    }
+
+    /**
+     * 根据邮箱查询
+     * @param email
+     * @return
+     */
+    public CustomerAccount selectByEmail(String email) {
+        // 查询
+        return customerAccountMapper.selectByEmail(email);
     }
 
     /**
@@ -74,7 +91,7 @@ public class CustomerAccountService {
     @Transactional
     public int updateById(CustomerAccount updateBean) {
         // 查询修改对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(updateBean.getAccountId()));
+        CustomerAccount selectBean = customerAccountMapper.selectById(updateBean.getAccountId());
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }
@@ -97,7 +114,7 @@ public class CustomerAccountService {
     @Transactional
     public int freezeById(int accountId) {
         // 查询冻结对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(accountId));
+        CustomerAccount selectBean = customerAccountMapper.selectById(accountId);
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }
@@ -124,7 +141,7 @@ public class CustomerAccountService {
     @Transactional
     public int unfreezeById(int accountId) {
         // 查询解冻对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(accountId));
+        CustomerAccount selectBean = customerAccountMapper.selectById(accountId);
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }
@@ -151,7 +168,7 @@ public class CustomerAccountService {
     @Transactional
     public int cancelById(int accountId) {
         // 查询注销对象
-        CustomerAccount selectBean = customerAccountMapper.selectByUniqueField(MicroServiceCustomerDictionary.AccountUniqueField.ID.name(), String.valueOf(accountId));
+        CustomerAccount selectBean = customerAccountMapper.selectById(accountId);
         if(null == selectBean) {
             throw new IllegalArgumentException("用户不存在");
         }

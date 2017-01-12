@@ -8,6 +8,12 @@ package com.mhq0123.officialwebsite.edgeservice.customer;
  */
 public class CustomerPath {
 
-    public static final String BASE = "/customer";
-    public static final String REGISTER = BASE + "/register";
+    /** 客户操作*/
+    private static final String BASE                = "/customer";
+    /** 注册*/
+    public static final String REGISTER             = BASE + "/register";
+    /** 登陆*/
+    public static final String LOGIN                = BASE + "/login";
+    /** 检查用户名*/
+    public static final String CHECK_ACCOUNT_NAME   = BASE + "/checkAccountName";
 }

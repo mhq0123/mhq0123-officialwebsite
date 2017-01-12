@@ -22,20 +22,35 @@ public interface MicroServiceCustomerClient {
     int accountInsert(@RequestBody CustomerAccount insertBean);
 
     /**
-     * 账号操作 - 根据唯一字段查询账号
-     * @param accountUniqueField
-     * @param fieldValue
+     * 账号操作 - 根据索引编号查询账号
+     * @param accountId
      * @return
      */
-    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.SELECT_BY_UNIQUE_FIELD, method = RequestMethod.GET)
-    CustomerAccount accountSelectByUniqueField(@RequestParam("accountUniqueField") MicroServiceCustomerDictionary.AccountUniqueField accountUniqueField, @RequestParam("fieldValue") String fieldValue);
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.SELECT_BY_ID, method = RequestMethod.POST)
+    CustomerAccount accountSelectById(@RequestParam("accountId") int accountId);
+
+    /**
+     * 账号操作 - 根据用户名查询账号
+     * @param accountName
+     * @return
+     */
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.SELECT_BY_NAME, method = RequestMethod.POST)
+    CustomerAccount accountSelectByName(@RequestParam("accountName") String accountName);
+
+    /**
+     * 账号操作 - 根据邮箱查询账号
+     * @param email
+     * @return
+     */
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.SELECT_BY_EMAIL, method = RequestMethod.POST)
+    CustomerAccount accountSelectByEmail(@RequestParam("email") String email);
 
     /**
      * 账号操作 - 根据索引编号修改账号
      * @param updateBean
      * @return
      */
-    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID, method = RequestMethod.GET)
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID, method = RequestMethod.POST)
     int accountUpdateById(@RequestBody CustomerAccount updateBean);
 
     /**
@@ -43,7 +58,7 @@ public interface MicroServiceCustomerClient {
      * @param accountId
      * @return
      */
-    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID, method = RequestMethod.GET)
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID, method = RequestMethod.POST)
     int accountFreezeById(@RequestParam("accountId") int accountId);
 
     /**
@@ -51,7 +66,7 @@ public interface MicroServiceCustomerClient {
      * @param accountId
      * @return
      */
-    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID, method = RequestMethod.GET)
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID, method = RequestMethod.POST)
     int accountUnfreezeById(@RequestParam("accountId") int accountId);
 
     /**
@@ -59,6 +74,6 @@ public interface MicroServiceCustomerClient {
      * @param accountId
      * @return
      */
-    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID, method = RequestMethod.GET)
+    @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID, method = RequestMethod.POST)
     int accountCancelById(@RequestParam("accountId") int accountId);
 }

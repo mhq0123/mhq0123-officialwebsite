@@ -24,7 +24,17 @@ public class MicroServiceCustomerHystrix implements MicroServiceCustomerClient {
     }
 
     @Override
-    public CustomerAccount accountSelectByUniqueField(@RequestParam("accountUniqueField") MicroServiceCustomerDictionary.AccountUniqueField accountUniqueField, @RequestParam("fieldValue") String fieldValue) {
+    public CustomerAccount accountSelectById(@RequestParam("accountId") int accountId) {
+        throw new RuntimeException("服务器繁忙");
+    }
+
+    @Override
+    public CustomerAccount accountSelectByName(@RequestParam("accountName") String accountName) {
+        throw new RuntimeException("服务器繁忙");
+    }
+
+    @Override
+    public CustomerAccount accountSelectByEmail(@RequestParam("email") String email) {
         throw new RuntimeException("服务器繁忙");
     }
 

@@ -3,15 +3,14 @@ package com.mhq0123.officialwebsite.microservice.customer.account;
 import com.mhq0123.officialwebsite.microservice.customer.account.service.CustomerAccountService;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
-import net.sf.oval.ConstraintViolation;
-import net.sf.oval.Validator;
-import org.apache.commons.lang3.StringUtils;
+import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * project: mhq0123-officialwebsite
@@ -38,34 +37,49 @@ public class CustomerAccountController {
         if(null == insertBean) {
             throw new IllegalArgumentException("insertBean对象不可为空");
         }
-        // 栏位校验 TODO 引入校验框架
-        Validator validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(insertBean);
-        if(null != violations && !violations.isEmpty()) {
-            ConstraintViolation constraintViolation = violations.get(0);
-            logger.error(">>>>>>>>>>>>>>field:{},value:{},errorMessage:{}", constraintViolation.getCheckName(), constraintViolation.getInvalidValue(), constraintViolation.getMessage());
-            throw new IllegalArgumentException(constraintViolation.getMessage());
-        }
+        // 栏位校验
+        OvalUtils.validate(insertBean, "insert");
 
         return customerAccountService.insert(insertBean);
     }
 
     /**
-     * 根据唯一字段查询账号
-     * @param uniqueField
-     * @param fieldValue
+     * 根据索引编号查询账号
+     * @param accountId
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_UNIQUE_FIELD)
-    public CustomerAccount selectByUniqueField(@RequestParam("accountUniqueField") MicroServiceCustomerDictionary.AccountUniqueField uniqueField, @RequestParam("fieldValue") String fieldValue) {
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_ID)
+    public CustomerAccount selectById(@RequestParam("accountId") int accountId) {
         // 校验
-        if(null == uniqueField) {
-            throw new IllegalArgumentException("校验字段类型不能为空");
-        }
-        if(StringUtils.isEmpty(fieldValue)) {
-            throw new IllegalArgumentException("字段值不能为空");
-        }
-        return customerAccountService.selectByUniqueField(uniqueField, fieldValue);
+        OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
+
+        return customerAccountService.selectById(accountId);
+    }
+
+    /**
+     * 根据用户名查询账号
+     * @param accountName
+     * @return
+     */
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_NAME)
+    public CustomerAccount selectByName(@RequestParam("accountName") String accountName) {
+        // 校验
+        OvalUtils.validate(new CustomerAccount().setAccountName(accountName), "accountName");
+
+        return customerAccountService.selectByName(accountName);
+    }
+
+    /**
+     * 根据邮箱查询账号
+     * @param email
+     * @return
+     */
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_EMAIL)
+    public CustomerAccount selectByEmail(@RequestParam("email") String email) {
+        // 校验
+        OvalUtils.validate(new CustomerAccount().setEmail(email), "email");
+
+        return customerAccountService.selectByEmail(email);
     }
 
     /**
@@ -73,15 +87,14 @@ public class CustomerAccountController {
      * @param updateBean
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
     public int updateById(@RequestBody CustomerAccount updateBean) {
         // 校验
         if(null == updateBean) {
             throw new IllegalArgumentException("updateBean对象不可为空");
         }
-        if(updateBean.getAccountId() < 1) {
-            throw new IllegalArgumentException("用户索引编号不可为空");
-        }
+        OvalUtils.validate(updateBean, "accountId");
+
         return customerAccountService.updateById(updateBean);
     }
 
@@ -90,12 +103,11 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
     public int freezeById(@RequestParam("accountId") int accountId) {
         // 校验
-        if(accountId < 1) {
-            throw new IllegalArgumentException("用户索引编号不可为空");
-        }
+        OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
+
         return customerAccountService.freezeById(accountId);
     }
 
@@ -104,12 +116,11 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
     public int unfreezeById(@RequestParam("accountId") int accountId) {
         // 校验
-        if(accountId < 1) {
-            throw new IllegalArgumentException("用户索引编号不可为空");
-        }
+        OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
+
         return customerAccountService.unfreezeById(accountId);
     }
 
@@ -118,12 +129,11 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @GetMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
+    @PostMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
     public int cancelById(@RequestParam("accountId") int accountId) {
         // 校验
-        if(accountId < 1) {
-            throw new IllegalArgumentException("用户索引编号不可为空");
-        }
+        OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
+
         return customerAccountService.cancelById(accountId);
     }
 
