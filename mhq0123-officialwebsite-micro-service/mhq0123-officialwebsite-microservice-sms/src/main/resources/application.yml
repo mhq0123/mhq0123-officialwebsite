@@ -11,6 +11,11 @@ spring:
   profiles:
     active: dev
 
+  #模板
+  thymeleaf:
+      cache: false
+      prefix: mail
+
   #邮件
   mail:
     host: smtp.126.com

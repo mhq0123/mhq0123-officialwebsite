@@ -9,7 +9,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.mail.internet.MimeMessage;
 import java.io.File;
@@ -28,6 +29,8 @@ public class SmsEmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private TemplateEngine templateEngine;
 
     /**
      * 发送简单邮箱
@@ -120,9 +123,20 @@ public class SmsEmailService {
             helper.setTo(smsEmail.getEmailTo());
             helper.setSubject(EnumCommentUtils.getDesc(smsEmail.getSubject()));
 
-            String text = ThymeleafViewResolver.
-                    velocityEngine, "template.vm", "UTF-8", model);
-            helper.setText(text, true);
+            // 模板内容
+            Context context = new Context();
+            context.setVariables(smsEmail.getModelMap());
+
+            String template = EnumCommentUtils.getCode(smsEmail.getSubject()) + ".mail";
+            helper.setText(templateEngine.process(template, context), true);
+            // 附件
+            Map<String, File> attachmentMap = smsEmail.getAttachmentMap();
+            if(null != attachmentMap) {
+                for(String fileName : attachmentMap.keySet()) {
+                    helper.addAttachment(fileName, attachmentMap.get(fileName));
+                }
+            }
+
             javaMailSender.send(mimeMessage);
         } catch (Exception e) {
             logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
