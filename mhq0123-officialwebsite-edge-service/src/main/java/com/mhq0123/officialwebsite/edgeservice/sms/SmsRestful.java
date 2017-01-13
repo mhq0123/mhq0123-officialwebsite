@@ -30,19 +30,47 @@ public class SmsRestful {
     private CacheManager ehCacheCacheManager;
 
 
-    @PostMapping(SmsPath.CHECK_EMAIL_AND_SEND_VERIFICATION_CODE)
-    public boolean checkEmailAndSendVerificationCode(@RequestParam("email") String email) {
+    /**
+     * 检查邮箱是否存在并发送
+     * @param email
+     * @param isCheck
+     * @return
+     */
+    @PostMapping(SmsPath.SEND_VERIFICATION_CODE_BY_EMAIL)
+    public boolean sendVerificationCodeByEmail(@RequestParam("email") String email, @RequestParam("isCheck") boolean isCheck) {
         // 检验
         OvalUtils.validate(new CustomerAccount().setEmail(email), "email");
         // 检查邮箱是否已存在
-        CustomerAccount selectBean = microServiceCustomerClient.accountSelectByEmail(email);
-        if(null != selectBean) {
-            throw new IllegalArgumentException("邮箱已存在");
+        if(isCheck) {
+            CustomerAccount selectBean = microServiceCustomerClient.accountSelectByEmail(email);
+            if(null != selectBean) {
+                throw new IllegalArgumentException("邮箱已存在");
+            }
         }
         // 生成验证码、并缓存 随机产生6位数字
         EhcacheUtils.instance().cachePut("VerificationCode", "email_" + email, RandomStringUtils.randomNumeric(6));
         // 发送
 
+        return true;
+    }
+
+    /**
+     * 校验验证码
+     * @param email
+     * @param verificationCode
+     * @return
+     */
+    @PostMapping(SmsPath.CHECK_VERIFICATION_CODE_BY_EMAIL)
+    public boolean checkVerificationCodeByEmail(@RequestParam("email") String email, @RequestParam("verificationCode") String verificationCode) {
+        // 校验
+        OvalUtils.validate(new CustomerAccount().setEmail(email).setVerificationCode(verificationCode), "email", "verificationCode");
+        String cacheVerificationCode = EhcacheUtils.instance().cacheGet("VerificationCode", "email_" + email, String.class);
+        if(null == cacheVerificationCode) {
+            throw new IllegalArgumentException("验证码已失效");
+        }
+        if(!cacheVerificationCode.equals(verificationCode)) {
+            throw new IllegalArgumentException("验证码不正确");
+        }
         return true;
     }
 

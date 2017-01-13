@@ -62,8 +62,9 @@ public class CustomerAccount implements Serializable {
         return verificationCode;
     }
 
-    public void setVerificationCode(String verificationCode) {
+    public CustomerAccount setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
+        return this;
     }
 
     public int getAccountId() {

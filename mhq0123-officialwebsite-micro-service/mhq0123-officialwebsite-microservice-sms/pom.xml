@@ -18,6 +18,27 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${version.org.mybatis.spring.boot}</version>
         </dependency>
+        <!--邮件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mhq0123.officialwebsite</groupId>
+            <artifactId>mhq0123-officialwebsite-microservice-sms-invoker</artifactId>
+            <version>${version.com.mhq0123.officialwebsite.microservice.sms}</version>
+        </dependency>
+        <!--thymeleaf模板-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>

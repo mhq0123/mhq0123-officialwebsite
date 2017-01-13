@@ -35,8 +35,8 @@ public class CustomerRestful {
      * @param accountName
      * @return
      */
-    @PostMapping(CustomerPath.CHECK_ACCOUNT_NAME)
-    public boolean checkAccountName(@RequestParam("accountName") String accountName) {
+    @PostMapping(CustomerPath.CHECK_EXIST_ACCOUNT_NAME)
+    public boolean checkExistAccountName(@RequestParam("accountName") String accountName) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setAccountName(accountName), "accountName");
 
@@ -47,6 +47,11 @@ public class CustomerRestful {
         return true;
     }
 
+    /**
+     * 注册
+     * @param registerBean
+     * @return
+     */
     @PostMapping(CustomerPath.REGISTER)
     public boolean register(@RequestBody CustomerAccount registerBean) {
         // 校验
@@ -69,6 +74,11 @@ public class CustomerRestful {
         return true;
     }
 
+    /**
+     * 登陆
+     * @param loginBean
+     * @return
+     */
     @PostMapping(CustomerPath.LOGIN)
     public boolean login(@RequestBody CustomerLogin loginBean) {
         // 校验
@@ -92,5 +102,23 @@ public class CustomerRestful {
 
         // 返回结果
         return true;
+    }
+
+    /**
+     * 登出
+     * @param accountId
+     * @return
+     */
+    @PostMapping(CustomerPath.LOGOUT)
+    public boolean logout(@RequestParam("accountId") int accountId) {
+        return true;
+    }
+
+    /**
+     * 找回密码
+     */
+    @PostMapping(CustomerPath.RETRIEVE_PASSWORD)
+    public boolean retrievePassword() {
+
     }
 }

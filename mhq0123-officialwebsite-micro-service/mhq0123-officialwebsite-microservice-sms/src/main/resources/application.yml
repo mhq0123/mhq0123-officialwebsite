@@ -1,0 +1,81 @@
+#端口
+server:
+  port: 8000
+
+#应用信息
+spring:
+  application:
+    name: mhq0123-officialwebsite-microservice-sms
+
+  #默认开发
+  profiles:
+    active: dev
+
+  #邮件
+  mail:
+    host: smtp.126.com
+    username: mhq0123_noreply@126.com
+    password: mhq0123 #授权码非密码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+  #数据源
+  datasource:
+      name: officialwebsite
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver #数据库驱动类
+      url: jdbc:mysql://127.0.0.1:3306/officialwebsite?serverTimezone=UTC&zeroDateTimeBehavior=convertToNull #链接url
+      username: officialwebsite #用户名
+      password: 123456
+#      password: Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==  #密码
+#      connection-properties: config.decrypt=true #解密
+      initialSize: 5 #初始化连接数量
+      maxActive: 50 #最大并发连接数
+      maxIdle: 10 #最大空闲连接数
+      minIdle: 3 #最小空闲连接数
+      maxWait: 60000 #配置获取连接等待超时的时间
+      removeAbandoned: true #超过时间限制是否回收
+      removeAbandonedTimeout: 60 #超过时间限制多长
+      timeBetweenEvictionRunsMillis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      minEvictableIdleTimeMillis: 300000 #配置一个连接在池中最小生存的时间，单位是毫秒
+      validationQuery: select 1 #用来检测连接是否有效的sql，要求是一个查询语句
+      testWhileIdle: true #申请连接的时候检测
+      testOnBorrow: false #申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能
+      testOnReturn: false #归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能
+      poolPreparedStatements: true #打开PSCache，并且指定每个连接上PSCache的大小
+      filters: stat,wall,log4j # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
+
+#mybatis
+mybatis:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  type-aliases-package: com.mhq0123
+  mapUnderscoreToCamelCase: true
+  
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8077/eureka/
+
+#日志
+logging:
+  config: classpath:logback-spring.xml
+  path: /root/mhq0123-officialwebsite/logs/${spring.application.name}
+  file: ${spring.application.name}
+
+#开发
+---
+spring:
+  profiles: dev
+
+---
+#生产
+spring:
+  profiles: prod

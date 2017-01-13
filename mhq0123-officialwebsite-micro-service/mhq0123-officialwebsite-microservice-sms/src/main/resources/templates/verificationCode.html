@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>验证码</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h3>以下是您的验证码：</h3>
+    <h1 th:text="${verificationCode}"></h1>
+    <h5>验证码将在5分钟后失效!</h5>
+</body>
+</html>
