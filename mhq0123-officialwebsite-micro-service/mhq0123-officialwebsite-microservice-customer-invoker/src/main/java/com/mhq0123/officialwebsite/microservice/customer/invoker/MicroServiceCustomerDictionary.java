@@ -36,6 +36,16 @@ public class MicroServiceCustomerDictionary {
         public final static String CANCEL_BY_ID      = BASE + "/cancelById";
     }
 
+    /** 请求路径 - 登陆操作*/
+    public static class PathLogin {
+        /** base*/
+        private final static String BASE            = "/login";
+        /** 登陆*/
+        public final static String LOGIN            = BASE + "/login";
+        /** 登出*/
+        public final static String LOGOUT           = BASE + "/logout";
+    }
+
     /** 性别*/
     public enum Sex {
         MEN, WOMEN

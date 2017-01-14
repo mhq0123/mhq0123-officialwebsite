@@ -2,10 +2,14 @@ package com.mhq0123.officialwebsite.microservice.sms.email.service;
 
 import com.mhq0123.officialwebsite.microservice.sms.email.mapper.SmsEmailMapper;
 import com.mhq0123.officialwebsite.microservice.sms.email.repository.SmsEmailRepository;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
 import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
+import org.apache.commons.lang3.StringUtils;
+import org.mhq0123.springleaf.common.utils.EnumCommentUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -26,44 +30,71 @@ public class SmsEmailService {
     private SmsEmailRepository smsEmailRepository;
     @Autowired
     private SmsEmailMapper smsEmailMapper;
+    @Value("${spring.mail.username}")
+    private String emailFrom;
 
     /**
-     * 发送简单邮箱
+     * 存储并发送邮箱
      * @param smsEmail
      */
-    public void sendSimpleMail(SmsEmail smsEmail) {
-        javaMailSender.send(smsEmailRepository.createSimpleMailMessage(smsEmail));
-    }
-
-    /**
-     * 发送附件、静态资源、模板
-     * @param smsEmail
-     */
-    public void sendMimeMail(SmsEmail smsEmail) {
-        javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
-
-    }
-
-    /**
-     * 写入邮件
-     * @param smsEmail
-     * @return 主键
-     */
-    public int insert(SmsEmail smsEmail) {
+    public boolean storageAndSend(SmsEmail smsEmail) {
+        // 返回结果-默认失败
+        boolean returnResult = false;
+        // 默认发送者
+        smsEmail.setEmailFrom(emailFrom);
+        // 写入数据库 要组装内容跟模板
+        if(smsEmail.isUseTemplate()) {
+            String template = EnumCommentUtils.getCode(smsEmail.getSubject());
+            smsEmail.setTemplate(template);
+            smsEmail.setText(smsEmailRepository.getTemplateText(template, smsEmail.getTemplateVariableMap()));
+        }
         // 转成存储字典
         smsEmail.mapToJsonString();
-        // 存表
+        // 初始异常
+        smsEmail.setStatus(MicroServiceSmsDictionary.EmailStatus.EXCEPTION);
         smsEmailMapper.insert(smsEmail);
-        // 返回主键
-        return smsEmail.getEmailId();
+        // 组装更新信息
+        SmsEmail updateBean = new SmsEmail().setEmailId(smsEmail.getEmailId());
+        try {
+            // 发送邮件
+            javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
+            // 发送成功
+            returnResult = true;
+            updateBean.setStatus(MicroServiceSmsDictionary.EmailStatus.SUCCESS);
+        } catch (Exception e) {
+            logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
+            updateBean.setStatus(MicroServiceSmsDictionary.EmailStatus.FAILURE);
+            updateBean.setResultDesc(StringUtils.substring(e.getMessage(), 0, 200));
+        }
+        // 成功后更新邮件状态
+        smsEmailMapper.updateById(updateBean);
+
+        return returnResult;
     }
 
     /**
-     * 更新
-     * @param updateBean
-     * @return
+     * 发送邮箱
+     * @param smsEmail
      */
-    public int updateById(SmsEmail updateBean) {
-        return smsEmailMapper.updateById(updateBean);
+    public boolean send(SmsEmail smsEmail) {
+        // 返回结果-默认失败
+        boolean returnResult = false;
+        // 默认发送者
+        smsEmail.setEmailFrom(emailFrom);
+        // 模板信息
+        if(smsEmail.isUseTemplate()) {
+            String template = EnumCommentUtils.getCode(smsEmail.getSubject());
+            smsEmail.setTemplate(template);
+            smsEmail.setText(smsEmailRepository.getTemplateText(template, smsEmail.getTemplateVariableMap()));
+        }
+        try {
+            // 发送邮件
+            javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
+            // 执行成功
+            returnResult = true;
+        } catch (Exception e) {
+            logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
+        }
+        return returnResult;
     }
 }
