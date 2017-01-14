@@ -2,7 +2,6 @@ package com.mhq0123.officialwebsite.microservice.sms.email.service;
 
 import com.mhq0123.officialwebsite.microservice.sms.email.mapper.SmsEmailMapper;
 import com.mhq0123.officialwebsite.microservice.sms.email.repository.SmsEmailRepository;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
 import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,12 +59,11 @@ public class SmsEmailService {
     }
 
     /**
-     * 更新编号更新状态
-     * @param emailId
-     * @param status
+     * 更新
+     * @param updateBean
      * @return
      */
-    public int updateStatusById(int emailId, MicroServiceSmsDictionary.EmailStatus status) {
-        return smsEmailMapper.updateStatusById(emailId, status.name());
+    public int updateById(SmsEmail updateBean) {
+        return smsEmailMapper.updateById(updateBean);
     }
 }

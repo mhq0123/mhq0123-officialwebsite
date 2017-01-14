@@ -82,6 +82,7 @@ CREATE TABLE `sms_email` (
   `attachments` varchar(200) DEFAULT NULL COMMENT '附件列表',
   `inlines` varchar(200) DEFAULT NULL COMMENT '静态资源列表',
   `status` varchar(20) NOT NULL COMMENT '状态：成功SUCCESS/失败FAILURE/异常EXCEPTION/确认成功CONFIRM_SUCCESS/确认失败CONFIRM_FAILURE',
+  `result_desc` varchar(200) DEFAULT NULL COMMENT '结果描述',
   `inst_date` varchar(10) NOT NULL COMMENT '写入日期',
   `inst_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '写入时间',
   `lupd_datetime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',

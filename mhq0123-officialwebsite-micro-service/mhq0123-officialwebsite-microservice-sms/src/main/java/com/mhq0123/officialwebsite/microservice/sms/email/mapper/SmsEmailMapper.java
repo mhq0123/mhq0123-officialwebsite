@@ -2,7 +2,6 @@ package com.mhq0123.officialwebsite.microservice.sms.email.mapper;
 
 import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * project: mhq0123-officialwebsite
@@ -21,10 +20,9 @@ public interface SmsEmailMapper {
     int insert(SmsEmail insertBean);
 
     /**
-     * 更新状态
-     * @param emailId
-     * @param status
+     * 更新
+     * @param updateBean
      * @return
      */
-    int updateStatusById(@Param("emailId") int emailId, @Param("status") String status);
+    int updateById(SmsEmail updateBean);
 }

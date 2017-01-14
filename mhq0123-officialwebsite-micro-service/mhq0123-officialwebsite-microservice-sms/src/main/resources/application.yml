@@ -32,11 +32,13 @@ spring:
     properties:
       mail:
         smtp:
+          ssl:
+            enable: true
+            socketFactory: org.mhq0123.springleaf.core.factory.TrustAllMailSSLSocketFactory
           auth: true
           starttls:
             enable: true
             required: true
-          socketFactory: javax.net.ssl.SSLSocketFactory
 
   #数据源
   datasource:

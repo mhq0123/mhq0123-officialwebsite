@@ -28,8 +28,8 @@ public class SmsEmail implements Serializable {
     @NotNull(message = "邮件主题不能为空", profiles = {"insert", "subject"})
     private MicroServiceSmsDictionary.EmailSubject subject;
     /** from mapper*/
-    @Email(message = "源邮箱格式不正确", profiles = {"insert", "emailFrom"})
-    @MaxLength(value = 50, message = "源邮箱不能超过50位", profiles = {"insert", "emailFrom"})
+//    @Email(message = "源邮箱格式不正确", profiles = {"insert", "emailFrom"})
+//    @MaxLength(value = 50, message = "源邮箱不能超过50位", profiles = {"insert", "emailFrom"})
     private String emailFrom;
     /** to mapper*/
     @Email(message = "目标邮箱格式不正确", profiles = {"insert", "emailTo"})
@@ -51,6 +51,8 @@ public class SmsEmail implements Serializable {
     /** 邮件状态*/
     @NotNull(message = "状态不能为空", profiles = {"status"})
     private MicroServiceSmsDictionary.EmailStatus status;
+    /** 结果描述*/
+    private String resultDesc;
     /** 初始写入日期*/
     private String instDate;
     /** 初始写入时间*/
@@ -96,6 +98,15 @@ public class SmsEmail implements Serializable {
         if(StringUtils.isNotBlank(this.inlines)) {
             this.setInlineMap(JSONObject.parseObject(this.inlines, Map.class));
         }
+        return this;
+    }
+
+    public String getResultDesc() {
+        return resultDesc;
+    }
+
+    public SmsEmail setResultDesc(String resultDesc) {
+        this.resultDesc = resultDesc;
         return this;
     }
 

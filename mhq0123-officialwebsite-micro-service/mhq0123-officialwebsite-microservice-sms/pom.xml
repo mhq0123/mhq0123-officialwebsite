@@ -18,11 +18,7 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${version.org.mybatis.spring.boot}</version>
         </dependency>
-        <!--邮件-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.mhq0123.officialwebsite</groupId>
             <artifactId>mhq0123-officialwebsite-microservice-sms-invoker</artifactId>

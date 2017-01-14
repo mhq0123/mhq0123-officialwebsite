@@ -16,8 +16,6 @@ public class MicroServiceSmsDictionary {
     /** 服务id*/
     public static final String SERVICE_ID = "mhq0123-officialwebsite-microservice-sms";
 
-    public static final String EMAIL_FROM = "mhq0123_noreply@126.com";
-
     /** 请求路径 - 邮箱操作*/
     public static class PathEmail {
         /** base*/

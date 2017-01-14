@@ -38,7 +38,6 @@ public class SmsEmailControllerTest {
             SmsEmail smsEmail = new SmsEmail();
             {
                 smsEmail.setSubject(MicroServiceSmsDictionary.EmailSubject.VERIFICATION_CODE);
-                smsEmail.setEmailFrom(MicroServiceSmsDictionary.EMAIL_FROM);
                 smsEmail.setEmailTo("532386274@qq.com");
                 smsEmail.setUseTemplate(true);
                 smsEmail.setHtml(true);
