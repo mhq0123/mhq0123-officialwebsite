@@ -1,20 +1,14 @@
 package com.mhq0123.officialwebsite.microservice.sms.email.service;
 
+import com.mhq0123.officialwebsite.microservice.sms.email.mapper.SmsEmailMapper;
+import com.mhq0123.officialwebsite.microservice.sms.email.repository.SmsEmailRepository;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
 import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
-import org.mhq0123.springleaf.common.utils.EnumCommentUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
-
-import javax.mail.internet.MimeMessage;
-import java.io.File;
-import java.util.Map;
 
 /**
  * project: mhq0123-officialwebsite
@@ -30,117 +24,48 @@ public class SmsEmailService {
     @Autowired
     private JavaMailSender javaMailSender;
     @Autowired
-    private TemplateEngine templateEngine;
+    private SmsEmailRepository smsEmailRepository;
+    @Autowired
+    private SmsEmailMapper smsEmailMapper;
 
     /**
      * 发送简单邮箱
      * @param smsEmail
      */
-    public void sendSimple(SmsEmail smsEmail) {
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom(smsEmail.getEmailFrom());
-        simpleMailMessage.setTo(smsEmail.getEmailTo());
-        simpleMailMessage.setSubject(EnumCommentUtils.getDesc(smsEmail.getSubject()));
-        simpleMailMessage.setText(smsEmail.getText());
-
-        javaMailSender.send(simpleMailMessage);
+    public void sendSimpleMail(SmsEmail smsEmail) {
+        javaMailSender.send(smsEmailRepository.createSimpleMailMessage(smsEmail));
     }
 
     /**
-     * 发送附件邮件
+     * 发送附件、静态资源、模板
      * @param smsEmail
-     * @throws Exception
      */
-    public void sendAttachmentsMail(SmsEmail smsEmail) {
-        try {
-            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-            helper.setFrom(smsEmail.getEmailFrom());
-            helper.setTo(smsEmail.getEmailTo());
-            helper.setSubject(EnumCommentUtils.getDesc(smsEmail.getSubject()));
-            helper.setText(smsEmail.getText());
-
-            // 附件
-            Map<String, File> attachmentMap = smsEmail.getAttachmentMap();
-            if(null != attachmentMap) {
-                for(String fileName : attachmentMap.keySet()) {
-                    helper.addAttachment(fileName, attachmentMap.get(fileName));
-                }
-            }
-            javaMailSender.send(mimeMessage);
-        } catch (Exception e) {
-            logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
-            throw new RuntimeException(e);
-        }
+    public void sendMimeMail(SmsEmail smsEmail) {
+        javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
 
     }
 
     /**
-     * 发送带静态资源、附件的邮件
+     * 写入邮件
      * @param smsEmail
-     * @throws Exception
+     * @return 主键
      */
-    public void sendInlineMail(SmsEmail smsEmail) {
-        try {
-            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-            helper.setFrom(smsEmail.getEmailFrom());
-            helper.setTo(smsEmail.getEmailTo());
-            helper.setSubject(EnumCommentUtils.getDesc(smsEmail.getSubject()));
-            helper.setText(smsEmail.getText(), true);
-            // 静态资源
-            Map<String, File> inlineMap = smsEmail.getInlineMap();
-            if(null != inlineMap) {
-                for(String fileName : inlineMap.keySet()) {
-                    helper.addInline(fileName, inlineMap.get(fileName));
-                }
-            }
-            // 附件
-            Map<String, File> attachmentMap = smsEmail.getAttachmentMap();
-            if(null != attachmentMap) {
-                for(String fileName : attachmentMap.keySet()) {
-                    helper.addAttachment(fileName, attachmentMap.get(fileName));
-                }
-            }
-
-            javaMailSender.send(mimeMessage);
-        } catch (Exception e) {
-            logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
-            throw new RuntimeException(e);
-        }
+    public int insert(SmsEmail smsEmail) {
+        // 转成存储字典
+        smsEmail.mapToJsonString();
+        // 存表
+        smsEmailMapper.insert(smsEmail);
+        // 返回主键
+        return smsEmail.getEmailId();
     }
 
     /**
-     * 发送模板、带静态、带附件
-     * @param smsEmail
-     * @throws Exception
+     * 更新编号更新状态
+     * @param emailId
+     * @param status
+     * @return
      */
-    public void sendTemplateMail(SmsEmail smsEmail) {
-        try {
-            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-            helper.setFrom(smsEmail.getEmailFrom());
-            helper.setTo(smsEmail.getEmailTo());
-            helper.setSubject(EnumCommentUtils.getDesc(smsEmail.getSubject()));
-
-            // 模板内容
-            Context context = new Context();
-            context.setVariables(smsEmail.getModelMap());
-
-            String template = EnumCommentUtils.getCode(smsEmail.getSubject()) + ".mail";
-            helper.setText(templateEngine.process(template, context), true);
-            // 附件
-            Map<String, File> attachmentMap = smsEmail.getAttachmentMap();
-            if(null != attachmentMap) {
-                for(String fileName : attachmentMap.keySet()) {
-                    helper.addAttachment(fileName, attachmentMap.get(fileName));
-                }
-            }
-
-            javaMailSender.send(mimeMessage);
-        } catch (Exception e) {
-            logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
-            throw new RuntimeException(e);
-        }
+    public int updateStatusById(int emailId, MicroServiceSmsDictionary.EmailStatus status) {
+        return smsEmailMapper.updateStatusById(emailId, status.name());
     }
 }

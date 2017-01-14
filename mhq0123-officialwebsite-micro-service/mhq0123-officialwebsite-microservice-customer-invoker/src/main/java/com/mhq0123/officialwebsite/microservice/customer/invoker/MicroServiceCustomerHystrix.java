@@ -34,7 +34,7 @@ public class MicroServiceCustomerHystrix implements MicroServiceCustomerClient {
     }
 
     @Override
-    public CustomerAccount accountSelectByEmail(@RequestParam("email") String email) {
+    public CustomerAccount accountSelectByEmail(@RequestParam("mapper") String email) {
         throw new RuntimeException("服务器繁忙");
     }
 

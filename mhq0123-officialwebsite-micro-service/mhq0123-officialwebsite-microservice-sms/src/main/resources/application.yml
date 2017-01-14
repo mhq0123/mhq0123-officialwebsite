@@ -1,6 +1,6 @@
 #端口
 server:
-  port: 8000
+  port: 8010
 
 #应用信息
 spring:
@@ -11,16 +11,24 @@ spring:
   profiles:
     active: dev
 
+  #解决页面乱码
+  http:
+    encoding:
+      force: true
+
   #模板
   thymeleaf:
       cache: false
-      prefix: mail
+      suffix: .html
 
   #邮件
   mail:
-    host: smtp.126.com
-    username: mhq0123_noreply@126.com
-    password: mhq0123 #授权码非密码
+    host: smtp.exmail.qq.com
+    username: noreply@mhq0123.com
+    password: uLMLWkLdxiWho52v #授权码非密码
+    protocol: smtp
+    port: 465
+    default-encoding: UTF-8
     properties:
       mail:
         smtp:
@@ -28,6 +36,7 @@ spring:
           starttls:
             enable: true
             required: true
+          socketFactory: javax.net.ssl.SSLSocketFactory
 
   #数据源
   datasource:

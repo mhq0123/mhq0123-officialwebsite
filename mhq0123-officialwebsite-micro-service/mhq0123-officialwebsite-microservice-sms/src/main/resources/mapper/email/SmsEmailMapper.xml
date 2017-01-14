@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mhq0123.officialwebsite.microservice.sms.email.mapper.SmsEmailMapper">
+    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail"
+            useGeneratedKeys="true" keyProperty="emailId">
+      INSERT INTO SMS_EMAIL (
+            SUBJECT,
+            EMAIL_FROM,
+            EMAIL_TO,
+            TEXT,
+            TEMPLATE,
+            TEMPLATE_VARIABLES,
+            ATTACHMENTS,
+            INLINES,
+            STATUS,
+            INST_DATE
+		) VALUES (
+            #{subject,                   jdbcType=VARCHAR},
+            #{emailFrom,                 jdbcType=VARCHAR},
+            #{emailTo,                   jdbcType=VARCHAR},
+            #{text,                      jdbcType=VARCHAR},
+            #{template,                  jdbcType=VARCHAR},
+            #{templateVariables,         jdbcType=VARCHAR},
+            #{attachments,               jdbcType=VARCHAR},
+            #{inlines,                   jdbcType=VARCHAR},
+            #{status,                    jdbcType=VARCHAR},
+			CURDATE()
+		)
+    </insert>
+
+
+    <update id="updateStatusById">
+      UPDATE SMS_EMAIL T
+         SET T.STATUS   = #{status, 	jdbcType=VARCHAR}
+       WHERE T.EMAIL_ID = #{emailId,    jdbcType=INTEGER}
+    </update>
+
+</mapper>

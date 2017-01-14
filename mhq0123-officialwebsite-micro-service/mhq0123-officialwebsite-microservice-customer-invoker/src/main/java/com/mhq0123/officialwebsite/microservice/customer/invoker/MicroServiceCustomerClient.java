@@ -43,7 +43,7 @@ public interface MicroServiceCustomerClient {
      * @return
      */
     @RequestMapping(value = MicroServiceCustomerDictionary.PathAccount.SELECT_BY_EMAIL, method = RequestMethod.POST)
-    CustomerAccount accountSelectByEmail(@RequestParam("email") String email);
+    CustomerAccount accountSelectByEmail(@RequestParam("mapper") String email);
 
     /**
      * 账号操作 - 根据索引编号修改账号

@@ -75,9 +75,9 @@ public class CustomerAccountController {
      * @return
      */
     @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_EMAIL)
-    public CustomerAccount selectByEmail(@RequestParam("email") String email) {
+    public CustomerAccount selectByEmail(@RequestParam("mapper") String email) {
         // 校验
-        OvalUtils.validate(new CustomerAccount().setEmail(email), "email");
+        OvalUtils.validate(new CustomerAccount().setEmail(email), "mapper");
 
         return customerAccountService.selectByEmail(email);
     }

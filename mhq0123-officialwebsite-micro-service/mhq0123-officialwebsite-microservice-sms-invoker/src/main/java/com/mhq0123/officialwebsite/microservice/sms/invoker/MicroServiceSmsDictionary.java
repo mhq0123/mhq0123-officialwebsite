@@ -21,7 +21,7 @@ public class MicroServiceSmsDictionary {
     /** 请求路径 - 邮箱操作*/
     public static class PathEmail {
         /** base*/
-        public final static String BASE                     = "/email";
+        public final static String BASE                     = "/mapper";
         /** 存储并发送*/
         public final static String STORAGE_AND_SEND         = BASE + "/storageAndSend";
         /** 发送*/
@@ -32,5 +32,10 @@ public class MicroServiceSmsDictionary {
     public enum EmailSubject {
         @Comment(code = "verificationCode", desc = "mhq0123 验证码")
         VERIFICATION_CODE
+    }
+
+    /** 邮件状态*/
+    public enum EmailStatus {
+        SUCCESS, FAILURE, EXCEPTION, CONFIRM_SUCCESS, CONFIRM_FAILURE
     }
 }

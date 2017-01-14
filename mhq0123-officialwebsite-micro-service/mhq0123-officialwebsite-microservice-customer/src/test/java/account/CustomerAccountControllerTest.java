@@ -1,19 +1,17 @@
 package account;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
+import com.alibaba.fastjson.JSONObject;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * project: mhq0123-officialwebsite
@@ -30,17 +28,17 @@ public class CustomerAccountControllerTest {
             //实例化httpClient
             CloseableHttpClient httpclient = HttpClients.createDefault();
             //实例化post方法
-            HttpPost httpPost = new HttpPost("http://127.0.0.1:8055/customer/register");
+            HttpPost httpPost = new HttpPost("http://127.0.0.1:8000/account/insert");
             //处理参数
-            List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            nvps.add(new BasicNameValuePair("accountName", "mhq0123"));
-            nvps.add(new BasicNameValuePair("password", "123456"));
-            nvps.add(new BasicNameValuePair("nickName", "小马"));
-            nvps.add(new BasicNameValuePair("email", "532386274@qq.com"));
+            CustomerAccount customerAccount = new CustomerAccount();
+            customerAccount.setAccountName("mhq0123");
+            customerAccount.setPassword("123456");
+            customerAccount.setNickName("小马");
+            customerAccount.setEmail("532386274@qq.com");
             //提交的参数
-            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(nvps, "UTF-8");
+            StringEntity stringEntity = new StringEntity(JSONObject.toJSONString(customerAccount), ContentType.APPLICATION_JSON);
             //将参数给post方法
-            httpPost.setEntity(uefEntity);
+            httpPost.setEntity(stringEntity);
             //执行post方法
             CloseableHttpResponse response = httpclient.execute(httpPost);
             if (response.getStatusLine().getStatusCode() == 200) {

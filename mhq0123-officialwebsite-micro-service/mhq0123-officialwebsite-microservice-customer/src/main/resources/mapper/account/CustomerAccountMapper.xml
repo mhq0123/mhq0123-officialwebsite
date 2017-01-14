@@ -15,7 +15,7 @@
 		)VALUES(
 			#{accountName, 	    jdbcType=VARCHAR},
 			#{password, 		jdbcType=VARCHAR},
-			#{email, 	        jdbcType=INTEGER},
+			#{email, 	        jdbcType=VARCHAR},
 			#{nickName, 	    jdbcType=VARCHAR},
 			#{realName, 		jdbcType=VARCHAR},
 			#{sex,	            jdbcType=VARCHAR},

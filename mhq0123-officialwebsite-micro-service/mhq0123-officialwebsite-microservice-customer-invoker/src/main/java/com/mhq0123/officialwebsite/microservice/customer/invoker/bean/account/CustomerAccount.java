@@ -28,8 +28,8 @@ public class CustomerAccount implements Serializable {
     @MaxLength(value = 30, message = "密码不能超过30位", profiles = {"insert", "password"})
     private String password;
     /** 个人邮箱*/
-    @Email(message = "邮箱格式不正确", profiles = {"insert", "email"})
-    @MaxLength(value = 50, message = "邮箱不能超过50位", profiles = {"insert", "email"})
+    @Email(message = "邮箱格式不正确", profiles = {"insert", "mapper"})
+    @MaxLength(value = 50, message = "邮箱不能超过50位", profiles = {"insert", "mapper"})
     private String email;
     /** 昵称*/
     @NotBlank(message = "昵称不能为空", profiles = {"insert", "nickName"})
@@ -54,8 +54,6 @@ public class CustomerAccount implements Serializable {
 
     // ------------------表外字段
     @Length(min = 6, max = 6, message = "请输入6位验证码", profiles = {"insert", "verificationCode"})
-
-
     private String verificationCode;
 
     public String getVerificationCode() {

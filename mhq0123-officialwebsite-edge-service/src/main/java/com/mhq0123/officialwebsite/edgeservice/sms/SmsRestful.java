@@ -37,9 +37,9 @@ public class SmsRestful {
      * @return
      */
     @PostMapping(SmsPath.SEND_VERIFICATION_CODE_BY_EMAIL)
-    public boolean sendVerificationCodeByEmail(@RequestParam("email") String email, @RequestParam("isCheck") boolean isCheck) {
+    public boolean sendVerificationCodeByEmail(@RequestParam("mapper") String email, @RequestParam("isCheck") boolean isCheck) {
         // 检验
-        OvalUtils.validate(new CustomerAccount().setEmail(email), "email");
+        OvalUtils.validate(new CustomerAccount().setEmail(email), "mapper");
         // 检查邮箱是否已存在
         if(isCheck) {
             CustomerAccount selectBean = microServiceCustomerClient.accountSelectByEmail(email);
@@ -61,9 +61,9 @@ public class SmsRestful {
      * @return
      */
     @PostMapping(SmsPath.CHECK_VERIFICATION_CODE_BY_EMAIL)
-    public boolean checkVerificationCodeByEmail(@RequestParam("email") String email, @RequestParam("verificationCode") String verificationCode) {
+    public boolean checkVerificationCodeByEmail(@RequestParam("mapper") String email, @RequestParam("verificationCode") String verificationCode) {
         // 校验
-        OvalUtils.validate(new CustomerAccount().setEmail(email).setVerificationCode(verificationCode), "email", "verificationCode");
+        OvalUtils.validate(new CustomerAccount().setEmail(email).setVerificationCode(verificationCode), "mapper", "verificationCode");
         String cacheVerificationCode = EhcacheUtils.instance().cacheGet("VerificationCode", "email_" + email, String.class);
         if(null == cacheVerificationCode) {
             throw new IllegalArgumentException("验证码已失效");

@@ -70,3 +70,24 @@ CREATE TABLE `customer_login_history` (
   KEY `customer_login_history_login_id` (`login_id`) USING BTREE,
   KEY `customer_login_history_account_id` (`account_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户--登陆历史表';
+
+CREATE TABLE `sms_email` (
+  `email_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表索引编号',
+  `subject` varchar(50) NOT NULL COMMENT '邮件主题:VERIFICATION_CODE/..',
+  `email_from` varchar(50) NOT NULL COMMENT '发送者邮箱',
+  `email_to` varchar(50) NOT NULL COMMENT '接收者邮箱',
+  `text` varchar(500) NOT NULL COMMENT '邮件内容',
+  `template` varchar(50) DEFAULT NULL COMMENT '邮件模板名',
+  `template_variables` varchar(200) DEFAULT NULL COMMENT '模板变量',
+  `attachments` varchar(200) DEFAULT NULL COMMENT '附件列表',
+  `inlines` varchar(200) DEFAULT NULL COMMENT '静态资源列表',
+  `status` varchar(20) NOT NULL COMMENT '状态：成功SUCCESS/失败FAILURE/异常EXCEPTION/确认成功CONFIRM_SUCCESS/确认失败CONFIRM_FAILURE',
+  `inst_date` varchar(10) NOT NULL COMMENT '写入日期',
+  `inst_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '写入时间',
+  `lupd_datetime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  PRIMARY KEY (`email_id`),
+  KEY `sms_email_subject` (`subject`) USING BTREE,
+  KEY `sms_email_email_to` (`email_to`) USING BTREE,
+  KEY `sms_email_status` (`status`) USING BTREE,
+  KEY `sms_email_inst_date` (`inst_date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='短讯--邮件表';
