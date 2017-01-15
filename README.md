@@ -43,74 +43,74 @@
 
 ## 开发规范
 
-mhq0123-officialwebsite
-|---doc
-|   |---sql
-|   |   |---\*.sql   数据库文件
-|   |---api
-|   |   |---\*.api   接口说明
-|   |---chm
-|   |   |---\*.chm   说明手册
-|---mhq0123-officialwebsite-config-repository
-|   |---local
-|   |   |---xxx
-|   |   |   |---\*.yml   本地配置
-|   |---git
-|   |   |---xxx
-|   |   |   |---\*.yml   git配置
-|---mhq0123-officialwebsite-config-server
-|   |---src
-|   |   |---lib
-|   |   |   |---\*.jar   依赖的本地jar
-|   |   |---main
-|   |   |   |---java
-|   |   |   |   |---com.mhq0123.officialwebsite.configserver
-|   |   |   |   |   |---xxx
-|   |   |   |   |   |   |---\*.java   业务逻辑
-|   |   |   |   |   |---ConfigServerApplication.java   程序入口:开启自动配置、开启服务发现、开启配置对外服务
-|   |   |   |   |---org.mhq0123.officialwebsite.configserver
-|   |   |   |   |   |---xxx
-|   |   |   |   |   |   |---\*.java   辅助工具
-|   |   |   |   |   |---ConfigServerConstant.java   常量
-|   |   |   |---resources
-|   |   |   |   |---application.yml   端口、程序名称、配置仓库、rabbitMq、注册中心配置、日志配置、环境配置
-|   |   |   |   |---banner.txt   个性化banner
-|   |   |   |   |---logback-spring.xml   日志格式、输出目录、归档策略、不同环境
-|   |   |---test
-|   |   |   |---java
-|   |   |   |   |---xxx
-|   |   |   |   |   |---\*Test.java   业务测试
-|   |---target   编译目录
-|   |---pom.xml   引入spring-cloud-config-server等依赖，spring-boot-maven-plugin等插件
-|---mhq0123-officialwebsite-edge-service
-|   |---src
-|   |   |---lib
-|   |   |   |---\*.jar   依赖的本地jar
-|   |   |---main
-|   |   |   |---java
-|   |   |   |   |---com.mhq0123.officialwebsite.edgeservice
-|   |   |   |   |   |---xxx
-|   |   |   |   |   |   |---\*Path.java   业务逻辑请求映射路径
-|   |   |   |   |   |   |---\*Restful.java   业务逻辑rest服务：合法性校验、业务逻辑校验、微服务调用
-|   |   |   |   |   |---EdgeServiceApplication.java   程序入口:开启自动配置、服务发现、Feign客户端、ComponentScan、ServletComponentScan、缓存等
-|   |   |   |   |---org.mhq0123.officialwebsite.edgeservice
-|   |   |   |   |   |---xxx
-|   |   |   |   |   |   |---\*.java   辅助工具
-|   |   |   |   |   |---EdgeServiceConstant.java   常量
-|   |   |   |---resources
-|   |   |   |   |---application.yml   端口、程序名称、缓存、断路器、配置服务、rabbitMq、注册中心配置、日志配置、环境配置
-|   |   |   |   |---banner.txt   个性化banner
-|   |   |   |   |---logback-spring.xml   日志格式、输出目录、归档策略、不同环境
-|   |   |---test
-|   |   |   |---java
-|   |   |   |   |---xxx
-|   |   |   |   |   |---\*RestfulTest.java   业务测试
-|   |---target   编译目录
-|   |---pom.xml   引入spring-cloud-feign、microservice-\*-invoker等依赖，spring-boot-maven-plugin等插件
-|---.gitignore   git忽略列表
-|---LICENSE   开源协议
-|---pom.xml   引入spring-boot、spring-cloud、mhq0123-springleaf等公共依赖；maven-surefire-plugin等公共插件
-|---README.md   说明
+mhq0123-officialwebsite<br>
+|---doc<br>
+|   |---sql<br>
+|   |   |---\*.sql   数据库文件<br>
+|   |---api<br>
+|   |   |---\*.api   接口说明<br>
+|   |---chm<br>
+|   |   |---\*.chm   说明手册<br>
+|---mhq0123-officialwebsite-config-repository<br>
+|   |---local<br>
+|   |   |---xxx<br>
+|   |   |   |---\*.yml   本地配置<br>
+|   |---git<br>
+|   |   |---xxx<br>
+|   |   |   |---\*.yml   git配置<br>
+|---mhq0123-officialwebsite-config-server<br>
+|   |---src<br>
+|   |   |---lib<br>
+|   |   |   |---\*.jar   依赖的本地jar<br>
+|   |   |---main<br>
+|   |   |   |---java<br>
+|   |   |   |   |---com.mhq0123.officialwebsite.configserver<br>
+|   |   |   |   |   |---xxx<br>
+|   |   |   |   |   |   |---\*.java   业务逻辑<br>
+|   |   |   |   |   |---ConfigServerApplication.java   程序入口:开启自动配置、开启服务发现、开启配置对外服务<br>
+|   |   |   |   |---org.mhq0123.officialwebsite.configserver<br>
+|   |   |   |   |   |---xxx<br>
+|   |   |   |   |   |   |---\*.java   辅助工具<br>
+|   |   |   |   |   |---ConfigServerConstant.java   常量<br>
+|   |   |   |---resources<br>
+|   |   |   |   |---application.yml   端口、程序名称、配置仓库、rabbitMq、注册中心配置、日志配置、环境配置<br>
+|   |   |   |   |---banner.txt   个性化banner<br>
+|   |   |   |   |---logback-spring.xml   日志格式、输出目录、归档策略、不同环境<br>
+|   |   |---test<br>
+|   |   |   |---java<br>
+|   |   |   |   |---xxx<br>
+|   |   |   |   |   |---\*Test.java   业务测试<br>
+|   |---target   编译目录<br>
+|   |---pom.xml   引入spring-cloud-config-server等依赖，spring-boot-maven-plugin等插件<br>
+|---mhq0123-officialwebsite-edge-service<br>
+|   |---src<br>
+|   |   |---lib<br>
+|   |   |   |---\*.jar   依赖的本地jar<br>
+|   |   |---main<br>
+|   |   |   |---java<br>
+|   |   |   |   |---com.mhq0123.officialwebsite.edgeservice<br>
+|   |   |   |   |   |---xxx<br>
+|   |   |   |   |   |   |---\*Path.java   业务逻辑请求映射路径<br>
+|   |   |   |   |   |   |---\*Restful.java   业务逻辑rest服务：合法性校验、业务逻辑校验、微服务调用<br>
+|   |   |   |   |   |---EdgeServiceApplication.java   程序入口:开启自动配置、服务发现、Feign客户端、ComponentScan、ServletComponentScan、缓存等<br>
+|   |   |   |   |---org.mhq0123.officialwebsite.edgeservice<br>
+|   |   |   |   |   |---xxx<br>
+|   |   |   |   |   |   |---\*.java   辅助工具<br>
+|   |   |   |   |   |---EdgeServiceConstant.java   常量<br>
+|   |   |   |---resources<br>
+|   |   |   |   |---application.yml   端口、程序名称、缓存、断路器、配置服务、rabbitMq、注册中心配置、日志配置、环境配置<br>
+|   |   |   |   |---banner.txt   个性化banner<br>
+|   |   |   |   |---logback-spring.xml   日志格式、输出目录、归档策略、不同环境<br>
+|   |   |---test<br>
+|   |   |   |---java<br>
+|   |   |   |   |---xxx<br>
+|   |   |   |   |   |---\*RestfulTest.java   业务测试<br>
+|   |---target   编译目录<br>
+|   |---pom.xml   引入spring-cloud-feign、microservice-\*-invoker等依赖，spring-boot-maven-plugin等插件<br>
+|---.gitignore   git忽略列表<br>
+|---LICENSE   开源协议<br>
+|---pom.xml   引入spring-boot、spring-cloud、mhq0123-springleaf等公共依赖；maven-surefire-plugin等公共插件<br>
+|---README.md   说明<br>
 
 
 
