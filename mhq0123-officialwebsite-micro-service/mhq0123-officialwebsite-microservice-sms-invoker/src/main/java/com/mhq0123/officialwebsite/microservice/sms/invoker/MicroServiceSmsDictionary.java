@@ -28,7 +28,7 @@ public class MicroServiceSmsDictionary {
 
     /** 邮件主题类型*/
     public enum EmailSubject {
-        @Comment(code = "verificationCode", desc = "mhq0123 验证码")
+        @Comment(code = "verificationCode", desc = "验证码通知")
         VERIFICATION_CODE
     }
 
