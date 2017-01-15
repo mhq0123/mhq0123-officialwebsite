@@ -42,7 +42,7 @@
 |customer_login_history |客户--登陆历史表|
 
 ## 开发规范
-···Java
+```Java
 mhq0123-officialwebsite<br>
 |---doc<br>
 |   |---sql<br>
@@ -111,6 +111,5 @@ mhq0123-officialwebsite<br>
 |---LICENSE   开源协议<br>
 |---pom.xml   引入spring-boot、spring-cloud、mhq0123-springleaf等公共依赖；maven-surefire-plugin等公共插件<br>
 |---README.md   说明<br>
-···
-
+```
 
