@@ -1,7 +1,7 @@
-package com.mhq0123.officialwebsite.microservice.sms.invoker.bean;
+package com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.type.SmsEmailType;
 import net.sf.oval.constraint.Email;
 import net.sf.oval.constraint.MaxLength;
 import net.sf.oval.constraint.NotBlank;
@@ -26,10 +26,8 @@ public class SmsEmail implements Serializable {
     private int emailId;
     /** 主题*/
     @NotNull(message = "邮件主题不能为空", profiles = {"insert", "subject"})
-    private MicroServiceSmsDictionary.EmailSubject subject;
+    private SmsEmailType.Subject subject;
     /** from mapper*/
-//    @Email(message = "源邮箱格式不正确", profiles = {"insert", "emailFrom"})
-//    @MaxLength(value = 50, message = "源邮箱不能超过50位", profiles = {"insert", "emailFrom"})
     private String emailFrom;
     /** to mapper*/
     @Email(message = "目标邮箱格式不正确", profiles = {"insert", "emailTo"})
@@ -50,7 +48,7 @@ public class SmsEmail implements Serializable {
     private String inlines;
     /** 邮件状态*/
     @NotNull(message = "状态不能为空", profiles = {"status"})
-    private MicroServiceSmsDictionary.EmailStatus status;
+    private SmsEmailType.Status status;
     /** 结果描述*/
     private String resultDesc;
     /** 初始写入日期*/
@@ -164,11 +162,11 @@ public class SmsEmail implements Serializable {
         return this;
     }
 
-    public MicroServiceSmsDictionary.EmailStatus getStatus() {
+    public SmsEmailType.Status getStatus() {
         return status;
     }
 
-    public SmsEmail setStatus(MicroServiceSmsDictionary.EmailStatus status) {
+    public SmsEmail setStatus(SmsEmailType.Status status) {
         this.status = status;
         return this;
     }
@@ -200,11 +198,11 @@ public class SmsEmail implements Serializable {
         return this;
     }
 
-    public MicroServiceSmsDictionary.EmailSubject getSubject() {
+    public SmsEmailType.Subject getSubject() {
         return subject;
     }
 
-    public SmsEmail setSubject(MicroServiceSmsDictionary.EmailSubject subject) {
+    public SmsEmail setSubject(SmsEmailType.Subject subject) {
         this.subject = subject;
         return this;
     }

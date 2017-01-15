@@ -1,7 +1,7 @@
 package com.mhq0123.officialwebsite.microservice.customer.login;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.login.CustomerLogin;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.CustomerLoginPath;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean.CustomerLogin;
 import com.mhq0123.officialwebsite.microservice.customer.login.service.CustomerLoginService;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class CustomerLoginController {
      * @param customerLogin
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathLogin.LOGIN)
+    @PostMapping(CustomerLoginPath.LOGIN)
     public int login(@RequestBody CustomerLogin customerLogin) {
         // 校验
         if(null == customerLogin) {
@@ -48,7 +48,7 @@ public class CustomerLoginController {
      * @param loginId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathLogin.LOGOUT)
+    @PostMapping(CustomerLoginPath.LOGOUT)
     public int logout(@RequestParam("loginId") int loginId) {
         // 校验
         if(loginId < 1) {

@@ -1,8 +1,8 @@
 package com.mhq0123.officialwebsite.microservice.sms.email;
 
 import com.mhq0123.officialwebsite.microservice.sms.email.service.SmsEmailService;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.SmsEmailPath;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +26,7 @@ public class SmsEmailController {
      * @param smsEmail
      * @return
      */
-    @PostMapping(MicroServiceSmsDictionary.PathEmail.STORAGE_AND_SEND)
+    @PostMapping(SmsEmailPath.STORAGE_AND_SEND)
     public boolean storageAndSend(@RequestBody SmsEmail smsEmail) {
         // 校验
         OvalUtils.validate(smsEmail, "insert");
@@ -39,7 +39,7 @@ public class SmsEmailController {
      * @param smsEmail
      * @return
      */
-    @PostMapping(MicroServiceSmsDictionary.PathEmail.SEND)
+    @PostMapping(SmsEmailPath.SEND)
     public boolean send(@RequestBody SmsEmail smsEmail) {
         // 校验
         OvalUtils.validate(smsEmail, "insert");

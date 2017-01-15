@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountMapper">
-    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount"
+            useGeneratedKeys="true" keyProperty="accountId">
       INSERT INTO CUSTOMER_ACCOUNT(
 			ACCOUNT_NAME,
 			PASSWORD,
@@ -31,7 +32,7 @@
       WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </delete>
 
-    <update id="updateById" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <update id="updateById" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount">
       UPDATE CUSTOMER_ACCOUNT T
       <set>
         <if test="password != null">
@@ -59,19 +60,19 @@
       WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </update>
 
-    <select id="selectById" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <select id="selectById" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount">
         SELECT T.*
           FROM CUSTOMER_ACCOUNT T
         WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </select>
 
-    <select id="selectByName" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <select id="selectByName" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount">
         SELECT T.*
         FROM CUSTOMER_ACCOUNT T
         WHERE T.ACCOUNT_NAME = #{accountName, jdbcType=VARCHAR}
     </select>
 
-    <select id="selectByEmail" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount">
+    <select id="selectByEmail" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount">
         SELECT T.*
         FROM CUSTOMER_ACCOUNT T
         AND T.EMAIL = #{email, jdbcType=VARCHAR}

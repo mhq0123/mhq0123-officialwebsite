@@ -1,8 +1,8 @@
 package com.mhq0123.officialwebsite.microservice.customer.login.service;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.login.CustomerLogin;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.login.CustomerLoginHistory;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean.CustomerLogin;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean.CustomerLoginHistory;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.type.CustomerLoginType;
 import com.mhq0123.officialwebsite.microservice.customer.login.mapper.CustomerLoginHistoryMapper;
 import com.mhq0123.officialwebsite.microservice.customer.login.mapper.CustomerLoginMapper;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class CustomerLoginService {
      */
     public int login(CustomerLogin customerLogin) {
         // 赋值
-        customerLogin.setStatus(MicroServiceCustomerDictionary.LoginStatus.ON_LINE);
+        customerLogin.setStatus(CustomerLoginType.Status.ON_LINE);
         // 写入登陆表
         customerLoginMapper.insert(customerLogin);
         // 返回登陆记录主键
@@ -58,10 +58,10 @@ public class CustomerLoginService {
         // 写入登陆历史表
         CustomerLoginHistory insertBean = new CustomerLoginHistory();
         BeanUtils.copyProperties(selectBean, insertBean);
-        insertBean.setStatus(MicroServiceCustomerDictionary.LoginStatus.LOGOUT);
+        insertBean.setStatus(CustomerLoginType.Status.LOGOUT);
         customerLoginHistoryMapper.insert(insertBean);
 
         // 删除当前登陆表
-        return customerLoginMapper.deleteByLoginId(loginId);
+        return customerLoginMapper.deleteById(loginId);
     }
 }

@@ -50,7 +50,9 @@ CREATE TABLE `customer_login` (
   `login_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登陆时间',
   `invalid_datetime` timestamp NULL DEFAULT NULL COMMENT '登陆过期时间',
   PRIMARY KEY (`login_id`),
-  KEY `customer_login_account_id` (`account_id`) USING BTREE
+  KEY `customer_login_account_id` (`account_id`) USING BTREE,
+  KEY `customer_login_source_system` (`source_system`) USING BTREE,
+  KEY `customer_login_terminal_type` (`terminal_type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户--当前登陆表';
 
 CREATE TABLE `customer_login_history` (

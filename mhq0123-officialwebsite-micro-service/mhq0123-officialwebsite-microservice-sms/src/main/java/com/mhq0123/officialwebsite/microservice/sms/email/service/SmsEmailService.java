@@ -2,8 +2,8 @@ package com.mhq0123.officialwebsite.microservice.sms.email.service;
 
 import com.mhq0123.officialwebsite.microservice.sms.email.mapper.SmsEmailMapper;
 import com.mhq0123.officialwebsite.microservice.sms.email.repository.SmsEmailRepository;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.type.SmsEmailType;
 import org.apache.commons.lang3.StringUtils;
 import org.mhq0123.springleaf.common.utils.EnumCommentUtils;
 import org.slf4j.Logger;
@@ -51,7 +51,7 @@ public class SmsEmailService {
         // 转成存储字典
         smsEmail.mapToJsonString();
         // 初始异常
-        smsEmail.setStatus(MicroServiceSmsDictionary.EmailStatus.EXCEPTION);
+        smsEmail.setStatus(SmsEmailType.Status.EXCEPTION);
         smsEmailMapper.insert(smsEmail);
         // 组装更新信息
         SmsEmail updateBean = new SmsEmail().setEmailId(smsEmail.getEmailId());
@@ -60,10 +60,10 @@ public class SmsEmailService {
             javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
             // 发送成功
             returnResult = true;
-            updateBean.setStatus(MicroServiceSmsDictionary.EmailStatus.SUCCESS);
+            updateBean.setStatus(SmsEmailType.Status.SUCCESS);
         } catch (Exception e) {
             logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
-            updateBean.setStatus(MicroServiceSmsDictionary.EmailStatus.FAILURE);
+            updateBean.setStatus(SmsEmailType.Status.FAILURE);
             updateBean.setResultDesc(StringUtils.substring(e.getMessage(), 0, 200));
         }
         // 成功后更新邮件状态

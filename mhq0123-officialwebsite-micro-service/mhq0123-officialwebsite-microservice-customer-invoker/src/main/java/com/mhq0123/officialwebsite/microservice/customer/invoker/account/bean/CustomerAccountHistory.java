@@ -1,6 +1,6 @@
-package com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account;
+package com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.type.CustomerAccountType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +18,7 @@ public class CustomerAccountHistory implements Serializable {
     /** 历史索引编号*/
     private int historyId;
     /** 操作类型*/
-    private MicroServiceCustomerDictionary.AccountOperateType operateType;
+    private CustomerAccountType.OperateType operateType;
     /** 账户表索引编号*/
     private int accountId;
     /** 账号*/
@@ -32,11 +32,11 @@ public class CustomerAccountHistory implements Serializable {
     /** 真实姓名*/
     private String realName;
     /** 性别：MEN男/WOMEN女*/
-    private MicroServiceCustomerDictionary.Sex sex;
+    private CustomerAccountType.Sex sex;
     /** 个人号码*/
     private String phoneNo;
     /** 状态：待验证INIT/生效VALID/冻结FREEZE/注销INVALID*/
-    private MicroServiceCustomerDictionary.AccountStatus status;
+    private CustomerAccountType.Status status;
     /** 操作备注*/
     private String memo;
     /** 初始写入时间*/
@@ -50,11 +50,11 @@ public class CustomerAccountHistory implements Serializable {
         this.historyId = historyId;
     }
 
-    public MicroServiceCustomerDictionary.AccountOperateType getOperateType() {
+    public CustomerAccountType.OperateType getOperateType() {
         return operateType;
     }
 
-    public void setOperateType(MicroServiceCustomerDictionary.AccountOperateType operateType) {
+    public void setOperateType(CustomerAccountType.OperateType operateType) {
         this.operateType = operateType;
     }
 
@@ -106,11 +106,11 @@ public class CustomerAccountHistory implements Serializable {
         this.realName = realName;
     }
 
-    public MicroServiceCustomerDictionary.Sex getSex() {
+    public CustomerAccountType.Sex getSex() {
         return sex;
     }
 
-    public void setSex(MicroServiceCustomerDictionary.Sex sex) {
+    public void setSex(CustomerAccountType.Sex sex) {
         this.sex = sex;
     }
 
@@ -122,11 +122,11 @@ public class CustomerAccountHistory implements Serializable {
         this.phoneNo = phoneNo;
     }
 
-    public MicroServiceCustomerDictionary.AccountStatus getStatus() {
+    public CustomerAccountType.Status getStatus() {
         return status;
     }
 
-    public void setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
+    public void setStatus(CustomerAccountType.Status status) {
         this.status = status;
     }
 

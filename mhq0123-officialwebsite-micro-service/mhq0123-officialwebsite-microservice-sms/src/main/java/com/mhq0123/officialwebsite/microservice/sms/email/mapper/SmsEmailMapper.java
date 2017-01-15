@@ -1,6 +1,6 @@
 package com.mhq0123.officialwebsite.microservice.sms.email.mapper;
 
-import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

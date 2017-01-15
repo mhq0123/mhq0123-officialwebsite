@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountHistoryMapper">
 
-    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccountHistory">
+    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccountHistory"
+			useGeneratedKeys="true" keyProperty="historyId">
       INSERT INTO CUSTOMER_ACCOUNT_HISTORY(
             OPERATE_TYPE,
             ACCOUNT_ID,

@@ -152,12 +152,16 @@ mhq0123-officialwebsite
 |   |   |   |---main
 |   |   |   |   |---java
 |   |   |   |   |   |---com.mhq0123.officialwebsite.microservice.xxx.invoker
-|   |   |   |   |   |   |---bean
-|   |   |   |   |   |   |   |---yyy
-|   |   |   |   |   |   |   |   |---*Yyy.java   实体类定义含oval校验框架校验规则
-|   |   |   |   |   |   |---MicroServiceXxxClient.java   微服务映射接口定义、断路器配置
-|   |   |   |   |   |   |---MicroServiceXxxDictionary.java   数据字典：含服务名、映射路径、type等常量定义
-|   |   |   |   |   |   |---MicroServiceXxxHystrix.java   断路器实现
+|   |   |   |   |   |   |---yyy
+|   |   |   |   |   |   |   |---bean
+|   |   |   |   |   |   |   |   |---XxxYyy.java   实体类定义含oval校验框架校验规则
+|   |   |   |   |   |   |   |---hystrix
+|   |   |   |   |   |   |   |   |---XxxYyyHystrix.java   断路器实现
+|   |   |   |   |   |   |   |---type
+|   |   |   |   |   |   |   |   |---XxxYyyType.java   类型数据字典
+|   |   |   |   |   |   |   |---XxxYyyClient.java   微服务映射接口定义、断路器配置
+|   |   |   |   |   |   |   |---XxxYyyPath.java   映射路径
+|   |   |   |   |   |   |---XxxInvokerConstant.java   服务名等常量定义
 |   |   |   |   |---resources
 |   |   |   |---test
 |   |   |   |   |---java

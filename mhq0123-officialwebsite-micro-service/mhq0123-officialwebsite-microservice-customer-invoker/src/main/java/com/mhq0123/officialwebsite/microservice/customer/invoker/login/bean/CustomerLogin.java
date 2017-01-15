@@ -1,6 +1,6 @@
-package com.mhq0123.officialwebsite.microservice.customer.invoker.bean.login;
+package com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.type.CustomerLoginType;
 import net.sf.oval.constraint.MaxLength;
 import net.sf.oval.constraint.NotBlank;
 import net.sf.oval.constraint.NotNull;
@@ -23,20 +23,20 @@ public class CustomerLogin implements Serializable {
     private int accountId;
     /** 来源系统BLOG/ASSISTANT/FORUM/MICROVIEDO...*/
     @NotNull(message = "登陆系统不能为空", profiles = {"insert", "sourceSystem"})
-    private MicroServiceCustomerDictionary.SourceSystem sourceSystem;
+    private CustomerLoginType.SourceSystem sourceSystem;
     /** 网络地址*/
     private String networkAddress;
     /** 现实地址*/
     private String realPlace;
     /** 登陆终端类型PC/IOS/ANDROID/...*/
     @NotNull(message = "设备类型不能为空", profiles = {"insert", "terminalType"})
-    private MicroServiceCustomerDictionary.TerminalType terminalType;
+    private CustomerLoginType.TerminalType terminalType;
     /** 登陆终端设备号*/
     @NotBlank(message = "设备号不能为空", profiles = {"insert", "equipmentIdentity"})
     @MaxLength(value = 30, message = "设备号不能超过30位", profiles = {"insert", "equipmentIdentity"})
     private String equipmentIdentity;
     /** 状态：在线ON_LINE/离线OFF_LINE/已登出LOGOUT*/
-    private MicroServiceCustomerDictionary.LoginStatus status;
+    private CustomerLoginType.Status status;
     /** 登陆时间*/
     private Date loginDatetime;
     /** 登陆过期时间*/
@@ -71,11 +71,11 @@ public class CustomerLogin implements Serializable {
         return this;
     }
 
-    public MicroServiceCustomerDictionary.SourceSystem getSourceSystem() {
+    public CustomerLoginType.SourceSystem getSourceSystem() {
         return sourceSystem;
     }
 
-    public CustomerLogin setSourceSystem(MicroServiceCustomerDictionary.SourceSystem sourceSystem) {
+    public CustomerLogin setSourceSystem(CustomerLoginType.SourceSystem sourceSystem) {
         this.sourceSystem = sourceSystem;
         return this;
     }
@@ -98,11 +98,11 @@ public class CustomerLogin implements Serializable {
         return this;
     }
 
-    public MicroServiceCustomerDictionary.TerminalType getTerminalType() {
+    public CustomerLoginType.TerminalType getTerminalType() {
         return terminalType;
     }
 
-    public CustomerLogin setTerminalType(MicroServiceCustomerDictionary.TerminalType terminalType) {
+    public CustomerLogin setTerminalType(CustomerLoginType.TerminalType terminalType) {
         this.terminalType = terminalType;
         return this;
     }
@@ -116,11 +116,11 @@ public class CustomerLogin implements Serializable {
         return this;
     }
 
-    public MicroServiceCustomerDictionary.LoginStatus getStatus() {
+    public CustomerLoginType.Status getStatus() {
         return status;
     }
 
-    public CustomerLogin setStatus(MicroServiceCustomerDictionary.LoginStatus status) {
+    public CustomerLogin setStatus(CustomerLoginType.Status status) {
         this.status = status;
         return this;
     }

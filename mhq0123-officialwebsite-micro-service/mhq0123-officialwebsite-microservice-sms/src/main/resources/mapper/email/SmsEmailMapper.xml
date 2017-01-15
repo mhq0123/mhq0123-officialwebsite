@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mhq0123.officialwebsite.microservice.sms.email.mapper.SmsEmailMapper">
-    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail"
+    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail"
             useGeneratedKeys="true" keyProperty="emailId">
       INSERT INTO SMS_EMAIL (
             SUBJECT,
@@ -29,7 +29,7 @@
     </insert>
 
 
-    <update id="updateById" parameterType="com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail">
+    <update id="updateById" parameterType="com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail">
       UPDATE SMS_EMAIL T
         <set>
             <if test="resultDesc != null">

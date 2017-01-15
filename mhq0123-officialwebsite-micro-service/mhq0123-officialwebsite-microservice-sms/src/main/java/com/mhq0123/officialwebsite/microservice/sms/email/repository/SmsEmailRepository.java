@@ -1,6 +1,6 @@
 package com.mhq0123.officialwebsite.microservice.sms.email.repository;
 
-import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail;
 import org.mhq0123.springleaf.common.utils.EnumCommentUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

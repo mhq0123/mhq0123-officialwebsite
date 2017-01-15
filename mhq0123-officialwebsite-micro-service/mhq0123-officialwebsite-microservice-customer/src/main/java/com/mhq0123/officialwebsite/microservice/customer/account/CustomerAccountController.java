@@ -1,8 +1,8 @@
 package com.mhq0123.officialwebsite.microservice.customer.account;
 
 import com.mhq0123.officialwebsite.microservice.customer.account.service.CustomerAccountService;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.CustomerAccountPath;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class CustomerAccountController {
      * @param insertBean
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.INSERT)
+    @PostMapping(CustomerAccountPath.INSERT)
     public int insert(@RequestBody CustomerAccount insertBean) {
         // 校验
         if(null == insertBean) {
@@ -48,7 +48,7 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_ID)
+    @PostMapping(CustomerAccountPath.SELECT_BY_ID)
     public CustomerAccount selectById(@RequestParam("accountId") int accountId) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
@@ -61,7 +61,7 @@ public class CustomerAccountController {
      * @param accountName
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_NAME)
+    @PostMapping(CustomerAccountPath.SELECT_BY_NAME)
     public CustomerAccount selectByName(@RequestParam("accountName") String accountName) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setAccountName(accountName), "accountName");
@@ -74,7 +74,7 @@ public class CustomerAccountController {
      * @param email
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.SELECT_BY_EMAIL)
+    @PostMapping(CustomerAccountPath.SELECT_BY_EMAIL)
     public CustomerAccount selectByEmail(@RequestParam("mapper") String email) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setEmail(email), "mapper");
@@ -87,7 +87,7 @@ public class CustomerAccountController {
      * @param updateBean
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.UPDATE_BY_ID)
+    @PostMapping(CustomerAccountPath.UPDATE_BY_ID)
     public int updateById(@RequestBody CustomerAccount updateBean) {
         // 校验
         if(null == updateBean) {
@@ -103,7 +103,7 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.FREEZE_BY_ID)
+    @PostMapping(CustomerAccountPath.FREEZE_BY_ID)
     public int freezeById(@RequestParam("accountId") int accountId) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
@@ -116,7 +116,7 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.UNFREEZE_BY_ID)
+    @PostMapping(CustomerAccountPath.UNFREEZE_BY_ID)
     public int unfreezeById(@RequestParam("accountId") int accountId) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");
@@ -129,7 +129,7 @@ public class CustomerAccountController {
      * @param accountId
      * @return
      */
-    @PostMapping(MicroServiceCustomerDictionary.PathAccount.CANCEL_BY_ID)
+    @PostMapping(CustomerAccountPath.CANCEL_BY_ID)
     public int cancelById(@RequestParam("accountId") int accountId) {
         // 校验
         OvalUtils.validate(new CustomerAccount().setAccountId(accountId), "accountId");

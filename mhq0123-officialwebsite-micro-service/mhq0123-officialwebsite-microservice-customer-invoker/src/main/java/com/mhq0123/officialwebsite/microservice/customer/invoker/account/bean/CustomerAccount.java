@@ -1,6 +1,6 @@
-package com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account;
+package com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.type.CustomerAccountType;
 import net.sf.oval.constraint.*;
 
 import java.io.Serializable;
@@ -39,12 +39,12 @@ public class CustomerAccount implements Serializable {
     @MaxLength(value = 20, message = "真实姓名不能超过20位", profiles = {"insert", "realName"})
     private String realName;
     /** 性别：MEN男/WOMEN女*/
-    private MicroServiceCustomerDictionary.Sex sex;
+    private CustomerAccountType.Sex sex;
     /** 个人号码*/
     @MatchPattern(pattern = {"^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\\\\d{8}$"}, message = "手机号格式不正确", profiles = {"insert", "phoneNo"})
     private String phoneNo;
     /** 状态：待验证INIT/生效VALID/冻结FREEZE/注销INVALID*/
-    private MicroServiceCustomerDictionary.AccountStatus status;
+    private CustomerAccountType.Status status;
     /** 初始写入日期*/
     private String instDate;
     /** 初始写入时间*/
@@ -155,20 +155,20 @@ public class CustomerAccount implements Serializable {
         return this;
     }
 
-    public MicroServiceCustomerDictionary.Sex getSex() {
+    public CustomerAccountType.Sex getSex() {
         return sex;
     }
 
-    public CustomerAccount setSex(MicroServiceCustomerDictionary.Sex sex) {
+    public CustomerAccount setSex(CustomerAccountType.Sex sex) {
         this.sex = sex;
         return this;
     }
 
-    public MicroServiceCustomerDictionary.AccountStatus getStatus() {
+    public CustomerAccountType.Status getStatus() {
         return status;
     }
 
-    public CustomerAccount setStatus(MicroServiceCustomerDictionary.AccountStatus status) {
+    public CustomerAccount setStatus(CustomerAccountType.Status status) {
         this.status = status;
         return this;
     }

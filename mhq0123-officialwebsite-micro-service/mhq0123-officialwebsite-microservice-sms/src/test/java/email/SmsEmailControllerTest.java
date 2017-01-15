@@ -1,8 +1,8 @@
 package email;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.MicroServiceSmsDictionary;
-import com.mhq0123.officialwebsite.microservice.sms.invoker.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.bean.SmsEmail;
+import com.mhq0123.officialwebsite.microservice.sms.invoker.email.type.SmsEmailType;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -37,11 +37,10 @@ public class SmsEmailControllerTest {
             //处理参数
             SmsEmail smsEmail = new SmsEmail();
             {
-                smsEmail.setSubject(MicroServiceSmsDictionary.EmailSubject.VERIFICATION_CODE);
+                smsEmail.setSubject(SmsEmailType.Subject.VERIFICATION_CODE);
                 smsEmail.setEmailTo("532386274@qq.com");
                 smsEmail.setUseTemplate(true);
                 smsEmail.setHtml(true);
-//                smsEmail.setText("您的验证码为：" + RandomStringUtils.randomNumeric(6));
                 Map<String, Object> templateVariableMap = new HashedMap();
                 templateVariableMap.put("verificationCode", RandomStringUtils.randomNumeric(6));
                 smsEmail.setTemplateVariableMap(templateVariableMap);

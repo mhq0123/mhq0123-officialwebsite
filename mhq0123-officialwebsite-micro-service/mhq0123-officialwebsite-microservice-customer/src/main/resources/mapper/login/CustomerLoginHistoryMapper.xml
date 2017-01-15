@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mhq0123.officialwebsite.microservice.customer.login.mapper.CustomerLoginHistoryMapper">
+    <insert id="insert" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean.CustomerLoginHistory"
+            useGeneratedKeys="true" keyProperty="historyId">
+      INSERT INTO CUSTOMER_LOGIN_HISTORY (
+            LOGIN_ID,
+            ACCOUNT_ID,
+            SOURCE_SYSTEM,
+            NETWORK_ADDRESS,
+            REAL_PLACE,
+            TERMINAL_TYPE,
+            EQUIPMENT_IDENTITY,
+            STATUS,
+            LOGIN_DATETIME,
+            INVALID_DATETIME
+        ) VALUES (
+            #{loginId,                    jdbcType=INTEGER},
+            #{accountId,                  jdbcType=INTEGER},
+            #{sourceSystem,               jdbcType=VARCHAR},
+            #{networkAddress,             jdbcType=VARCHAR},
+            #{realPlace,                  jdbcType=VARCHAR},
+            #{terminalType,               jdbcType=VARCHAR},
+            #{equipmentIdentity,          jdbcType=VARCHAR},
+            #{status,                     jdbcType=VARCHAR},
+            #{loginDatetime,              jdbcType=TIMESTAMP},
+            #{invalidDatetime,            jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+</mapper>

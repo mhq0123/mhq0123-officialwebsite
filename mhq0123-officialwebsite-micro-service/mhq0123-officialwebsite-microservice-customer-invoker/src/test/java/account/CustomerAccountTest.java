@@ -1,6 +1,6 @@
 package account;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
 
 /**
  * project: mhq0123-officialwebsite

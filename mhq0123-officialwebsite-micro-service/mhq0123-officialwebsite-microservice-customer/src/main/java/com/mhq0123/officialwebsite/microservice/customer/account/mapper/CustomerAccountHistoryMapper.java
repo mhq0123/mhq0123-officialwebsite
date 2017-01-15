@@ -1,6 +1,6 @@
 package com.mhq0123.officialwebsite.microservice.customer.account.mapper;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccountHistory;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccountHistory;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

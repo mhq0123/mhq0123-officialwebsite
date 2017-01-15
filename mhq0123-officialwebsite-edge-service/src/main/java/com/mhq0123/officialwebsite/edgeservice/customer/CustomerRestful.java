@@ -1,8 +1,8 @@
 package com.mhq0123.officialwebsite.edgeservice.customer;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerClient;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.login.CustomerLogin;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.CustomerAccountClient;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean.CustomerLogin;
 import org.mhq0123.springleaf.common.utils.CipherUtils;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.mhq0123.springleaf.common.utils.ThreadLocalUtils;
@@ -28,7 +28,7 @@ public class CustomerRestful {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRestful.class);
 
     @Autowired
-    private MicroServiceCustomerClient microServiceCustomerClient;
+    private CustomerAccountClient microServiceCustomerClient;
 
     /**
      * 检查用户名是否已存在

@@ -2,9 +2,9 @@ package com.mhq0123.officialwebsite.microservice.customer.account.service;
 
 import com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountHistoryMapper;
 import com.mhq0123.officialwebsite.microservice.customer.account.mapper.CustomerAccountMapper;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerDictionary;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccountHistory;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccountHistory;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.type.CustomerAccountType;
 import org.mhq0123.springleaf.common.utils.CipherUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class CustomerAccountService {
         // 加密密码
         insertBean.setPassword(CipherUtils.encryptPassword(insertBean.getAccountName(), insertBean.getPassword()));
         // 状态赋值
-        insertBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.VALID);
+        insertBean.setStatus(CustomerAccountType.Status.VALID);
         // 写入
         return customerAccountMapper.insert(insertBean);
     }
@@ -99,7 +99,7 @@ public class CustomerAccountService {
         // 写入历史表
         CustomerAccountHistory insertBean = new CustomerAccountHistory();
         BeanUtils.copyProperties(selectBean, insertBean);
-        insertBean.setOperateType(MicroServiceCustomerDictionary.AccountOperateType.UPDATE);
+        insertBean.setOperateType(CustomerAccountType.OperateType.UPDATE);
         customerAccountHistoryMapper.insert(insertBean);
 
         // 更新当前表
@@ -122,13 +122,13 @@ public class CustomerAccountService {
         // 写入历史表
         CustomerAccountHistory insertBean = new CustomerAccountHistory();
         BeanUtils.copyProperties(selectBean, insertBean);
-        insertBean.setOperateType(MicroServiceCustomerDictionary.AccountOperateType.FREEZE);
+        insertBean.setOperateType(CustomerAccountType.OperateType.FREEZE);
         customerAccountHistoryMapper.insert(insertBean);
 
         // 冻结bean
         CustomerAccount freezeBean = new CustomerAccount();
         freezeBean.setAccountId(accountId);
-        freezeBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.FREEZE);
+        freezeBean.setStatus(CustomerAccountType.Status.FREEZE);
 
         return customerAccountMapper.updateById(freezeBean);
     }
@@ -149,13 +149,13 @@ public class CustomerAccountService {
         // 写入历史表
         CustomerAccountHistory insertBean = new CustomerAccountHistory();
         BeanUtils.copyProperties(selectBean, insertBean);
-        insertBean.setOperateType(MicroServiceCustomerDictionary.AccountOperateType.UNFREEZE);
+        insertBean.setOperateType(CustomerAccountType.OperateType.UNFREEZE);
         customerAccountHistoryMapper.insert(insertBean);
 
         // 解冻bean
         CustomerAccount unfreezeBean = new CustomerAccount();
         unfreezeBean.setAccountId(accountId);
-        unfreezeBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.VALID);
+        unfreezeBean.setStatus(CustomerAccountType.Status.VALID);
 
         return customerAccountMapper.updateById(unfreezeBean);
     }
@@ -176,13 +176,13 @@ public class CustomerAccountService {
         // 写入历史表
         CustomerAccountHistory insertBean = new CustomerAccountHistory();
         BeanUtils.copyProperties(selectBean, insertBean);
-        insertBean.setOperateType(MicroServiceCustomerDictionary.AccountOperateType.CANCEL);
+        insertBean.setOperateType(CustomerAccountType.OperateType.CANCEL);
         customerAccountHistoryMapper.insert(insertBean);
 
         // 注销bean
         CustomerAccount cancelBean = new CustomerAccount();
         cancelBean.setAccountId(accountId);
-        cancelBean.setStatus(MicroServiceCustomerDictionary.AccountStatus.CANCEL);
+        cancelBean.setStatus(CustomerAccountType.Status.CANCEL);
 
         return customerAccountMapper.updateById(cancelBean);
     }

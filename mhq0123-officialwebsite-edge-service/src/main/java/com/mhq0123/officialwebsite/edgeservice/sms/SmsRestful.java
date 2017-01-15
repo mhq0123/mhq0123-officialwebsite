@@ -1,7 +1,7 @@
 package com.mhq0123.officialwebsite.edgeservice.sms;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.MicroServiceCustomerClient;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.CustomerAccountClient;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.mhq0123.springleaf.core.utils.EhcacheUtils;
@@ -25,7 +25,7 @@ public class SmsRestful {
     private static final Logger logger = LoggerFactory.getLogger(SmsRestful.class);
 
     @Autowired
-    private MicroServiceCustomerClient microServiceCustomerClient;
+    private CustomerAccountClient microServiceCustomerClient;
     @Autowired
     private CacheManager ehCacheCacheManager;
 

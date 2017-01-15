@@ -1,7 +1,7 @@
 package account;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mhq0123.officialwebsite.microservice.customer.invoker.bean.account.CustomerAccount;
+import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
