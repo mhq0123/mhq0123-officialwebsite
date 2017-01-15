@@ -59,6 +59,14 @@ public interface CustomerAccountClient {
     int updateById(@RequestBody CustomerAccount updateBean);
 
     /**
+     * 账号操作 - 根据用户名修改账号
+     * @param updateBean
+     * @return
+     */
+    @RequestMapping(value = CustomerAccountPath.UPDATE_BY_NAME, method = RequestMethod.POST)
+    int updateByName(@RequestBody CustomerAccount updateBean);
+
+    /**
      * 账号操作 - 根据索引编号冻结账号
      * @param accountId
      * @return

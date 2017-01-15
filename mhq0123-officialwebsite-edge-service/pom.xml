@@ -23,6 +23,11 @@
             <artifactId>mhq0123-officialwebsite-microservice-customer-invoker</artifactId>
             <version>${version.com.mhq0123.officialwebsite.microservice.customer}</version>
         </dependency>
+        <dependency>
+            <groupId>com.mhq0123.officialwebsite</groupId>
+            <artifactId>mhq0123-officialwebsite-microservice-sms-invoker</artifactId>
+            <version>${version.com.mhq0123.officialwebsite.microservice.sms}</version>
+        </dependency>
     </dependencies>
 
     <build>

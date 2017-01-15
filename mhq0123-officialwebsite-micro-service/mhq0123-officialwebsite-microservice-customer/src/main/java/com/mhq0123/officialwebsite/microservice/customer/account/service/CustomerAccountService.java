@@ -107,6 +107,30 @@ public class CustomerAccountService {
     }
 
     /**
+     * 修改
+     * @param updateBean
+     * @return
+     */
+    @Transactional
+    public int updateByName(CustomerAccount updateBean) {
+        // 查询修改对象
+        CustomerAccount selectBean = customerAccountMapper.selectByName(updateBean.getAccountName());
+        if(null == selectBean) {
+            throw new IllegalArgumentException("用户不存在");
+        }
+
+        // 写入历史表
+        CustomerAccountHistory insertBean = new CustomerAccountHistory();
+        BeanUtils.copyProperties(selectBean, insertBean);
+        insertBean.setOperateType(CustomerAccountType.OperateType.UPDATE);
+        customerAccountHistoryMapper.insert(insertBean);
+
+        // 更新当前表
+        updateBean.setAccountId(selectBean.getAccountId());
+        return customerAccountMapper.updateById(updateBean);
+    }
+
+    /**
      * 冻结用户
      * @param accountId
      * @return

@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * project: mhq0123-officialwebsite
@@ -25,7 +24,7 @@ public class CustomerLoginHystrix implements CustomerLoginClient {
     }
 
     @Override
-    public int logout(@RequestParam("loginId") int loginId) {
+    public int logout(@RequestBody CustomerLogin logoutBean) {
         throw new RuntimeException("服务器繁忙");
     }
 }

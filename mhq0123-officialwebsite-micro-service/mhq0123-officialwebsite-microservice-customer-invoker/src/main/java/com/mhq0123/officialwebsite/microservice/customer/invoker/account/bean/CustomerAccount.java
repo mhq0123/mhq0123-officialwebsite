@@ -17,7 +17,7 @@ public class CustomerAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 表索引编号*/
-    @MinSize(value = 1, profiles = {"accountId"})
+    @MinSize(value = 1, message = "账户索引编号不可为空", profiles = {"accountId"})
     private int accountId;
     /** 账号*/
     @NotBlank(message = "账号不能为空", profiles = {"insert", "accountName"})
@@ -53,8 +53,19 @@ public class CustomerAccount implements Serializable {
     private Date lupdDatetime;
 
     // ------------------表外字段
-    @Length(min = 6, max = 6, message = "请输入6位验证码", profiles = {"insert", "verificationCode"})
+    @Length(min = 6, max = 6, message = "请输入6位验证码", profiles = {"verificationCode"})
     private String verificationCode;
+    /** 登陆编号*/
+    private int loginId;
+
+    public int getLoginId() {
+        return loginId;
+    }
+
+    public CustomerAccount setLoginId(int loginId) {
+        this.loginId = loginId;
+        return this;
+    }
 
     public String getVerificationCode() {
         return verificationCode;

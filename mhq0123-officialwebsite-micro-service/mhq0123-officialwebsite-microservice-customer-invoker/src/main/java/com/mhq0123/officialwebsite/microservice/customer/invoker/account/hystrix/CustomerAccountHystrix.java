@@ -30,6 +30,11 @@ public class CustomerAccountHystrix implements CustomerAccountClient {
     }
 
     @Override
+    public int updateByName(@RequestBody CustomerAccount updateBean) {
+        throw new RuntimeException("服务器繁忙");
+    }
+
+    @Override
     public CustomerAccount selectByName(@RequestParam("accountName") String accountName) {
         throw new RuntimeException("服务器繁忙");
     }

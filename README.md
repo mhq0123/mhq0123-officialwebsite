@@ -90,8 +90,10 @@ mhq0123-officialwebsite
 |   |   |   |---java
 |   |   |   |   |---com.mhq0123.officialwebsite.edgeservice
 |   |   |   |   |   |---xxx
-|   |   |   |   |   |   |---*XxxPath.java   业务逻辑请求映射路径
-|   |   |   |   |   |   |---*XxxRestful.java   业务逻辑rest服务：合法性校验、业务逻辑校验、微服务调用
+|   |   |   |   |   |   |---service
+|   |   |   |   |   |   |   |---XxxService.java   业务逻辑校验、微服务调用
+|   |   |   |   |   |   |---XxxPath.java   业务逻辑请求映射路径
+|   |   |   |   |   |   |---XxxRestful.java   业务逻辑rest服务：合法性校验
 |   |   |   |   |   |---EdgeServiceApplication.java   程序入口:开启自动配置、服务发现、Feign客户端、ComponentScan、ServletComponentScan、Import配置、缓存等
 |   |   |   |   |---org.mhq0123.officialwebsite.edgeservice
 |   |   |   |   |   |---xxx

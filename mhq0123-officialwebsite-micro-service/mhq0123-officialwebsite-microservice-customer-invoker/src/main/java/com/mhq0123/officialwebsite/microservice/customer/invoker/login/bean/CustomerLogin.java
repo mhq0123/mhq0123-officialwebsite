@@ -2,6 +2,7 @@ package com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.login.type.CustomerLoginType;
 import net.sf.oval.constraint.MaxLength;
+import net.sf.oval.constraint.MinSize;
 import net.sf.oval.constraint.NotBlank;
 import net.sf.oval.constraint.NotNull;
 
@@ -18,22 +19,24 @@ public class CustomerLogin implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 表索引编号*/
+    @MinSize(value = 1, message = "登陆索引编号不可为空", profiles = {"logout", "loginId"})
     private int loginId;
     /** 账号索引编号*/
+    @MinSize(value = 1, message = "账户索引编号不可为空", profiles = {"logout", "accountId"})
     private int accountId;
     /** 来源系统BLOG/ASSISTANT/FORUM/MICROVIEDO...*/
-    @NotNull(message = "登陆系统不能为空", profiles = {"insert", "sourceSystem"})
+    @NotNull(message = "登陆系统不能为空", profiles = {"login", "logout", "sourceSystem"})
     private CustomerLoginType.SourceSystem sourceSystem;
     /** 网络地址*/
     private String networkAddress;
     /** 现实地址*/
     private String realPlace;
     /** 登陆终端类型PC/IOS/ANDROID/...*/
-    @NotNull(message = "设备类型不能为空", profiles = {"insert", "terminalType"})
+    @NotNull(message = "设备类型不能为空", profiles = {"login", "logout", "terminalType"})
     private CustomerLoginType.TerminalType terminalType;
     /** 登陆终端设备号*/
-    @NotBlank(message = "设备号不能为空", profiles = {"insert", "equipmentIdentity"})
-    @MaxLength(value = 30, message = "设备号不能超过30位", profiles = {"insert", "equipmentIdentity"})
+    @NotBlank(message = "设备号不能为空", profiles = {"login", "equipmentIdentity"})
+    @MaxLength(value = 30, message = "设备号不能超过30位", profiles = {"login", "equipmentIdentity"})
     private String equipmentIdentity;
     /** 状态：在线ON_LINE/离线OFF_LINE/已登出LOGOUT*/
     private CustomerLoginType.Status status;
@@ -44,12 +47,12 @@ public class CustomerLogin implements Serializable {
 
     // ---------------表外字段
     /** 账号*/
-    @NotBlank(message = "账号不能为空", profiles = {"insert", "accountName"})
-    @MaxLength(value = 20, message = "账号不能超过20位", profiles = {"insert", "accountName"})
+    @NotBlank(message = "账号不能为空", profiles = {"accountName"})
+    @MaxLength(value = 20, message = "账号不能超过20位", profiles = {"accountName"})
     private String accountName;
     /** 密码*/
-    @NotBlank(message = "密码不能为空", profiles = {"insert", "password"})
-    @MaxLength(value = 30, message = "密码不能超过30位", profiles = {"insert", "password"})
+    @NotBlank(message = "密码不能为空", profiles = {"password"})
+    @MaxLength(value = 30, message = "密码不能超过30位", profiles = {"password"})
     private String password;
 
 

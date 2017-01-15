@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,23 +37,21 @@ public class CustomerLoginController {
             throw new IllegalArgumentException("登陆对象不可为空");
         }
         // 栏位校验
-        OvalUtils.validate(customerLogin, "insert");
+        OvalUtils.validate(customerLogin, "login");
 
         return customerLoginService.login(customerLogin);
     }
 
     /**
      * 登出
-     * @param loginId
+     * @param logoutBean
      * @return
      */
     @PostMapping(CustomerLoginPath.LOGOUT)
-    public int logout(@RequestParam("loginId") int loginId) {
+    public int logout(@RequestBody CustomerLogin logoutBean) {
         // 校验
-        if(loginId < 1) {
-            throw new IllegalArgumentException("登陆索引编号不可为空");
-        }
+        OvalUtils.validate(logoutBean, "logout");
 
-        return customerLoginService.logout(loginId);
+        return customerLoginService.logout(logoutBean);
     }
 }

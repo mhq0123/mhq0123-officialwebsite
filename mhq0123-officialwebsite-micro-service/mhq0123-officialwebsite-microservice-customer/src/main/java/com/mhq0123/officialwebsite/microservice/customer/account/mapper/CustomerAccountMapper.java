@@ -4,7 +4,6 @@ import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.Cu
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
 /**
@@ -36,7 +35,7 @@ public interface CustomerAccountMapper {
      * @param updateBean
      * @return
      */
-    @CachePut(value = "CustomerAccount", key="'accountId_'+#updateBean.getAccountId()")
+    @CacheEvict(value = "CustomerAccount", key="'accountId_'+#updateBean.getAccountId()")
     int updateById(CustomerAccount updateBean);
 
     /**

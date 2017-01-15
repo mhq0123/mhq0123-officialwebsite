@@ -44,15 +44,25 @@ public class CustomerLoginService {
 
     /**
      * 登出
-     * @param loginId 登陆编号
+     * @param logoutBean
      * @return
      */
     @Transactional
-    public int logout(int loginId) {
+    public int logout(CustomerLogin logoutBean) {
         // 查询当前登陆对象
-        CustomerLogin selectBean = customerLoginMapper.selectById(loginId);
+        CustomerLogin selectBean = customerLoginMapper.selectById(logoutBean.getLoginId());
         if(null == selectBean) {
             throw new IllegalArgumentException("登陆对象不存在");
+        }
+        // 校验四元素
+        if(logoutBean.getAccountId() != selectBean.getAccountId()) {
+            throw new IllegalArgumentException("登陆编号不一致");
+        }
+        if(logoutBean.getSourceSystem() != selectBean.getSourceSystem()) {
+            throw new IllegalArgumentException("登陆系统不一致");
+        }
+        if(logoutBean.getTerminalType() != selectBean.getTerminalType()) {
+            throw new IllegalArgumentException("登陆设备类型不一致");
         }
 
         // 写入登陆历史表
@@ -62,6 +72,6 @@ public class CustomerLoginService {
         customerLoginHistoryMapper.insert(insertBean);
 
         // 删除当前登陆表
-        return customerLoginMapper.deleteById(loginId);
+        return customerLoginMapper.deleteById(logoutBean.getLoginId());
     }
 }

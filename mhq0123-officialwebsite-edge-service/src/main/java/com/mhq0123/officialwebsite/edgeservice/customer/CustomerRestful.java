@@ -1,19 +1,14 @@
 package com.mhq0123.officialwebsite.edgeservice.customer;
 
-import com.mhq0123.officialwebsite.microservice.customer.invoker.account.CustomerAccountClient;
+import com.mhq0123.officialwebsite.edgeservice.customer.service.CustomerService;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount;
 import com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean.CustomerLogin;
-import org.mhq0123.springleaf.common.utils.CipherUtils;
 import org.mhq0123.springleaf.common.utils.OvalUtils;
-import org.mhq0123.springleaf.common.utils.ThreadLocalUtils;
-import org.mhq0123.springleaf.core.SpringleafCoreConstants;
-import org.mhq0123.springleaf.core.utils.EhcacheUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,22 +23,20 @@ public class CustomerRestful {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRestful.class);
 
     @Autowired
-    private CustomerAccountClient microServiceCustomerClient;
+    private CustomerService customerService;
 
     /**
-     * 检查用户名是否已存在
-     * @param accountName
+     * 检查邮箱、用户名是否存在，不存在则发送验证码
+     * @param customerAccount
      * @return
      */
-    @PostMapping(CustomerPath.CHECK_EXIST_ACCOUNT_NAME)
-    public boolean checkExistAccountName(@RequestParam("accountName") String accountName) {
-        // 校验
-        OvalUtils.validate(new CustomerAccount().setAccountName(accountName), "accountName");
-
-        CustomerAccount selectBean = microServiceCustomerClient.accountSelectByName(accountName);
-        if(null != selectBean) {
-            throw new IllegalArgumentException("用户名已存在");
-        }
+    @PostMapping(CustomerPath.CHECK_EXIST_AND_SEND_VERIFICATION_CODE)
+    public boolean checkExistAndSendVerificationCode(@RequestBody CustomerAccount customerAccount) {
+        // 校验 用户名跟邮箱
+        OvalUtils.validate(customerAccount, "accountName", "email");
+        // 服务调用
+        customerService.checkExistAndSendVerificationCode(customerAccount.getAccountName(), customerAccount.getEmail());
+        // 返回
         return true;
     }
 
@@ -59,17 +52,9 @@ public class CustomerRestful {
             throw new IllegalArgumentException("注册对象不可为空");
         }
         // 栏位校验
-        OvalUtils.validate(registerBean, "insert");
-        // 验证码校验
-        String verificationCode = (String)EhcacheUtils.instance().cacheGet("VerificationCode", "email_" + registerBean.getEmail());
-        if(null == verificationCode) {
-            throw new IllegalArgumentException("验证码已过期");
-        }
-        if(!verificationCode.equals(registerBean.getVerificationCode())) {
-            throw new IllegalArgumentException("验证码有误");
-        }
-        // 写入数据库
-        microServiceCustomerClient.accountInsert(registerBean);
+        OvalUtils.validate(registerBean, "insert", "verificationCode");
+        // 调用注册服务
+        customerService.register(registerBean);
         // 返回结果
         return true;
     }
@@ -80,45 +65,63 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.LOGIN)
-    public boolean login(@RequestBody CustomerLogin loginBean) {
+    public CustomerAccount login(@RequestBody CustomerLogin loginBean) {
         // 校验
         if(null == loginBean) {
             throw new IllegalArgumentException("登陆对象不可为空");
         }
         // 框架校验
-        OvalUtils.validate(loginBean, "insert");
-        // 查询用户
-        CustomerAccount selectBean = microServiceCustomerClient.accountSelectByName(loginBean.getAccountName());
-        if(null == selectBean) {
-            throw new IllegalArgumentException("用户名不存在");
-        }
-        // 校验密码
-        if(!CipherUtils.encryptPassword(loginBean.getAccountName(), loginBean.getPassword()).equals(selectBean.getPassword())) {
-            throw new IllegalArgumentException("密码不正确");
-        }
-        // 写入登陆表 TODO
-        loginBean.setAccountId(selectBean.getAccountId());
-        loginBean.setNetworkAddress(ThreadLocalUtils.get(SpringleafCoreConstants.Request.IP, String.class));
-
-        // 返回结果
-        return true;
+        OvalUtils.validate(loginBean, "login");
+        // 登陆服务
+        return customerService.login(loginBean);
     }
 
     /**
-     * 登出
-     * @param accountId
+     * 登出 校验四要素 登陆编号、账户索引编号、来源系统、登陆设备
+     * @param logoutBean
      * @return
      */
     @PostMapping(CustomerPath.LOGOUT)
-    public boolean logout(@RequestParam("accountId") int accountId) {
+    public boolean logout(@RequestBody CustomerLogin logoutBean) {
+        // 校验
+        if(null == logoutBean) {
+            throw new IllegalArgumentException("登陆对象不可为空");
+        }
+        // 框架四要素
+        OvalUtils.validate(logoutBean, "logout");
+        // 登出
+        customerService.logout(logoutBean);
+        // 返回
         return true;
     }
 
     /**
-     * 找回密码
+     * 检查邮箱、用户名是否匹配，匹配上则发送验证码
+     * @param customerAccount
+     * @return
      */
-    @PostMapping(CustomerPath.RETRIEVE_PASSWORD)
-    public boolean retrievePassword() {
+    @PostMapping(CustomerPath.CHECK_MATCH_AND_SEND_VERIFICATION_CODE)
+    public boolean checkMatchAndSendVerificationCode(@RequestBody CustomerAccount customerAccount) {
+        // 校验 用户名跟邮箱
+        OvalUtils.validate(customerAccount, "accountName", "email");
+        // 服务调用
+        customerService.checkMatchAndSendVerificationCode(customerAccount.getAccountName(), customerAccount.getEmail());
+        // 返回
+        return true;
+    }
 
+    /**
+     * 重设密码
+     * @param resetBean
+     * @return
+     */
+    @PostMapping(CustomerPath.RESET_PASSWORD)
+    public boolean resetPassword(@RequestBody CustomerAccount resetBean) {
+        // 校验
+        OvalUtils.validate(resetBean, "accountName", "email", "password", "verificationCode");
+        // 服务调用
+        customerService.resetPassword(resetBean);
+        // 返回
+        return true;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * project: mhq0123-officialwebsite
@@ -28,9 +27,9 @@ public interface CustomerLoginClient {
 
     /**
      * 登出
-     * @param loginId
+     * @param logoutBean
      * @return
      */
     @RequestMapping(value = CustomerLoginPath.LOGOUT, method = RequestMethod.POST)
-    int logout(@RequestParam("loginId") int loginId);
+    int logout(@RequestBody CustomerLogin logoutBean);
 }

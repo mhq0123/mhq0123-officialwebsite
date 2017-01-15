@@ -35,7 +35,7 @@ public class CustomerAccountController {
     public int insert(@RequestBody CustomerAccount insertBean) {
         // 校验
         if(null == insertBean) {
-            throw new IllegalArgumentException("insertBean对象不可为空");
+            throw new IllegalArgumentException("新增对象不可为空");
         }
         // 栏位校验
         OvalUtils.validate(insertBean, "insert");
@@ -91,11 +91,27 @@ public class CustomerAccountController {
     public int updateById(@RequestBody CustomerAccount updateBean) {
         // 校验
         if(null == updateBean) {
-            throw new IllegalArgumentException("updateBean对象不可为空");
+            throw new IllegalArgumentException("修改对象不可为空");
         }
         OvalUtils.validate(updateBean, "accountId");
 
         return customerAccountService.updateById(updateBean);
+    }
+
+    /**
+     * 账号操作 - 根据用户名修改账号
+     * @param updateBean
+     * @return
+     */
+    @PostMapping(CustomerAccountPath.UPDATE_BY_NAME)
+    public int updateByName(@RequestBody CustomerAccount updateBean) {
+        // 校验
+        if(null == updateBean) {
+            throw new IllegalArgumentException("修改对象不可为空");
+        }
+        OvalUtils.validate(updateBean, "accountName");
+
+        return customerAccountService.updateByName(updateBean);
     }
 
     /**

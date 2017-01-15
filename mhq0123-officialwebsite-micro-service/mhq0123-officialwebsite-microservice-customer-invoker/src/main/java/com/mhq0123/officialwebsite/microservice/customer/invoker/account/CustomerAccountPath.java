@@ -24,6 +24,8 @@ public class CustomerAccountPath {
     public final static String SELECT_BY_EMAIL   = BASE + "/selectByEmail";
     /** 根据索引编号修改账号*/
     public final static String UPDATE_BY_ID      = BASE + "/updateById";
+    /** 根据用户名修改账号*/
+    public final static String UPDATE_BY_NAME      = BASE + "/updateByName";
     /** 根据索引编号冻结账号*/
     public final static String FREEZE_BY_ID      = BASE + "/freezeById";
     /** 根据索引编号解冻账号*/
