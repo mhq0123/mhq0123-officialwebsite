@@ -58,5 +58,5 @@ public interface CustomerAccountMapper {
      * @param email
      * @return
      */
-    CustomerAccount selectByEmail(@Param("mapper") String email);
+    CustomerAccount selectByEmail(@Param("email") String email);
 }

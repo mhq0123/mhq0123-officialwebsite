@@ -75,6 +75,6 @@
     <select id="selectByEmail" resultType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount">
         SELECT T.*
         FROM CUSTOMER_ACCOUNT T
-        AND T.EMAIL = #{email, jdbcType=VARCHAR}
+        WHERE T.EMAIL = #{email, jdbcType=VARCHAR}
     </select>
 </mapper>

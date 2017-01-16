@@ -31,7 +31,7 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.CHECK_EXIST_AND_SEND_VERIFICATION_CODE)
-    public boolean checkExistAndSendVerificationCode(@RequestBody CustomerAccount customerAccount) {
+    public Object checkExistAndSendVerificationCode(@RequestBody CustomerAccount customerAccount) {
         // 校验 用户名跟邮箱
         OvalUtils.validate(customerAccount, "accountName", "email");
         // 服务调用
@@ -46,7 +46,7 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.REGISTER)
-    public boolean register(@RequestBody CustomerAccount registerBean) {
+    public Object register(@RequestBody CustomerAccount registerBean) {
         // 校验
         if(null == registerBean) {
             throw new IllegalArgumentException("注册对象不可为空");
@@ -82,7 +82,7 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.LOGOUT)
-    public boolean logout(@RequestBody CustomerLogin logoutBean) {
+    public Object logout(@RequestBody CustomerLogin logoutBean) {
         // 校验
         if(null == logoutBean) {
             throw new IllegalArgumentException("登陆对象不可为空");
@@ -101,7 +101,7 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.CHECK_MATCH_AND_SEND_VERIFICATION_CODE)
-    public boolean checkMatchAndSendVerificationCode(@RequestBody CustomerAccount customerAccount) {
+    public Object checkMatchAndSendVerificationCode(@RequestBody CustomerAccount customerAccount) {
         // 校验 用户名跟邮箱
         OvalUtils.validate(customerAccount, "accountName", "email");
         // 服务调用
@@ -116,7 +116,7 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.RESET_PASSWORD)
-    public boolean resetPassword(@RequestBody CustomerAccount resetBean) {
+    public Object resetPassword(@RequestBody CustomerAccount resetBean) {
         // 校验
         OvalUtils.validate(resetBean, "accountName", "email", "password", "verificationCode");
         // 服务调用
