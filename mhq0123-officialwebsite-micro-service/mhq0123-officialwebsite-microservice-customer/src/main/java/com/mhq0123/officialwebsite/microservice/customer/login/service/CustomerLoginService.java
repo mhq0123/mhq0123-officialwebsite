@@ -64,6 +64,9 @@ public class CustomerLoginService {
         if(logoutBean.getTerminalType() != selectBean.getTerminalType()) {
             throw new IllegalArgumentException("登陆设备类型不一致");
         }
+        if(!logoutBean.getEquipmentIdentity().equals(selectBean.getEquipmentIdentity())) {
+            throw new IllegalArgumentException("登陆设备号不一致");
+        }
 
         // 写入登陆历史表
         CustomerLoginHistory insertBean = new CustomerLoginHistory();

@@ -46,6 +46,7 @@ spring:
 #mybatis
 mybatis:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
+  config-location: classpath:mybatis-config.xml
   type-aliases-package: com.mhq0123
   mapUnderscoreToCamelCase: true
   

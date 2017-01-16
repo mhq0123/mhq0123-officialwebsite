@@ -69,6 +69,10 @@ public class SmsEmailService {
         // 成功后更新邮件状态
         smsEmailMapper.updateById(updateBean);
 
+        if(SmsEmailType.Status.SUCCESS != updateBean.getStatus()) {
+            throw new IllegalArgumentException("发送失败：" + updateBean.getResultDesc());
+        }
+
         return returnResult;
     }
 
@@ -77,8 +81,6 @@ public class SmsEmailService {
      * @param smsEmail
      */
     public boolean send(SmsEmail smsEmail) {
-        // 返回结果-默认失败
-        boolean returnResult = false;
         // 默认发送者
         smsEmail.setEmailFrom(emailFrom);
         // 模板信息
@@ -87,14 +89,9 @@ public class SmsEmailService {
             smsEmail.setTemplate(template);
             smsEmail.setText(smsEmailRepository.getTemplateText(template, smsEmail.getTemplateVariableMap()));
         }
-        try {
-            // 发送邮件
-            javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
-            // 执行成功
-            returnResult = true;
-        } catch (Exception e) {
-            logger.error(">>>>>>>>>>>>>>发送邮件异常:{}", e.getMessage(), e);
-        }
-        return returnResult;
+        // 发送邮件
+        javaMailSender.send(smsEmailRepository.createMimeMessage(smsEmail));
+
+        return true;
     }
 }

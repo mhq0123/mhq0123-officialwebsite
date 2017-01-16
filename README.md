@@ -141,6 +141,7 @@ mhq0123-officialwebsite
 |   |   |   |   |   |---banner.txt   个性化banner
 |   |   |   |   |   |---ehcache.xml   缓存策略
 |   |   |   |   |   |---logback-spring.xml   日志格式、输出目录、归档策略、不同环境
+|   |   |   |   |   |---mybatis-config.xml   mybatis插件、缓存等配置
 |   |   |   |---test
 |   |   |   |   |---java
 |   |   |   |   |   |---yyy

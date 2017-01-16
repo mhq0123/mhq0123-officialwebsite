@@ -35,7 +35,7 @@ public interface CustomerAccountMapper {
      * @param updateBean
      * @return
      */
-    @CacheEvict(value = "CustomerAccount", key="'accountId_'+#updateBean.getAccountId()")
+    @CacheEvict(value = "CustomerAccount", key="'accountId_'+#p0.getAccountId()")
     int updateById(CustomerAccount updateBean);
 
     /**

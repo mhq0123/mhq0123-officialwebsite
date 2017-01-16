@@ -65,7 +65,7 @@ public class CustomerRestful {
      * @return
      */
     @PostMapping(CustomerPath.LOGIN)
-    public CustomerAccount login(@RequestBody CustomerLogin loginBean) {
+    public Object login(@RequestBody CustomerLogin loginBean) {
         // 校验
         if(null == loginBean) {
             throw new IllegalArgumentException("登陆对象不可为空");
@@ -77,7 +77,7 @@ public class CustomerRestful {
     }
 
     /**
-     * 登出 校验四要素 登陆编号、账户索引编号、来源系统、登陆设备
+     * 登出 校验四要素 登陆编号、账户索引编号、来源系统、登陆设备、设备号
      * @param logoutBean
      * @return
      */

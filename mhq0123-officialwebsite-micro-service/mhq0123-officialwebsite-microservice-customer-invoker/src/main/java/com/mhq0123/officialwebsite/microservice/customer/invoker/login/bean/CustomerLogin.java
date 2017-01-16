@@ -35,8 +35,8 @@ public class CustomerLogin implements Serializable {
     @NotNull(message = "设备类型不能为空", profiles = {"login", "logout", "terminalType"})
     private CustomerLoginType.TerminalType terminalType;
     /** 登陆终端设备号*/
-    @NotBlank(message = "设备号不能为空", profiles = {"login", "equipmentIdentity"})
-    @MaxLength(value = 30, message = "设备号不能超过30位", profiles = {"login", "equipmentIdentity"})
+    @NotBlank(message = "设备号不能为空", profiles = {"login", "logout", "equipmentIdentity"})
+    @MaxLength(value = 50, message = "设备号不能超过50位", profiles = {"login", "logout", "equipmentIdentity"})
     private String equipmentIdentity;
     /** 状态：在线ON_LINE/离线OFF_LINE/已登出LOGOUT*/
     private CustomerLoginType.Status status;

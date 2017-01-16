@@ -168,7 +168,7 @@ public class CustomerService {
         // 修改密码
         CustomerAccount updateBean = new CustomerAccount();
         updateBean.setAccountName(resetBean.getAccountName());
-        updateBean.setPassword(resetBean.getPassword());
+        updateBean.setPassword(CipherUtils.encryptPassword(resetBean.getAccountName(), resetBean.getPassword()));
 
         return customerAccountClient.updateByName(updateBean);
     }
