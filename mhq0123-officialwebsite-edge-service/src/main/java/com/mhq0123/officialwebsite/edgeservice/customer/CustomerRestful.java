@@ -77,6 +77,23 @@ public class CustomerRestful {
     }
 
     /**
+     * 自动登陆 登陆编号、账户索引编号、来源系统、登陆设备、设备号
+     * @param loginBean
+     * @return
+     */
+    @PostMapping(CustomerPath.AUTO_LOGIN)
+    public Object autoLogin(@RequestBody CustomerLogin loginBean) {
+        // 校验
+        if(null == loginBean) {
+            throw new IllegalArgumentException("登陆对象不可为空");
+        }
+        // 框架校验
+        OvalUtils.validate(loginBean, "logout");
+        // 登陆服务
+        return customerService.autoLogin(loginBean);
+    }
+
+    /**
      * 登出 校验四要素 登陆编号、账户索引编号、来源系统、登陆设备、设备号
      * @param logoutBean
      * @return

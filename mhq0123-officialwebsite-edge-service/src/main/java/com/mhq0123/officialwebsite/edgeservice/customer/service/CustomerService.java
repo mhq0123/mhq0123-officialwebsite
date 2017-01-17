@@ -112,6 +112,33 @@ public class CustomerService {
     }
 
     /**
+     * 自动登陆
+     * @param loginBean
+     * @return
+     */
+    public boolean autoLogin(CustomerLogin loginBean) {
+        // 查询用户
+        CustomerLogin selectBean = customerLoginClient.selectById(loginBean.getLoginId());
+        if(null == selectBean) {
+            throw new IllegalArgumentException("登陆已失效");
+        }
+        // 校验
+        if(loginBean.getAccountId() != selectBean.getAccountId()) {
+            throw new IllegalArgumentException("登陆账号不匹配");
+        }
+        if(loginBean.getSourceSystem() != selectBean.getSourceSystem()) {
+            throw new IllegalArgumentException("登陆来源系统不匹配");
+        }
+        if(loginBean.getTerminalType() != selectBean.getTerminalType()) {
+            throw new IllegalArgumentException("登陆设备不匹配");
+        }
+        if(!loginBean.getEquipmentIdentity().equals(selectBean.getEquipmentIdentity())) {
+            throw new IllegalArgumentException("登陆设备号不匹配");
+        }
+        return true;
+    }
+
+    /**
      * 登出
      * @param logoutBean
      */

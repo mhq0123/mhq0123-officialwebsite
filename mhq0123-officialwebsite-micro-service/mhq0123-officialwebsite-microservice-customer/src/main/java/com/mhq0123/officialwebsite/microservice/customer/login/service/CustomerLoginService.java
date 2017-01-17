@@ -43,6 +43,15 @@ public class CustomerLoginService {
     }
 
     /**
+     * 查询登陆对象
+     * @param loginId
+     * @return
+     */
+    public CustomerLogin selectById(int loginId) {
+        return customerLoginMapper.selectById(loginId);
+    }
+
+    /**
      * 登出
      * @param logoutBean
      * @return

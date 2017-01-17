@@ -28,8 +28,8 @@
 
     <delete id="deleteById" parameterType="java.lang.Integer">
       DELETE FROM
-        CUSTOMER_ACCOUNT T
-      WHERE T.ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
+        CUSTOMER_ACCOUNT
+      WHERE ACCOUNT_ID = #{accountId, jdbcType=INTEGER}
     </delete>
 
     <update id="updateById" parameterType="com.mhq0123.officialwebsite.microservice.customer.invoker.account.bean.CustomerAccount">

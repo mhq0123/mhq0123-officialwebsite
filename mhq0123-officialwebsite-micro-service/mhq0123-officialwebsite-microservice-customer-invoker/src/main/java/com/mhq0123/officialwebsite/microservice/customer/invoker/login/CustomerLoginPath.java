@@ -16,6 +16,8 @@ public class CustomerLoginPath {
 
     /** 登陆*/
     public final static String LOGIN            = BASE + "/login";
+    /** 自动登陆*/
+    public final static String SELECT_BY_ID     = BASE + "/selectById";
     /** 登出*/
     public final static String LOGOUT           = BASE + "/logout";
 

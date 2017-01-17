@@ -7,9 +7,7 @@ import org.mhq0123.springleaf.common.utils.OvalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * project: mhq0123-officialwebsite
@@ -40,6 +38,20 @@ public class CustomerLoginController {
         OvalUtils.validate(customerLogin, "login");
 
         return customerLoginService.login(customerLogin);
+    }
+
+    /**
+     * 查询登陆对象
+     * @param loginId
+     * @return
+     */
+    @PostMapping(CustomerLoginPath.SELECT_BY_ID)
+    CustomerLogin selectById(@RequestParam("loginId") int loginId) {
+        if(loginId < 1) {
+            throw new IllegalArgumentException("登陆编号不可为空");
+
+        }
+        return customerLoginService.selectById(loginId);
     }
 
     /**

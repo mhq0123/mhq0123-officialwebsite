@@ -1,10 +1,7 @@
 package com.mhq0123.officialwebsite.microservice.customer.invoker.login.bean;
 
 import com.mhq0123.officialwebsite.microservice.customer.invoker.login.type.CustomerLoginType;
-import net.sf.oval.constraint.MaxLength;
-import net.sf.oval.constraint.MinSize;
-import net.sf.oval.constraint.NotBlank;
-import net.sf.oval.constraint.NotNull;
+import net.sf.oval.constraint.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,10 +16,10 @@ public class CustomerLogin implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 表索引编号*/
-    @MinSize(value = 1, message = "登陆索引编号不可为空", profiles = {"logout", "loginId"})
+    @Min(value = 1, message = "登陆索引编号不可为空", profiles = {"logout", "loginId"})
     private int loginId;
     /** 账号索引编号*/
-    @MinSize(value = 1, message = "账户索引编号不可为空", profiles = {"logout", "accountId"})
+    @Min(value = 1, message = "账户索引编号不可为空", profiles = {"logout", "accountId"})
     private int accountId;
     /** 来源系统BLOG/ASSISTANT/FORUM/MICROVIEDO...*/
     @NotNull(message = "登陆系统不能为空", profiles = {"login", "logout", "sourceSystem"})

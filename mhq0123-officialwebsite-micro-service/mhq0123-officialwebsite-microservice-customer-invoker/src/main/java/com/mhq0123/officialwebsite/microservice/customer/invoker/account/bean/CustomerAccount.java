@@ -17,7 +17,7 @@ public class CustomerAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 表索引编号*/
-    @MinSize(value = 1, message = "账户索引编号不可为空", profiles = {"accountId"})
+    @Min(value = 1, message = "账户索引编号不可为空", profiles = {"accountId"})
     private int accountId;
     /** 账号*/
     @NotBlank(message = "账号不能为空", profiles = {"insert", "accountName"})

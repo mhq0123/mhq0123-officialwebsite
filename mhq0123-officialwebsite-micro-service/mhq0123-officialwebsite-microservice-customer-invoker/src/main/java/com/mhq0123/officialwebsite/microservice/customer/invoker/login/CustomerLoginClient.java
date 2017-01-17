@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * project: mhq0123-officialwebsite
@@ -24,6 +25,14 @@ public interface CustomerLoginClient {
      */
     @RequestMapping(value = CustomerLoginPath.LOGIN, method = RequestMethod.POST)
     int login(@RequestBody CustomerLogin customerLogin);
+
+    /**
+     * 查询登陆对象
+     * @param loginId
+     * @return
+     */
+    @RequestMapping(value = CustomerLoginPath.SELECT_BY_ID, method = RequestMethod.POST)
+    CustomerLogin selectById(@RequestParam("loginId") int loginId);
 
     /**
      * 登出

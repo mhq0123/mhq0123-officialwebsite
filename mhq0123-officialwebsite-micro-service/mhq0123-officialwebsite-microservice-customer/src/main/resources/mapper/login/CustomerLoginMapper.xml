@@ -24,8 +24,8 @@
 
     <delete id="deleteById" parameterType="java.lang.Integer">
       DELETE FROM
-        CUSTOMER_LOGIN T
-      WHERE T.LOGIN_ID = #{loginId, jdbcType=INTEGER}
+        CUSTOMER_LOGIN
+      WHERE LOGIN_ID = #{loginId, jdbcType=INTEGER}
     </delete>
 
 
