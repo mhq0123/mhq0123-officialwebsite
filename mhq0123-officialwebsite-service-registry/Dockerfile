@@ -5,7 +5,7 @@ FROM java:8
 VOLUME /tmp
 
 # 拷贝文件到容器，也可以直接写成ADD xxx.jar /app.jar
-ADD ./target/mhq0123-officialwebsite-service-registry-1.0-SNAPSHOT.jar app.jar
+ADD mhq0123-officialwebsite-service-registry/target/mhq0123-officialwebsite-service-registry-1.0-SNAPSHOT.jar app.jar
 RUN bash -c 'touch /app.jar'
 
 # 开放8077端口
