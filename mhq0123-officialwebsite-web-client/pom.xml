@@ -18,12 +18,21 @@
     <!--远程仓库-->
     <repositories>
         <repository>
-            <id>mhq0123-maven-repository</id>
-            <url>https://raw.githubusercontent.com/mhq0123/mhq0123-maven-repository/master</url>
+            <id>maven-mhq0123</id>
+            <name>maven-mhq0123</name>
+            <url>http://133.130.114.183:8081/repository/maven-public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
+        </repository>
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>aliyun repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
     </repositories>
 
