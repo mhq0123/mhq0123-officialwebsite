@@ -9,7 +9,7 @@ ADD mhq0123-officialwebsite-service-gateway /tmp/build/mhq0123-officialwebsite-s
 ADD mhq0123-officialwebsite-service-registry /tmp/build/mhq0123-officialwebsite-service-registry
 ADD mhq0123-officialwebsite-web-client /tmp/build/mhq0123-officialwebsite-web-client
 #解析依赖
-RUN cd /tmp/build && mvn -q dependency:resolve
+#RUN cd /tmp/build && mvn -q dependency:resolve
 #构建应用
 RUN cd /tmp/build && mvn -q -DskipTests=true package \
 #拷贝编译结果到指定目录
