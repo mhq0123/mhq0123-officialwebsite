@@ -15,6 +15,18 @@
     <name>mhq0123-officialwebsite-web-client</name>
     <url>http://maven.apache.org</url>
 
+    <!--远程仓库-->
+    <repositories>
+        <repository>
+            <id>mhq0123-maven-repository</id>
+            <url>https://raw.githubusercontent.com/mhq0123/mhq0123-maven-repository/master</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!--thymeleaf模板-->
         <dependency>

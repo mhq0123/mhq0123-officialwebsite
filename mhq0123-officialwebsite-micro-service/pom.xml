@@ -18,6 +18,18 @@
         <module>mhq0123-officialwebsite-microservice-sms-invoker</module>
     </modules>
 
+    <!--远程仓库-->
+    <repositories>
+        <repository>
+            <id>mhq0123-maven-repository</id>
+            <url>https://raw.githubusercontent.com/mhq0123/mhq0123-maven-repository/master</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- mysql 驱动 -->
         <dependency>
