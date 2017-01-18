@@ -1,15 +1,16 @@
-# 基于哪个镜像
-FROM java:8
+FROM maven:3.3.3
 
-# 将本地文件夹挂载到当前容器
+ADD mhq0123-officialwebsite-service-registry/pom.xml /tmp/build/
+RUN cd /tmp/build && mvn -q dependency:resolve
+
+ADD mhq0123-officialwebsite-service-registry/src /tmp/build/src
+        #构建应用
+RUN cd /tmp/build && mvn -q -DskipTests=true package \
+        #拷贝编译结果到指定目录
+        && mv target/*.jar /app.jar \
+        #清理编译痕迹
+        && cd / && rm -rf /tmp/build
+
 VOLUME /tmp
-
-# 拷贝文件到容器，也可以直接写成ADD xxx.jar /app.jar
-ADD mhq0123-officialwebsite-service-registry/target/mhq0123-officialwebsite-service-registry-1.0-SNAPSHOT.jar app.jar
-RUN bash -c 'touch /app.jar'
-
-# 开放8077端口
 EXPOSE 8077
-
-# 配置容器启动后执行的命令
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar --spring.profiles.active=pro"]
