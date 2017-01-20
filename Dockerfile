@@ -23,15 +23,5 @@ RUN cd /tmp/build && mvn -q -DskipTests=true package \
         && cd / && rm -rf /tmp/build
 
 VOLUME /tmp
-EXPOSE 8077
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/service-registry.jar --spring.profiles.active=prod"]
-EXPOSE 8088
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/config-server.jar --spring.profiles.active=prod"]
-EXPOSE 8000
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/microservice-customer.jar --spring.profiles.active=prod"]
-EXPOSE 8010
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/microservice-sms.jar --spring.profiles.active=prod"]
-EXPOSE 8055
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/edge-service.jar --spring.profiles.active=prod"]
-EXPOSE 8099
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/service-gateway.jar --spring.profiles.active=prod"]
+EXPOSE 8077 8088 8000 8010 8055 8099
+CMD ["sh","start.sh"]
