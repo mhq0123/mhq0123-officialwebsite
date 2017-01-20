@@ -8,6 +8,8 @@ ADD mhq0123-officialwebsite-micro-service /tmp/build/mhq0123-officialwebsite-mic
 ADD mhq0123-officialwebsite-service-gateway /tmp/build/mhq0123-officialwebsite-service-gateway
 ADD mhq0123-officialwebsite-service-registry /tmp/build/mhq0123-officialwebsite-service-registry
 ADD mhq0123-officialwebsite-web-client /tmp/build/mhq0123-officialwebsite-web-client
+
+ADD start.sh /start.sh
 #解析依赖
 #RUN cd /tmp/build && mvn -q dependency:resolve
 #构建应用
