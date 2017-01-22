@@ -17,12 +17,12 @@ ADD start.sh /start.sh
 #构建应用
 #拷贝编译结果到指定目录
 RUN cd /tmp/build && mvn -q -DskipTests=true package
-RUN cd /tmp/build/mhq0123-officialwebsite-config-server/target && mv mhq0123-officialwebsite-config-server-1.0-SNAPSHOT.jar /config-server.jar
-RUN cd /tmp/build && mv mhq0123-officialwebsite-edge-service/target/*.jar /edge-service.jar \
-        && mv mhq0123-officialwebsite-micro-service/mhq0123-officialwebsite-microservice-customer/target/*.jar /microservice-customer.jar \
-        && mv mhq0123-officialwebsite-micro-service/mhq0123-officialwebsite-microservice-sms/target/*.jar /microservice-sms.jar \
-        && mv mhq0123-officialwebsite-service-gateway/target/*.jar /service-gateway.jar \
-        && mv mhq0123-officialwebsite-service-registry/target/*.jar /service-registry.jar \
+RUN cd /tmp/build && mv mhq0123-officialwebsite-config-server/target/*SNAPSHOT.jar /config-server.jar \
+        && mv mhq0123-officialwebsite-edge-service/target/*SNAPSHOT.jar /edge-service.jar \
+        && mv mhq0123-officialwebsite-micro-service/mhq0123-officialwebsite-microservice-customer/target/*SNAPSHOT.jar /microservice-customer.jar \
+        && mv mhq0123-officialwebsite-micro-service/mhq0123-officialwebsite-microservice-sms/target/*SNAPSHOT.jar /microservice-sms.jar \
+        && mv mhq0123-officialwebsite-service-gateway/target/*SNAPSHOT.jar /service-gateway.jar \
+        && mv mhq0123-officialwebsite-service-registry/target/*SNAPSHOT.jar /service-registry.jar \
         #清理编译痕迹
         && cd / && rm -rf /tmp/build
 
