@@ -23,11 +23,12 @@ RUN cd /tmp/build && mv mhq0123-officialwebsite-config-server/target/*SNAPSHOT.j
         && mv mhq0123-officialwebsite-micro-service/mhq0123-officialwebsite-microservice-sms/target/*SNAPSHOT.jar /microservice-sms.jar \
         && mv mhq0123-officialwebsite-service-gateway/target/*SNAPSHOT.jar /service-gateway.jar \
         && mv mhq0123-officialwebsite-service-registry/target/*SNAPSHOT.jar /service-registry.jar \
+        && mv mhq0123-officialwebsite-web-client/target/*SNAPSHOT.jar /web-client.jar \
         #清理编译痕迹
         && cd / && rm -rf /tmp/build
 
 VOLUME /tmp
 
-EXPOSE 8077 8088 8000 8010 8055 8099
+EXPOSE 8077 8088 8000 8010 8055 8099 80
 
 CMD ["sh","start.sh"]
