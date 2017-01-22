@@ -14,18 +14,18 @@
 
     <!--远程仓库-->
     <repositories>
-        <repository>
-            <id>maven-mhq0123</id>
-            <name>maven-mhq0123</name>
-            <url>http://133.130.114.183:8081/repository/maven-public/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
+        <!--<repository>-->
+            <!--<id>maven-mhq0123</id>-->
+            <!--<name>maven-mhq0123</name>-->
+            <!--<url>http://133.130.114.183:8081/repository/maven-public/</url>-->
+            <!--<layout>default</layout>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
         <repository>
             <id>nexus-aliyun</id>
             <name>aliyun repository</name>
